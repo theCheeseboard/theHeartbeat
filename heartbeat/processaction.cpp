@@ -17,39 +17,42 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-#ifndef PROCESS_H
-#define PROCESS_H
+#include "processaction.h"
+#include "ui_processaction.h"
 
-#include <QObject>
-#include <signal.h>
+#include "processes/process.h"
 
-struct ProcessPrivate;
-class SystemManager;
-
-class Process : public QObject
+ProcessAction::ProcessAction(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::ProcessAction)
 {
-        Q_OBJECT
-    public:
-        explicit Process(int pid, SystemManager* sm, QObject *parent = nullptr);
-        ~Process();
+    ui->setupUi(this);
+}
 
-        bool setProperty(const char *name, const QVariant &value);
-        QVariant property(const char *name) const;
+ProcessAction::~ProcessAction()
+{
+    delete ui;
+}
+
+void ProcessAction::setTitle(QString title) {
+    ui->titleLabel->setText(title);
+}
+
+void ProcessAction::setText(QString text) {
+    ui->messageLabel->setText(text);
+}
+
+void ProcessAction::addProcess(Process* p) {
+    ui->processesWidget->addItem(p->property("process").toString());
+}
+
+void ProcessAction::on_backButton_clicked()
+{
+    emit dismiss();
+}
 
 
-    signals:
-        void processGone(Process* p);
-        void propertiesChanged(Process* p);
-
-    public slots:
-        void performUpdate();
-        void sendSignal(int signal);
-
-    private:
-        ProcessPrivate* d;
-
-        QString readFile(QString file);
-        QString readLink(QString link);
-};
-
-#endif // PROCESS_H
+void ProcessAction::on_acceptButton_clicked()
+{
+    emit accept();
+}

@@ -100,6 +100,8 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
         if (index.column() == Name) {
             return p->property("x11-icon");
         }
+    } else if (role == Qt::UserRole) {
+        return QVariant::fromValue(p);
     }
 
     return QVariant();
@@ -143,7 +145,7 @@ bool ProcessModel::checkProcessEligibility(Process *p) {
 void ProcessModel::setupProcess(Process *p) {
     this->beginInsertRows(QModelIndex(), rowCount() - 1, rowCount() - 1);
     shownProcesses.append(p);
-    connect(p, &Process::processGone, this, &ProcessModel::processGone);
+    connect(p, SIGNAL(processGone(Process*)), this, SLOT(processGone(Process*)));
     this->endInsertRows();
 }
 

@@ -42,6 +42,9 @@ class ProcessManager : public QObject
     public slots:
         void checkProcesses();
 
+    private slots:
+        void processGone(Process* p);
+
     private:
         ProcessManagerPrivate* d;
 };

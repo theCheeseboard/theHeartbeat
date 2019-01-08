@@ -31,8 +31,12 @@
 #include <tpromise.h>
 #include "system/systemmanager.h"
 
+#include <unistd.h>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
+
+extern QMutex checkerMutex;
+extern int checkers;
 
 struct ProcessPrivate {
     int pid;
@@ -84,6 +88,10 @@ void Process::performUpdate() {
             emit processGone(this);
             return;
         }
+
+        checkerMutex.lock();
+        checkers++;
+        checkerMutex.unlock();
 
         qulonglong sharedMem = 0, totalMem = 0;
         QString status = readFile("status");
@@ -144,14 +152,16 @@ void Process::performUpdate() {
         this->setProperty("privateMem", totalMem - sharedMem);
 
         QStringList statFile = readFile("stat").split(" ");
-        qulonglong utime = statFile.at(13).toULongLong();
-        qulonglong stime = statFile.at(14).toULongLong();
+        if (statFile.count() > 14) {
+            qulonglong utime = statFile.at(13).toULongLong();
+            qulonglong stime = statFile.at(14).toULongLong();
 
-        if (d->oldUtime != 0) {
-            this->setProperty("cpuUsage", (float) (utime - d->oldUtime + stime - d->oldStime) / (float) d->sm->property("cpuJiffies").toULongLong());
+            if (d->oldUtime != 0) {
+                this->setProperty("cpuUsage", (float) (utime - d->oldUtime + stime - d->oldStime) / (float) d->sm->property("cpuJiffies").toULongLong());
+            }
+            d->oldUtime = utime;
+            d->oldStime = stime;
         }
-        d->oldUtime = utime;
-        d->oldStime = stime;
 
         Atom WindowListType;
         int format;
@@ -269,6 +279,10 @@ void Process::performUpdate() {
             this->setProperty("x11-window", QVariant());
         }
 
+        checkerMutex.lock();
+        checkers--;
+        checkerMutex.unlock();
+
         d->updateLocker->unlock();
     }))->then([=] {
         emit propertiesChanged(this);
@@ -284,4 +298,8 @@ QString Process::readFile(QString file) {
 QString Process::readLink(QString link) {
     QFile f(QString("/proc/%1/%2").arg(QString::number(d->pid), link));
     return f.symLinkTarget();
+}
+
+void Process::sendSignal(int signal) {
+    kill(d->pid, signal);
 }

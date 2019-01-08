@@ -21,7 +21,10 @@
 #include "ui_mainwindow.h"
 
 #include "processes/processmodel.h"
+#include "processes/process.h"
 #include <tstackedwidget.h>
+#include <tpopover.h>
+#include "processaction.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -70,4 +73,32 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_OverviewTerminateButton_clicked()
+{
+    if (ui->processTable->selectionModel()->selectedRows().count() > 0) {
+        ProcessAction* act = new ProcessAction();
+        act->setTitle(tr("Terminate Process"));
+        act->setText(tr("Are you sure you want to terminate these processes? You'll lose any unsaved work."));
+
+        for (QModelIndex i : ui->processTable->selectionModel()->selectedRows()) {
+            act->addProcess(i.data(Qt::UserRole).value<Process*>());
+        }
+
+        tPopover* p = new tPopover(act);
+        p->setPopoverWidth(400 * theLibsGlobal::getDPIScaling());
+        connect(act, &ProcessAction::dismiss, p, &tPopover::dismiss);
+        connect(act, &ProcessAction::accept, [=] {
+            for (QModelIndex i : ui->processTable->selectionModel()->selectedRows()) {
+                i.data(Qt::UserRole).value<Process*>()->sendSignal(SIGTERM);
+            }
+            p->dismiss();
+        });
+        connect(p, &tPopover::dismissed, [=] {
+            p->deleteLater();
+            act->deleteLater();
+        });
+        p->show(this);
+    }
 }

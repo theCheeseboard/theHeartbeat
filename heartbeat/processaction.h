@@ -17,39 +17,41 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-#ifndef PROCESS_H
-#define PROCESS_H
+#ifndef PROCESSACTION_H
+#define PROCESSACTION_H
 
-#include <QObject>
-#include <signal.h>
+#include <QWidget>
 
-struct ProcessPrivate;
-class SystemManager;
 
-class Process : public QObject
+namespace Ui {
+    class ProcessAction;
+}
+
+class Process;
+class ProcessAction : public QWidget
 {
         Q_OBJECT
+
     public:
-        explicit Process(int pid, SystemManager* sm, QObject *parent = nullptr);
-        ~Process();
-
-        bool setProperty(const char *name, const QVariant &value);
-        QVariant property(const char *name) const;
-
-
-    signals:
-        void processGone(Process* p);
-        void propertiesChanged(Process* p);
+        explicit ProcessAction(QWidget *parent = nullptr);
+        ~ProcessAction();
 
     public slots:
-        void performUpdate();
-        void sendSignal(int signal);
+        void setTitle(QString title);
+        void setText(QString text);
+        void addProcess(Process* p);
+
+    signals:
+        void dismiss();
+        void accept();
+
+    private slots:
+        void on_backButton_clicked();
+
+        void on_acceptButton_clicked();
 
     private:
-        ProcessPrivate* d;
-
-        QString readFile(QString file);
-        QString readLink(QString link);
+        Ui::ProcessAction *ui;
 };
 
-#endif // PROCESS_H
+#endif // PROCESSACTION_H

@@ -63,11 +63,7 @@ void ProcessManager::checkProcesses() {
             int pid = process.toInt(&isAnInteger);
             if (isAnInteger && !d->processes.contains(pid)) {
                 Process* p = new Process(pid, d->sm);
-                connect(p, &Process::processGone, [=] {
-                    QMutexLocker locker(&d->processesLocker);
-                    d->processes.remove(pid);
-                    p->deleteLater();
-                });
+                connect(p, SIGNAL(processGone(Process*)), this, SLOT(processGone(Process*)));
 
                 d->processesLocker.lock();
                 d->processes.insert(pid, p);
@@ -83,6 +79,11 @@ void ProcessManager::checkProcesses() {
     });
 }
 
+void ProcessManager::processGone(Process* p) {
+    QMutexLocker locker(&d->processesLocker);
+    d->processes.remove(p->property("pid").toInt());
+    p->deleteLater();
+}
 
 Process* ProcessManager::processByPid(int pid) {
     QMutexLocker locker(&d->processesLocker);

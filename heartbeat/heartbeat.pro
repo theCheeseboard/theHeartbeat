@@ -37,7 +37,8 @@ SOURCES += \
     processes/processmodel.cpp \
     system/systemmanager.cpp \
     panes/percentagepane.cpp \
-    panes/minmaxpane.cpp
+    panes/minmaxpane.cpp \
+    processaction.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,12 +47,14 @@ HEADERS += \
     processes/processmodel.h \
     system/systemmanager.h \
     panes/percentagepane.h \
-    panes/minmaxpane.h
+    panes/minmaxpane.h \
+    processaction.h
 
 FORMS += \
         mainwindow.ui \
     panes/percentagepane.ui \
-    panes/minmaxpane.ui
+    panes/minmaxpane.ui \
+    processaction.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
