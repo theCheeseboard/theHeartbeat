@@ -44,6 +44,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->processTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
     ui->processTable->header()->setSectionResizeMode(3, QHeaderView::Interactive);
 
+    ui->processesTable->setModel(new ProcessModel(pm, ProcessModel::Processes));
+    ui->processesTable->header()->setStretchLastSection(false);
+    ui->processesTable->header()->setDefaultSectionSize(100 * theLibsGlobal::getDPIScaling());
+    ui->processesTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->processesTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
+    ui->processesTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
+    ui->processesTable->header()->setSectionResizeMode(3, QHeaderView::Interactive);
+
     ui->cpuUsageWidget->setTitle(tr("CPU Usage"));
     ui->memoryUsageWidget->setTitle(tr("Memory Usage"));
     ui->swapUsageWidget->setTitle(tr("Swap Usage"));
@@ -51,6 +59,9 @@ MainWindow::MainWindow(QWidget *parent) :
     if (!sm->property("swapTotal").isValid() || sm->property("swapTotal").toULongLong() == 0) {
         ui->swapUsageWidget->setVisible(false);
     }
+
+    ui->cpuIndividualUsageWidget->setFixedHeight(0);
+    ui->cpuUsageWidget->setExpandable(true);
 
     for (int i = 0; i < sm->property("cpuCount").toInt(); i++) {
         MiniPercentagePane* p = new MiniPercentagePane();
@@ -128,6 +139,33 @@ void MainWindow::on_OverviewTerminateButton_clicked()
     }
 }
 
+void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
+    if (tree->selectionModel()->selectedRows().count() > 0) {
+        ProcessAction* act = new ProcessAction();
+        act->setTitle(tr("Send %1").arg(signalName));
+        act->setText(tr("Do you want to send %1 to these processes?").arg(signalName));
+
+        for (QModelIndex i : tree->selectionModel()->selectedRows()) {
+            act->addProcess(i.data(Qt::UserRole).value<Process*>());
+        }
+
+        tPopover* p = new tPopover(act);
+        p->setPopoverWidth(400 * theLibsGlobal::getDPIScaling());
+        connect(act, &ProcessAction::dismiss, p, &tPopover::dismiss);
+        connect(act, &ProcessAction::accept, [=] {
+            for (QModelIndex i : tree->selectionModel()->selectedRows()) {
+                i.data(Qt::UserRole).value<Process*>()->sendSignal(signal);
+            }
+            p->dismiss();
+        });
+        connect(p, &tPopover::dismissed, [=] {
+            p->deleteLater();
+            act->deleteLater();
+        });
+        p->show(this);
+    }
+}
+
 void MainWindow::on_processTable_customContextMenuRequested(const QPoint &pos)
 {
     if (ui->processTable->selectionModel()->selectedRows().count() > 0) {
@@ -139,6 +177,20 @@ void MainWindow::on_processTable_customContextMenuRequested(const QPoint &pos)
         } else {
             m->addSection(tr("For %1").arg(tr("%n processes", nullptr, selected.count())));
         }
+
+        QMenu* signalsMenu = new QMenu();
+        signalsMenu->setTitle(tr("Send Signal"));
+        signalsMenu->addAction("SIGSTOP", [=] {sendSignal(ui->processTable, "SIGSTOP", SIGSTOP);});
+        signalsMenu->addAction("SIGCONT", [=] {sendSignal(ui->processTable, "SIGCONT", SIGCONT);});
+        signalsMenu->addAction("SIGHUP" , [=] {sendSignal(ui->processTable, "SIGHUP" , SIGHUP );});
+        signalsMenu->addAction("SIGINT" , [=] {sendSignal(ui->processTable, "SIGINT" , SIGINT );});
+        signalsMenu->addAction("SIGUSR1", [=] {sendSignal(ui->processTable, "SIGUSR1", SIGUSR1);});
+        signalsMenu->addAction("SIGUSR2", [=] {sendSignal(ui->processTable, "SIGUSR2", SIGUSR2);});
+        signalsMenu->addSeparator();
+        signalsMenu->addAction("SIGTERM", [=] {sendSignal(ui->processTable, "SIGTERM", SIGTERM);});
+        signalsMenu->addAction("SIGKILL", [=] {sendSignal(ui->processTable, "SIGKILL", SIGKILL);});
+
+        m->addMenu(signalsMenu);
         m->addAction(QIcon::fromTheme("application-exit"), tr("Terminate"), [=] {
             ui->OverviewTerminateButton->click();
         });
@@ -162,4 +214,24 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
         ui->paneSelection->setMaximumSize(300 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
         ui->appTitleLabel->setText(tr("theHeartbeat"));
     }
+}
+
+void MainWindow::on_cpuUsageWidget_toggleExpand()
+{
+    tVariantAnimation* anim = new tVariantAnimation();
+    anim->setStartValue(ui->cpuIndividualUsageWidget->height());
+    if (ui->cpuIndividualUsageWidget->height() == 0) {
+        anim->setEndValue(ui->cpuIndividualUsageWidget->sizeHint().height());
+        ui->cpuUsageWidget->setExpanded(true);
+    } else {
+        anim->setEndValue(0);
+        ui->cpuUsageWidget->setExpanded(false);
+    }
+    anim->setDuration(500);
+    anim->setEasingCurve(QEasingCurve::OutCubic);
+    connect(anim, &tVariantAnimation::valueChanged, [=](QVariant value) {
+        ui->cpuIndividualUsageWidget->setFixedHeight(value.toInt());
+    });
+    connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
+    anim->start();
 }

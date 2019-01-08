@@ -28,6 +28,8 @@ PercentagePane::PercentagePane(QWidget *parent) :
     ui(new Ui::PercentagePane)
 {
     ui->setupUi(this);
+
+    ui->expandButton->setVisible(false);
 }
 
 PercentagePane::~PercentagePane()
@@ -75,4 +77,21 @@ void PercentagePane::paintEvent(QPaintEvent *event) {
     g.setColorAt(1, c);
     p.fillRect(100, 0, 140, this->height(), g);
     p.fillRect(0, 0, 100, this->height(), this->palette().color(QPalette::Window));
+}
+
+void PercentagePane::on_expandButton_clicked()
+{
+    emit toggleExpand();
+}
+
+void PercentagePane::setExpanded(bool expanded) {
+    if (expanded) {
+        ui->expandButton->setArrowType(Qt::UpArrow);
+    } else {
+        ui->expandButton->setArrowType(Qt::DownArrow);
+    }
+}
+
+void PercentagePane::setExpandable(bool expandable) {
+    ui->expandButton->setVisible(expandable);
 }

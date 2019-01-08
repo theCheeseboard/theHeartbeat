@@ -30,8 +30,6 @@ class ProcessModel : public QAbstractTableModel
         Q_OBJECT
 
     public:
-        explicit ProcessModel(ProcessManager* pm, QObject *parent = nullptr);
-
         enum Columns {
             Name = 0,
             CPU,
@@ -43,6 +41,8 @@ class ProcessModel : public QAbstractTableModel
             Applications,
             Processes
         };
+        explicit ProcessModel(ProcessManager* pm, ModelType t = Applications, QObject *parent = nullptr);
+
 
         // Header:
         QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;

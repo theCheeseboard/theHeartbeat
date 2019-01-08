@@ -23,12 +23,12 @@
 #include "processmanager.h"
 #include "process.h"
 
-ProcessModel::ProcessModel(ProcessManager* pm, QObject *parent)
+ProcessModel::ProcessModel(ProcessManager* pm, ModelType t, QObject *parent)
     : QAbstractTableModel(parent)
 {
     this->pm = pm;
 
-    setModelType(Applications);
+    setModelType(t);
     connect(pm, &ProcessManager::newPid, [=](int pid) {
         Process* p = pm->processByPid(pid);
         connect(p, &Process::propertiesChanged, this, &ProcessModel::processPropertiesChanged);

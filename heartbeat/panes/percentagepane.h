@@ -36,6 +36,14 @@ class PercentagePane : public QWidget
 
         void setTitle(QString title);
         void setPercentage(double percentage);
+        void setExpanded(bool expanded);
+        void setExpandable(bool expandable);
+
+    signals:
+        void toggleExpand();
+
+    private slots:
+        void on_expandButton_clicked();
 
     private:
         Ui::PercentagePane *ui;

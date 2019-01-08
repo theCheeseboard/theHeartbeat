@@ -22,6 +22,7 @@
 
 #include <QMainWindow>
 #include <QList>
+#include <QTreeView>
 #include "processes/processmanager.h"
 #include "system/systemmanager.h"
 #include "panes/minipercentagepane.h"
@@ -44,6 +45,10 @@ class MainWindow : public QMainWindow
         void on_processTable_customContextMenuRequested(const QPoint &pos);
 
         void on_paneSelection_currentRowChanged(int currentRow);
+
+        void on_cpuUsageWidget_toggleExpand();
+
+        void sendSignal(QTreeView* tree, QString signalName, int signal);
 
     private:
         Ui::MainWindow *ui;

@@ -81,6 +81,7 @@ void Process::performUpdate() {
         return;
     }
 
+    Display* dpy = QX11Info::display();
     (new tPromise<void>([=](QString& error) {
         if (!QDir(QString("/proc/%1").arg(QString::number(d->pid))).exists()) {
             //Tell everyone we're gone
@@ -167,7 +168,7 @@ void Process::performUpdate() {
         int format;
         unsigned long items, bytes;
         unsigned char *data;
-        XGetWindowProperty(QX11Info::display(), DefaultRootWindow(QX11Info::display()), XInternAtom(QX11Info::display(), "_NET_CLIENT_LIST", true), 0L, (~0L),
+        XGetWindowProperty(dpy, DefaultRootWindow(dpy), XInternAtom(dpy, "_NET_CLIENT_LIST", true), 0L, (~0L),
                                         False, AnyPropertyType, &WindowListType, &format, &items, &bytes, &data);
 
         bool foundWindow = false;
@@ -181,7 +182,7 @@ void Process::performUpdate() {
             int format;
             Atom ReturnType;
 
-            ok = XGetWindowProperty(QX11Info::display(), win, XInternAtom(QX11Info::display(), "_NET_WM_PID", False), 0, 1024, False,
+            ok = XGetWindowProperty(dpy, win, XInternAtom(dpy, "_NET_WM_PID", False), 0, 1024, False,
                                     XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
             if (ok == 0 && returnVal != 0x0) {
                 unsigned long pid = *(unsigned long*) returnVal;
@@ -206,12 +207,12 @@ void Process::performUpdate() {
             Atom ReturnType;
 
             { //Obtain the window title
-                ok = XGetWindowProperty(QX11Info::display(), window, XInternAtom(QX11Info::display(), "_NET_WM_NAME", False), 0, 1024, False,
-                                   XInternAtom(QX11Info::display(), "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
+                ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_NAME", False), 0, 1024, False,
+                                   XInternAtom(dpy, "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
 
                 if (returnVal == nullptr) {
-                    ok = XGetWindowProperty(QX11Info::display(), window, XInternAtom(QX11Info::display(), "WM_NAME", False), 0, 1024, False,
-                                       XInternAtom(QX11Info::display(), "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
+                    ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "WM_NAME", False), 0, 1024, False,
+                                       XInternAtom(dpy, "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
                 }
 
                 if (ok == 0 && returnVal != nullptr) {
@@ -224,7 +225,7 @@ void Process::performUpdate() {
                 bool noIcon = false;
                 int width, height;
 
-                ok = XGetWindowProperty(QX11Info::display(), window, XInternAtom(QX11Info::display(), "_NET_WM_ICON", False), 0, 1, False,
+                ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_ICON", False), 0, 1, False,
                                    XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
                 if (returnVal == nullptr) {
                     noIcon = true;
@@ -233,7 +234,7 @@ void Process::performUpdate() {
                     XFree(returnVal);
                 }
 
-                ok = XGetWindowProperty(QX11Info::display(), window, XInternAtom(QX11Info::display(), "_NET_WM_ICON", False), 1, 1, False,
+                ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_ICON", False), 1, 1, False,
                                    XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
 
                 if (returnVal == nullptr) {
@@ -244,7 +245,7 @@ void Process::performUpdate() {
                 }
 
                 if (!noIcon) {
-                    ok = XGetWindowProperty(QX11Info::display(), window, XInternAtom(QX11Info::display(), "_NET_WM_ICON", False), 2, width * height * 4, False,
+                    ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_ICON", False), 2, width * height * 4, False,
                                        XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
 
                     if (returnVal != nullptr) {
