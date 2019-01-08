@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
 
     QTranslator localTranslator;
     localTranslator.load(QLocale::system().name(), "/usr/share/theheartbeat/translations");
-
     a.installTranslator(&localTranslator);
 
     MainWindow w;

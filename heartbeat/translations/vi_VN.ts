@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" sourcelanguage="en_US" language="vi_VN">
+<TS version="2.1" language="vi_VN" sourcelanguage="en_US">
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.ui" line="67"/>
-        <location filename="../mainwindow.cpp" line="215"/>
+        <location filename="../mainwindow.cpp" line="203"/>
         <source>theHeartbeat</source>
         <translation>theHeartbeat</translation>
     </message>
@@ -25,7 +25,7 @@
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <location filename="../mainwindow.ui" line="413"/>
-        <location filename="../mainwindow.cpp" line="118"/>
+        <location filename="../mainwindow.cpp" line="125"/>
         <source>Terminate Process</source>
         <translation>Chấm dứt quá trình</translation>
     </message>
@@ -50,49 +50,61 @@
         <translation>CPU %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="119"/>
-        <source>Are you sure you want to terminate these processes? You&apos;ll lose any unsaved work.</source>
-        <translation>Bạn có chắc chắn muốn chấm dứt quá trình sau đây không? Bạn sẽ mất việc chưa lưu.</translation>
+        <location filename="../mainwindow.cpp" line="126"/>
+        <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="145"/>
+        <location filename="../mainwindow.cpp" line="129"/>
+        <source>Kill Process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="130"/>
+        <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="133"/>
         <source>Send %1</source>
         <translation>Gửi %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="146"/>
+        <location filename="../mainwindow.cpp" line="134"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Bạn có chắc chắn muốn gửi %1 đến quá trình sau đây không?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="175"/>
-        <location filename="../mainwindow.cpp" line="178"/>
+        <location filename="../mainwindow.cpp" line="164"/>
+        <location filename="../mainwindow.cpp" line="167"/>
         <source>For %1</source>
         <translation>Cho %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="178"/>
+        <location filename="../mainwindow.cpp" line="167"/>
         <source>%n processes</source>
-        <translation><numerusform>%n quá trình</numerusform>
-        </translation></message>
+        <translation>
+            <numerusform>%n quá trình</numerusform>
+        </translation>
+    </message>
     <message>
-        <location filename="../mainwindow.cpp" line="182"/>
+        <location filename="../mainwindow.cpp" line="171"/>
         <source>Send Signal</source>
         <translation>Gửi tín hiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="194"/>
+        <location filename="../mainwindow.cpp" line="183"/>
         <source>Terminate</source>
         <translation>Chấm dứt</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="184"/>
+        <source>Kill</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MinMaxPane</name>
-    <message>
-        <location filename="../panes/minmaxpane.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../panes/minmaxpane.cpp" line="63"/>
         <source>%1 KB</source>
@@ -107,30 +119,6 @@
         <location filename="../panes/minmaxpane.cpp" line="67"/>
         <source>%1 GB</source>
         <translation>%1 GB</translation>
-    </message>
-</context>
-<context>
-    <name>MiniPercentagePane</name>
-    <message>
-        <location filename="../panes/minipercentagepane.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PercentagePane</name>
-    <message>
-        <location filename="../panes/percentagepane.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ProcessAction</name>
-    <message>
-        <location filename="../processaction.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -191,7 +191,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset theme="application-exit"/>
+               <iconset theme="window-close"/>
               </property>
               <property name="flat">
                <bool>true</bool>

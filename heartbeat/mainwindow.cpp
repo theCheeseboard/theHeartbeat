@@ -113,37 +113,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_OverviewTerminateButton_clicked()
 {
-    if (ui->processTable->selectionModel()->selectedRows().count() > 0) {
-        ProcessAction* act = new ProcessAction();
-        act->setTitle(tr("Terminate Process"));
-        act->setText(tr("Are you sure you want to terminate these processes? You'll lose any unsaved work."));
-
-        for (QModelIndex i : ui->processTable->selectionModel()->selectedRows()) {
-            act->addProcess(i.data(Qt::UserRole).value<Process*>());
-        }
-
-        tPopover* p = new tPopover(act);
-        p->setPopoverWidth(400 * theLibsGlobal::getDPIScaling());
-        connect(act, &ProcessAction::dismiss, p, &tPopover::dismiss);
-        connect(act, &ProcessAction::accept, [=] {
-            for (QModelIndex i : ui->processTable->selectionModel()->selectedRows()) {
-                i.data(Qt::UserRole).value<Process*>()->sendSignal(SIGTERM);
-            }
-            p->dismiss();
-        });
-        connect(p, &tPopover::dismissed, [=] {
-            p->deleteLater();
-            act->deleteLater();
-        });
-        p->show(this);
-    }
+    sendSignal(ui->processTable, "SIGTERM", SIGTERM);
 }
 
 void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
     if (tree->selectionModel()->selectedRows().count() > 0) {
         ProcessAction* act = new ProcessAction();
-        act->setTitle(tr("Send %1").arg(signalName));
-        act->setText(tr("Do you want to send %1 to these processes?").arg(signalName));
+
+        switch (signal) {
+            case SIGTERM:
+                act->setTitle(tr("Terminate Process"));
+                act->setText(tr("Are you sure you want to terminate these processes? You may lose any unsaved work."));
+                break;
+            case SIGKILL:
+                act->setTitle(tr("Kill Process"));
+                act->setText(tr("Are you sure you want to kill these processes? You'll lose any unsaved work."));
+                break;
+            default:
+                act->setTitle(tr("Send %1").arg(signalName));
+                act->setText(tr("Do you want to send %1 to these processes?").arg(signalName));
+        }
 
         for (QModelIndex i : tree->selectionModel()->selectedRows()) {
             act->addProcess(i.data(Qt::UserRole).value<Process*>());
@@ -191,9 +180,8 @@ void MainWindow::on_processTable_customContextMenuRequested(const QPoint &pos)
         signalsMenu->addAction("SIGKILL", [=] {sendSignal(ui->processTable, "SIGKILL", SIGKILL);});
 
         m->addMenu(signalsMenu);
-        m->addAction(QIcon::fromTheme("application-exit"), tr("Terminate"), [=] {
-            ui->OverviewTerminateButton->click();
-        });
+        m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [=] {sendSignal(ui->processTable, "SIGTERM", SIGTERM);});
+        m->addAction(QIcon::fromTheme("application-exit"), tr("Kill"), [=] {sendSignal(ui->processTable, "SIGKILL", SIGKILL);});
         m->exec(ui->processTable->mapToGlobal(pos));
     }
 }
