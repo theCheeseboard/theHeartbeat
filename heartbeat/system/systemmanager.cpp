@@ -1,0 +1,80 @@
+/****************************************
+ *
+ *   INSERT-PROJECT-NAME-HERE - INSERT-GENERIC-NAME-HERE
+ *   Copyright (C) 2019 Victor Tran
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * *************************************/
+#include "systemmanager.h"
+
+#include <QTimer>
+#include <QFile>
+#include <QVariant>
+#include <QDebug>
+
+struct SystemManagerPrivate {
+    qulonglong cpuWork = 0;
+    qulonglong cpuIdle = 0;
+};
+
+SystemManager::SystemManager(QObject *parent) : QObject(parent)
+{
+    d = new SystemManagerPrivate();
+
+    updateData();
+
+    QTimer* timer = new QTimer();
+    timer->setInterval(1000);
+    connect(timer, &QTimer::timeout, this, &SystemManager::updateData);
+    timer->start();
+}
+
+SystemManager::~SystemManager() {
+    delete d;
+}
+
+void SystemManager::updateData() {
+    QFile stat("/proc/stat");
+    stat.open(QFile::ReadOnly);
+    QString statFile = stat.readAll();
+
+    for (QString line : statFile.split("\n")) {
+        QStringList splits = line.split(" ", QString::SkipEmptyParts);
+        if (splits.count() == 0) continue;
+        QString name = splits.first().trimmed();
+        if (name == "cpu") {
+            qulonglong sumOfCpu = 0;
+            qulonglong sumOfWork = 0;
+            for (int i = 1; i < 8; i++) {
+                sumOfCpu += splits.at(i).toULongLong();
+            }
+            for (int i = 1; i < 4; i++) {
+                sumOfWork += splits.at(i).toULongLong();
+            }
+
+            if (d->cpuWork != 0) {
+                qulonglong cpuOverPeriod = sumOfCpu - d->cpuIdle;
+                qulonglong workOverPeriod = sumOfWork - d->cpuWork;
+
+                this->setProperty("cpu", (double) workOverPeriod / (double) cpuOverPeriod);
+            }
+
+            d->cpuIdle = sumOfCpu;
+            d->cpuWork = sumOfWork;
+        }
+    }
+
+    emit newDataAvailable();
+}
