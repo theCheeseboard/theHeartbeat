@@ -91,6 +91,9 @@ void SystemManager::updateData() {
 
                     this->setProperty(QString("cpu").append(QString::number(cpuNo)).toUtf8(), (double) workOverPeriod / (double) cpuOverPeriod);
                     this->setProperty(QString("cpuJiffies").append(QString::number(cpuNo)).toUtf8(), cpuOverPeriod);
+
+                    d->cpusIdle.replace(cpuNo, sumOfCpu);
+                    d->cpusWork.replace(cpuNo, sumOfWork);
                 }
             }
 
