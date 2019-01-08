@@ -63,6 +63,7 @@ Process::Process(int pid, SystemManager* sm, QObject *parent) : QObject(parent)
 
 Process::~Process() {
     delete d->updateLocker;
+    delete d->propertyLocker;
     delete d;
 }
 
@@ -86,7 +87,7 @@ void Process::performUpdate() {
         if (!QDir(QString("/proc/%1").arg(QString::number(d->pid))).exists()) {
             //Tell everyone we're gone
             d->updateLocker->unlock();
-            emit processGone(this);
+            error = "gone";
             return;
         }
 
@@ -287,6 +288,10 @@ void Process::performUpdate() {
         d->updateLocker->unlock();
     }))->then([=] {
         emit propertiesChanged(this);
+    })->error([=](QString error) {
+        if (error == "gone") {
+            emit processGone(this);
+        }
     });
 }
 

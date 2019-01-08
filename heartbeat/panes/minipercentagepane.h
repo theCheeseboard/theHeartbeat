@@ -21,12 +21,13 @@
 #define MINIPERCENTAGEPANE_H
 
 #include <QWidget>
+#include "sidepane.h"
 
 namespace Ui {
     class MiniPercentagePane;
 }
 
-class MiniPercentagePane : public QWidget
+class MiniPercentagePane : public SidePane
 {
         Q_OBJECT
 
@@ -39,9 +40,6 @@ class MiniPercentagePane : public QWidget
 
     private:
         Ui::MiniPercentagePane *ui;
-
-        QList<double> percentageHistory;
-        void paintEvent(QPaintEvent* event);
 };
 
 #endif // MINIPERCENTAGEPANE_H

@@ -20,11 +20,8 @@
 #include "percentagepane.h"
 #include "ui_percentagepane.h"
 
-#include <QPaintEvent>
-#include <QPainter>
-
 PercentagePane::PercentagePane(QWidget *parent) :
-    QWidget(parent),
+    SidePane(parent),
     ui(new Ui::PercentagePane)
 {
     ui->setupUi(this);
@@ -48,35 +45,6 @@ void PercentagePane::setPercentage(double percentage) {
         percentageHistory.removeLast();
     }
     this->update();
-}
-
-void PercentagePane::paintEvent(QPaintEvent *event) {
-    QPainter p(this);
-    p.setRenderHint(QPainter::Antialiasing);
-
-    QPainterPath path;
-    path.moveTo(this->width() + 1, 0);
-
-    for (int i = 0; i < percentageHistory.count(); i++) {
-        path.lineTo(this->width() - i * 4, this->height() - ((double) this->height() * percentageHistory.at(i)));
-    }
-    path.lineTo(this->width() - percentageHistory.count() * 4, this->height());
-    path.lineTo(this->width() + 1, this->height());
-
-    QColor col = this->palette().color(QPalette::Highlight);
-    col.setAlpha(100);
-    p.fillPath(path, col);
-
-    QLinearGradient g;
-    g.setStart(100, 0);
-    g.setFinalStop(140, 0);
-    g.setColorAt(0, this->palette().color(QPalette::Window));
-
-    QColor c = this->palette().color(QPalette::Window);
-    c.setAlpha(0);
-    g.setColorAt(1, c);
-    p.fillRect(100, 0, 140, this->height(), g);
-    p.fillRect(0, 0, 100, this->height(), this->palette().color(QPalette::Window));
 }
 
 void PercentagePane::on_expandButton_clicked()

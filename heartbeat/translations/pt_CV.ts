@@ -46,13 +46,13 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="124"/>
-        <location filename="../mainwindow.ui" line="474"/>
+        <location filename="../mainwindow.ui" line="477"/>
         <source>Processes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="265"/>
-        <location filename="../mainwindow.ui" line="490"/>
+        <location filename="../mainwindow.ui" line="493"/>
         <location filename="../mainwindow.cpp" line="141"/>
         <source>Terminate Process</source>
         <translation type="unfinished"></translation>
@@ -149,17 +149,17 @@
 <context>
     <name>MinMaxPane</name>
     <message>
-        <location filename="../panes/minmaxpane.cpp" line="63"/>
+        <location filename="../panes/minmaxpane.cpp" line="61"/>
         <source>%1 KB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../panes/minmaxpane.cpp" line="65"/>
+        <location filename="../panes/minmaxpane.cpp" line="63"/>
         <source>%1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../panes/minmaxpane.cpp" line="67"/>
+        <location filename="../panes/minmaxpane.cpp" line="65"/>
         <source>%1 GB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -187,7 +187,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="95"/>
+        <location filename="../processes/processmodel.cpp" line="101"/>
         <source>%1 KB</source>
         <translation type="unfinished"></translation>
     </message>

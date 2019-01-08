@@ -20,10 +20,8 @@
 #include "minmaxpane.h"
 #include "ui_minmaxpane.h"
 
-#include <QPainter>
-
 MinMaxPane::MinMaxPane(QWidget *parent) :
-    QWidget(parent),
+    SidePane(parent),
     ui(new Ui::MinMaxPane)
 {
     ui->setupUi(this);
@@ -72,33 +70,4 @@ QString MinMaxPane::calculateText(qulonglong val) {
 
 void MinMaxPane::setUnit(Unit u) {
     this->u = u;
-}
-
-void MinMaxPane::paintEvent(QPaintEvent *event) {
-    QPainter p(this);
-    p.setRenderHint(QPainter::Antialiasing);
-
-    QPainterPath path;
-    path.moveTo(this->width() + 1, 0);
-
-    for (int i = 0; i < percentageHistory.count(); i++) {
-        path.lineTo(this->width() - i * 4, this->height() - ((double) this->height() * percentageHistory.at(i)));
-    }
-    path.lineTo(this->width() - percentageHistory.count() * 4, this->height());
-    path.lineTo(this->width() + 1, this->height());
-
-    QColor col = this->palette().color(QPalette::Highlight);
-    col.setAlpha(100);
-    p.fillPath(path, col);
-
-    QLinearGradient g;
-    g.setStart(100, 0);
-    g.setFinalStop(140, 0);
-    g.setColorAt(0, this->palette().color(QPalette::Window));
-
-    QColor c = this->palette().color(QPalette::Window);
-    c.setAlpha(0);
-    g.setColorAt(1, c);
-    p.fillRect(100, 0, 140, this->height(), g);
-    p.fillRect(0, 0, 100, this->height(), this->palette().color(QPalette::Window));
 }

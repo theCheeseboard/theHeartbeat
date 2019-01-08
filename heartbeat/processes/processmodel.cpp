@@ -89,8 +89,14 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
                     return p->property("process");
                 }
                 break;
-            case CPU:
-                return QString::number(p->property("cpuUsage").toDouble() * 100, 'f', 1) + "%";
+            case CPU: {
+                double cpuUsage = p->property("cpuUsage").toDouble();
+                if (cpuUsage == 0) {
+                    return "";
+                } else {
+                    return QString::number(cpuUsage * 100, 'f', 1) + "%";
+                }
+            }
             case Memory:
                 return tr("%1 KB").arg(p->property("privateMem").toULongLong());
             case Pid:

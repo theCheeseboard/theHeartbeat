@@ -21,12 +21,13 @@
 #define PERCENTAGEPANE_H
 
 #include <QWidget>
+#include"sidepane.h"
 
 namespace Ui {
     class PercentagePane;
 }
 
-class PercentagePane : public QWidget
+class PercentagePane : public SidePane
 {
         Q_OBJECT
 
@@ -47,9 +48,6 @@ class PercentagePane : public QWidget
 
     private:
         Ui::PercentagePane *ui;
-
-        QList<double> percentageHistory;
-        void paintEvent(QPaintEvent* event);
 };
 
 #endif // PERCENTAGEPANE_H

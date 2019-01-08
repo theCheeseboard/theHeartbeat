@@ -40,7 +40,8 @@ SOURCES += \
     panes/minmaxpane.cpp \
     processaction.cpp \
     panes/minipercentagepane.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    panes/sidepane.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +53,8 @@ HEADERS += \
     panes/minmaxpane.h \
     processaction.h \
     panes/minipercentagepane.h \
-    aboutdialog.h
+    aboutdialog.h \
+    panes/sidepane.h
 
 FORMS += \
         mainwindow.ui \
