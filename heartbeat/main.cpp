@@ -1,6 +1,6 @@
 /****************************************
  *
- *   INSERT-PROJECT-NAME-HERE - INSERT-GENERIC-NAME-HERE
+ *   theHeartbeat - System Monitor
  *   Copyright (C) 2019 Victor Tran
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,15 +19,30 @@
  * *************************************/
 #include "mainwindow.h"
 
-#include <QApplication>
+#include <tapplication.h>
 #include <QMutex>
+#include <QTranslator>
+#include <QLibraryInfo>
 
 QMutex checkerMutex;
 int checkers = 0;
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    tApplication a(argc, argv);
+
+    a.setOrganizationName("theSuite");
+    a.setOrganizationDomain("");
+    a.setApplicationName("theHeartbeat");
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
+
+    QTranslator localTranslator;
+    localTranslator.load(QLocale::system().name(), "/usr/share/theheartbeat/translations");
+
+    a.installTranslator(&localTranslator);
 
     MainWindow w;
     w.show();

@@ -1,6 +1,6 @@
 /****************************************
  *
- *   INSERT-PROJECT-NAME-HERE - INSERT-GENERIC-NAME-HERE
+ *   theHeartbeat - System Monitor
  *   Copyright (C) 2019 Victor Tran
  *
  *   This program is free software: you can redistribute it and/or modify

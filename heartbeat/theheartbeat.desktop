@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=theHeartbeat
+GenericName=System Monitor
+GenericName[vi]=Trình theo dõi hệ thống
+Exec=theheartbeat
+Icon=utilities-system-monitor
