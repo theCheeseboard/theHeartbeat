@@ -33,10 +33,13 @@
 struct ProcessManagerPrivate {
     QHash<int, Process*> processes;
     QMutex processesLocker;
+    SystemManager* sm;
 };
 
-ProcessManager::ProcessManager(QObject *parent) : QObject(parent) {
+ProcessManager::ProcessManager(SystemManager* sm, QObject *parent) : QObject(parent) {
     d = new ProcessManagerPrivate();
+    d->sm = sm;
+
     checkProcesses();
 
     QTimer* timer = new QTimer();
@@ -50,7 +53,7 @@ ProcessManager::~ProcessManager() {
 }
 
 void ProcessManager::checkProcesses() {
-    new tPromise<void>([=](QString& error) {
+    (new tPromise<void>([=](QString& error) {
         QDir procDir("/proc");
         QStringList procDirs = procDir.entryList(QDir::Dirs);
 
@@ -59,11 +62,11 @@ void ProcessManager::checkProcesses() {
             bool isAnInteger;
             int pid = process.toInt(&isAnInteger);
             if (isAnInteger && !d->processes.contains(pid)) {
-                Process* p = new Process(pid);
+                Process* p = new Process(pid, d->sm);
                 connect(p, &Process::processGone, [=] {
-                    //Process will delete itself
                     QMutexLocker locker(&d->processesLocker);
                     d->processes.remove(pid);
+                    p->deleteLater();
                 });
 
                 d->processesLocker.lock();
@@ -73,7 +76,7 @@ void ProcessManager::checkProcesses() {
                 emit newPid(pid);
             }
         }
-
+    }))->then([=] {
         for (int pid : d->processes.keys()) {
             d->processes.value(pid)->performUpdate();
         }

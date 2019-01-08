@@ -17,37 +17,44 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-#ifndef PROCESS_H
-#define PROCESS_H
+#ifndef MINMAXPANE_H
+#define MINMAXPANE_H
 
-#include <QObject>
+#include <QWidget>
 
-struct ProcessPrivate;
-class SystemManager;
+namespace Ui {
+    class MinMaxPane;
+}
 
-class Process : public QObject
+class MinMaxPane : public QWidget
 {
         Q_OBJECT
+
     public:
-        explicit Process(int pid, SystemManager* sm, QObject *parent = nullptr);
-        ~Process();
+        explicit MinMaxPane(QWidget *parent = nullptr);
+        ~MinMaxPane();
 
-        bool setProperty(const char *name, const QVariant &value);
-        QVariant property(const char *name) const;
+        enum Unit {
+            Kilobyte
+        };
 
-
-    signals:
-        void processGone(Process* p);
-        void propertiesChanged(Process* p);
-
-    public slots:
-        void performUpdate();
+        void setTitle(QString title);
+        void setUnit(Unit u);
+        void setMax(qulonglong max);
+        void setValue(qulonglong val);
 
     private:
-        ProcessPrivate* d;
+        Ui::MinMaxPane *ui;
 
-        QString readFile(QString file);
-        QString readLink(QString link);
+        qulonglong max = 0;
+        qulonglong val = 0;
+
+        QList<double> percentageHistory;
+
+        Unit u = Kilobyte;
+
+        QString calculateText(qulonglong value);
+        void paintEvent(QPaintEvent* event);
 };
 
-#endif // PROCESS_H
+#endif // MINMAXPANE_H

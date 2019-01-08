@@ -69,10 +69,32 @@ void SystemManager::updateData() {
                 qulonglong workOverPeriod = sumOfWork - d->cpuWork;
 
                 this->setProperty("cpu", (double) workOverPeriod / (double) cpuOverPeriod);
+                this->setProperty("cpuJiffies", cpuOverPeriod);
             }
 
             d->cpuIdle = sumOfCpu;
             d->cpuWork = sumOfWork;
+        }
+    }
+
+
+    QFile mem("/proc/meminfo");
+    mem.open(QFile::ReadOnly);
+    QString memFile = mem.readAll();
+
+    for (QString line : memFile.split("\n")) {
+        QStringList splits = line.split(":", QString::SkipEmptyParts);
+        if (splits.count() == 0) continue;
+        QString name = splits.first().trimmed();
+        QString value = splits.last().trimmed();
+        if (name == "MemTotal") {
+            this->setProperty("memTotal", value.split(" ").first().toULongLong());
+        } else if (name == "MemAvailable") {
+            this->setProperty("memAvailable", value.split(" ").first().toULongLong());
+        } else if (name == "SwapTotal") {
+            this->setProperty("swapTotal", value.split(" ").first().toULongLong());
+        } else if (name == "SwapFree") {
+            this->setProperty("swapFree", value.split(" ").first().toULongLong());
         }
     }
 

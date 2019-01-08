@@ -24,12 +24,13 @@
 
 struct ProcessManagerPrivate;
 class Process;
+class SystemManager;
 
 class ProcessManager : public QObject
 {
         Q_OBJECT
     public:
-        explicit ProcessManager(QObject *parent = nullptr);
+        explicit ProcessManager(SystemManager* sm, QObject *parent = nullptr);
         ~ProcessManager();
 
         Process* processByPid(int pid);

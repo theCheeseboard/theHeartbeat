@@ -90,7 +90,7 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
                 }
                 break;
             case CPU:
-                return "";
+                return QString::number(p->property("cpuUsage").toDouble() * 100, 'f', 1) + "%";
             case Memory:
                 return tr("%1 KB").arg(p->property("privateMem").toULongLong());
             case Pid:
@@ -125,7 +125,7 @@ void ProcessModel::loadProcesses() {
 
 void ProcessModel::processPropertiesChanged(Process* p) {
     if (shownProcesses.contains(p)) {
-        emit dataChanged(index(shownProcesses.indexOf(p), 0), index(shownProcesses.indexOf(p), 0));
+        emit dataChanged(index(shownProcesses.indexOf(p), 0), index(shownProcesses.indexOf(p), columnCount()));
     } else {
         checkProcessForSetup(p);
     }

@@ -21,6 +21,7 @@
 #include "ui_mainwindow.h"
 
 #include "processes/processmodel.h"
+#include <tstackedwidget.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,18 +29,42 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    pm = new ProcessManager();
     sm = new SystemManager();
+    pm = new ProcessManager(sm);
 
     ui->processTable->setModel(new ProcessModel(pm));
 
     ui->cpuUsageWidget->setTitle(tr("CPU Usage"));
+    ui->memoryUsageWidget->setTitle(tr("Memory Usage"));
+    ui->swapUsageWidget->setTitle(tr("Swap Usage"));
+
+    if (!sm->property("swapTotal").isValid() || sm->property("swapTotal").toULongLong() == 0) {
+        ui->swapUsageWidget->setVisible(false);
+    }
+
     connect(sm, &SystemManager::newDataAvailable, [=] {
         QVariant cpuUsage = sm->property("cpu");
         if (cpuUsage.isValid()) {
             ui->cpuUsageWidget->setPercentage(cpuUsage.toDouble());
         }
+
+        QVariant memTotal = sm->property("memTotal");
+        QVariant memAvail = sm->property("memAvailable");
+        if (memTotal.isValid() && memAvail.isValid()) {
+            ui->memoryUsageWidget->setMax(memTotal.toULongLong());
+            ui->memoryUsageWidget->setValue(memTotal.toULongLong() - memAvail.toULongLong());
+        }
+
+        QVariant swapTotal = sm->property("swapTotal");
+        QVariant swapAvail = sm->property("swapFree");
+        if (swapTotal.isValid() && swapAvail.isValid()) {
+            ui->swapUsageWidget->setMax(swapTotal.toULongLong());
+            ui->swapUsageWidget->setValue(swapTotal.toULongLong() - swapAvail.toULongLong());
+        }
     });
+
+    ui->sideStatusPane->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
+    ui->sideStatusPaneContents->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
 }
 
 MainWindow::~MainWindow()
