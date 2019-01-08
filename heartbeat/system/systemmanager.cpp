@@ -27,6 +27,9 @@
 struct SystemManagerPrivate {
     qulonglong cpuWork = 0;
     qulonglong cpuIdle = 0;
+
+    QList<qulonglong> cpusWork;
+    QList<qulonglong> cpusIdle;
 };
 
 SystemManager::SystemManager(QObject *parent) : QObject(parent)
@@ -54,7 +57,7 @@ void SystemManager::updateData() {
         QStringList splits = line.split(" ", QString::SkipEmptyParts);
         if (splits.count() == 0) continue;
         QString name = splits.first().trimmed();
-        if (name == "cpu") {
+        if (name.startsWith("cpu")) {
             qulonglong sumOfCpu = 0;
             qulonglong sumOfWork = 0;
             for (int i = 1; i < 8; i++) {
@@ -64,16 +67,33 @@ void SystemManager::updateData() {
                 sumOfWork += splits.at(i).toULongLong();
             }
 
-            if (d->cpuWork != 0) {
-                qulonglong cpuOverPeriod = sumOfCpu - d->cpuIdle;
-                qulonglong workOverPeriod = sumOfWork - d->cpuWork;
+            if (name == "cpu") {
+                if (d->cpuWork != 0) {
+                    qulonglong cpuOverPeriod = sumOfCpu - d->cpuIdle;
+                    qulonglong workOverPeriod = sumOfWork - d->cpuWork;
 
-                this->setProperty("cpu", (double) workOverPeriod / (double) cpuOverPeriod);
-                this->setProperty("cpuJiffies", cpuOverPeriod);
+                    this->setProperty("cpu", (double) workOverPeriod / (double) cpuOverPeriod);
+                    this->setProperty("cpuJiffies", cpuOverPeriod);
+                }
+
+                d->cpuIdle = sumOfCpu;
+                d->cpuWork = sumOfWork;
+            } else {
+                int cpuNo = name.mid(3).toInt();
+                if (d->cpusWork.count() <= cpuNo) {
+                    d->cpusIdle.append(sumOfCpu);
+                    d->cpusWork.append(sumOfWork);
+
+                    this->setProperty("cpuCount", d->cpusWork.count());
+                } else {
+                    qulonglong cpuOverPeriod = sumOfCpu - d->cpusIdle.at(cpuNo);
+                    qulonglong workOverPeriod = sumOfWork - d->cpusWork.at(cpuNo);
+
+                    this->setProperty(QString("cpu").append(QString::number(cpuNo)).toUtf8(), (double) workOverPeriod / (double) cpuOverPeriod);
+                    this->setProperty(QString("cpuJiffies").append(QString::number(cpuNo)).toUtf8(), cpuOverPeriod);
+                }
             }
 
-            d->cpuIdle = sumOfCpu;
-            d->cpuWork = sumOfWork;
         }
     }
 

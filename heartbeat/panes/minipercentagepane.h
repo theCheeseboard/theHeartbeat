@@ -17,43 +17,31 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MINIPERCENTAGEPANE_H
+#define MINIPERCENTAGEPANE_H
 
-#include <QMainWindow>
-#include <QList>
-#include "processes/processmanager.h"
-#include "system/systemmanager.h"
-#include "panes/minipercentagepane.h"
+#include <QWidget>
 
 namespace Ui {
-    class MainWindow;
+    class MiniPercentagePane;
 }
 
-class MainWindow : public QMainWindow
+class MiniPercentagePane : public QWidget
 {
         Q_OBJECT
 
     public:
-        explicit MainWindow(QWidget *parent = nullptr);
-        ~MainWindow();
+        explicit MiniPercentagePane(QWidget *parent = nullptr);
+        ~MiniPercentagePane();
 
-    private slots:
-        void on_OverviewTerminateButton_clicked();
-
-        void on_processTable_customContextMenuRequested(const QPoint &pos);
-
-        void on_paneSelection_currentRowChanged(int currentRow);
+        void setTitle(QString title);
+        void setPercentage(double percentage);
 
     private:
-        Ui::MainWindow *ui;
+        Ui::MiniPercentagePane *ui;
 
-        ProcessManager* pm;
-        SystemManager* sm;
-
-        QList<MiniPercentagePane*> cpuPanes;
-
-        void resizeEvent(QResizeEvent* event);
+        QList<double> percentageHistory;
+        void paintEvent(QPaintEvent* event);
 };
 
-#endif // MAINWINDOW_H
+#endif // MINIPERCENTAGEPANE_H

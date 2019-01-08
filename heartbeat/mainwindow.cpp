@@ -24,6 +24,7 @@
 #include "processes/process.h"
 #include <tstackedwidget.h>
 #include <tpopover.h>
+#include <QMenu>
 #include "processaction.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -36,6 +37,12 @@ MainWindow::MainWindow(QWidget *parent) :
     pm = new ProcessManager(sm);
 
     ui->processTable->setModel(new ProcessModel(pm));
+    ui->processTable->header()->setStretchLastSection(false);
+    ui->processTable->header()->setDefaultSectionSize(100 * theLibsGlobal::getDPIScaling());
+    ui->processTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->processTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
+    ui->processTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
+    ui->processTable->header()->setSectionResizeMode(3, QHeaderView::Interactive);
 
     ui->cpuUsageWidget->setTitle(tr("CPU Usage"));
     ui->memoryUsageWidget->setTitle(tr("Memory Usage"));
@@ -45,10 +52,25 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->swapUsageWidget->setVisible(false);
     }
 
+    for (int i = 0; i < sm->property("cpuCount").toInt(); i++) {
+        MiniPercentagePane* p = new MiniPercentagePane();
+        p->setTitle(tr("CPU %1").arg(i));
+        ui->cpuIndividualUsageLayout->addWidget(p);
+        cpuPanes.append(p);
+    }
+
     connect(sm, &SystemManager::newDataAvailable, [=] {
         QVariant cpuUsage = sm->property("cpu");
         if (cpuUsage.isValid()) {
             ui->cpuUsageWidget->setPercentage(cpuUsage.toDouble());
+        }
+        for (int i = 0; i < sm->property("cpuCount").toInt(); i++) {
+            MiniPercentagePane* p = cpuPanes.at(i);
+
+            QVariant cpuUsage = sm->property(QString("cpu").append(QString::number(i)).toUtf8());
+            if (cpuUsage.isValid()) {
+                p->setPercentage(cpuUsage.toDouble());
+            }
         }
 
         QVariant memTotal = sm->property("memTotal");
@@ -68,6 +90,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->sideStatusPane->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
     ui->sideStatusPaneContents->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
+    ui->pages->setCurrentAnimation(tStackedWidget::Lift);
+
+    this->resizeEvent(nullptr);
 }
 
 MainWindow::~MainWindow()
@@ -100,5 +125,41 @@ void MainWindow::on_OverviewTerminateButton_clicked()
             act->deleteLater();
         });
         p->show(this);
+    }
+}
+
+void MainWindow::on_processTable_customContextMenuRequested(const QPoint &pos)
+{
+    if (ui->processTable->selectionModel()->selectedRows().count() > 0) {
+        QMenu* m = new QMenu();
+        QModelIndexList selected = ui->processTable->selectionModel()->selectedRows();
+        if (selected.count() == 1) {
+            m->addSection(tr("For %1").arg(selected.first().data(Qt::DisplayRole).toString()));
+
+        } else {
+            m->addSection(tr("For %1").arg(tr("%n processes", nullptr, selected.count())));
+        }
+        m->addAction(QIcon::fromTheme("application-exit"), tr("Terminate"), [=] {
+            ui->OverviewTerminateButton->click();
+        });
+        m->exec(ui->processTable->mapToGlobal(pos));
+    }
+}
+
+void MainWindow::on_paneSelection_currentRowChanged(int currentRow)
+{
+    ui->pages->setCurrentIndex(currentRow);
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event) {
+    //Move items around accordingly
+    if (this->width() < 1000 * theLibsGlobal::getDPIScaling()) {
+        //Collapse sidebar
+        ui->paneSelection->setMaximumSize(42 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
+        ui->appTitleLabel->setPixmap(QIcon::fromTheme("utilities-system-monitor").pixmap(QSize(24, 24) * theLibsGlobal::getDPIScaling()));
+    } else {
+        //Expand sidebar
+        ui->paneSelection->setMaximumSize(300 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
+        ui->appTitleLabel->setText(tr("theHeartbeat"));
     }
 }
