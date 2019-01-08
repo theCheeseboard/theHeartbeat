@@ -25,6 +25,8 @@
 #include <tstackedwidget.h>
 #include <tpopover.h>
 #include <QMenu>
+#include <QDesktopServices>
+#include "aboutdialog.h"
 #include "processaction.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -32,6 +34,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QMenu* menu = new QMenu();
+    menu->addAction(QIcon::fromTheme("tools-report-bug"), tr("File Bug"), [=] {
+        QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat/issues"));
+    });
+    menu->addAction(QIcon::fromTheme("commit"), tr("Sources"), [=] {
+        QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat"));
+    });
+    menu->addSeparator();
+    menu->addAction(QIcon::fromTheme("help-about"), tr("About"), [=] {
+        AboutDialog d;
+        d.exec();
+    });
+    ui->menuButton->setMenu(menu);
 
     sm = new SystemManager();
     pm = new ProcessManager(sm);
@@ -195,11 +211,11 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     //Move items around accordingly
     if (this->width() < 1000 * theLibsGlobal::getDPIScaling()) {
         //Collapse sidebar
-        ui->paneSelection->setMaximumSize(42 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
+        ui->sidePane->setMaximumSize(42 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
         ui->appTitleLabel->setPixmap(QIcon::fromTheme("utilities-system-monitor").pixmap(QSize(24, 24) * theLibsGlobal::getDPIScaling()));
     } else {
         //Expand sidebar
-        ui->paneSelection->setMaximumSize(300 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
+        ui->sidePane->setMaximumSize(300 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
         ui->appTitleLabel->setText(tr("theHeartbeat"));
     }
 }
