@@ -52,17 +52,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="126"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bạn có chắc chắn muốn chấm dứt quá trình sau đây không? Bạn có thể mất việc chưa lưu.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="129"/>
         <source>Kill Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Bắt buộc chấm dứt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="130"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bạn có muốn bắt buộc quá trình sau đây phải chấm dứt không? Bạn sẽ mất việc chưa lưu.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="133"/>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="184"/>
         <source>Kill</source>
-        <translation type="unfinished"></translation>
+        <translation>Bắt buộc chấm dứt</translation>
     </message>
 </context>
 <context>
