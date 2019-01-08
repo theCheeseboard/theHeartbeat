@@ -57,7 +57,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="129"/>
         <source>Kill Process</source>
-        <translation>Bắt buộc chấm dứt</translation>
+        <translation>Bắt buộc chấm dứt quá trình</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="130"/>
