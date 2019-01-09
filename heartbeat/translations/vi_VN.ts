@@ -46,13 +46,13 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="124"/>
-        <location filename="../mainwindow.ui" line="525"/>
+        <location filename="../mainwindow.ui" line="528"/>
         <source>Processes</source>
         <translation>Quá trình</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="265"/>
-        <location filename="../mainwindow.ui" line="541"/>
+        <location filename="../mainwindow.ui" line="544"/>
         <location filename="../mainwindow.cpp" line="175"/>
         <source>Terminate Process</source>
         <translation>Chấm dứt quá trình</translation>
@@ -175,27 +175,27 @@
 <context>
     <name>ProcessModel</name>
     <message>
-        <location filename="../processes/processmodel.cpp" line="44"/>
+        <location filename="../processes/processmodel.cpp" line="48"/>
         <source>Name</source>
         <translation>Tên</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="46"/>
+        <location filename="../processes/processmodel.cpp" line="50"/>
         <source>CPU %</source>
         <translation>CPU %</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="48"/>
+        <location filename="../processes/processmodel.cpp" line="52"/>
         <source>Memory</source>
         <translation>Bộ nhớ</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="50"/>
+        <location filename="../processes/processmodel.cpp" line="54"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="107"/>
+        <location filename="../processes/processmodel.cpp" line="101"/>
         <source>%1 KB</source>
         <translation>%1 KB</translation>
     </message>

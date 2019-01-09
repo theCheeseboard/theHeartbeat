@@ -21,6 +21,8 @@
 #define PROCESSMODEL_H
 
 #include <QAbstractItemModel>
+#include <QTimer>
+#include <QMutex>
 
 class ProcessManager;
 class Process;
@@ -52,21 +54,31 @@ class ProcessModel : public QAbstractTableModel
 
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+        void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
+
         void setModelType(ModelType type);
 
     private slots:
         void processGone(Process* p);
         void processPropertiesChanged(Process* p);
+        void newPid(int pid);
 
     private:
         ProcessManager* pm;
         ModelType type;
-        QList<Process*> shownProcesses;
+
+        QVector<Process*> shownProcesses;
+
+        int sortColumn = -1;
+        Qt::SortOrder sortOrder;
+        void performSort();
+        QTimer* sortTimer;
 
         void loadProcesses();
         void checkProcessForSetup(Process* p);
         bool checkProcessEligibility(Process* p);
         void setupProcess(Process* p);
+        QString getProcessDisplayName(const Process* p) const;
 };
 
 #endif // PROCESSMODEL_H

@@ -20,6 +20,7 @@
 #include "processmodel.h"
 
 #include <QSize>
+#include <QMutexLocker>
 #include "processmanager.h"
 #include "process.h"
 
@@ -28,12 +29,15 @@ ProcessModel::ProcessModel(ProcessManager* pm, ModelType t, QObject *parent)
 {
     this->pm = pm;
 
-    setModelType(t);
-    connect(pm, &ProcessManager::newPid, [=](int pid) {
-        Process* p = pm->processByPid(pid);
-        connect(p, &Process::propertiesChanged, this, &ProcessModel::processPropertiesChanged);
-        checkProcessForSetup(p);
+    sortTimer = new QTimer();
+    sortTimer->setInterval(100);
+    sortTimer->setSingleShot(true);
+    connect(sortTimer, &QTimer::timeout, [=] {
+        performSort();
     });
+
+    setModelType(t);
+    connect(pm, SIGNAL(newPid(int)), this, SLOT(newPid(int)));
 }
 
 QVariant ProcessModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -80,21 +84,11 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
     }
 
     Process* p = shownProcesses.value(index.row());
+
     if (role == Qt::DisplayRole) {
         switch (index.column()) {
             case Name:
-                if (type == Applications) {
-                    if (p->property("exe").toString().endsWith("/theshell")) {
-                        return "theShell";
-                    } else if (p->property("exe").toString().endsWith("/theshellb")) {
-                        return "theShell Blueprint";
-                    } else {
-                        return p->property("x11-windowtitle");
-                    }
-                } else if (type == Processes) {
-                    return p->property("process");
-                }
-                break;
+                return getProcessDisplayName(p);
             case CPU: {
                 double cpuUsage = p->property("cpuUsage").toDouble();
                 if (cpuUsage == 0) {
@@ -139,7 +133,8 @@ void ProcessModel::loadProcesses() {
 
 void ProcessModel::processPropertiesChanged(Process* p) {
     if (shownProcesses.contains(p)) {
-        emit dataChanged(index(shownProcesses.indexOf(p), 0), index(shownProcesses.indexOf(p), columnCount()));
+        performSort();
+        //emit dataChanged(index(shownProcesses.indexOf(p), 0), index(shownProcesses.indexOf(p), columnCount()));
     } else {
         checkProcessForSetup(p);
     }
@@ -159,6 +154,11 @@ void ProcessModel::setupProcess(Process *p) {
     shownProcesses.append(p);
     connect(p, SIGNAL(processGone(Process*)), this, SLOT(processGone(Process*)));
     this->endInsertRows();
+
+    if (sortTimer->isActive()) {
+        sortTimer->stop();
+    }
+    sortTimer->start();
 }
 
 void ProcessModel::processGone(Process* p) {
@@ -171,4 +171,64 @@ void ProcessModel::checkProcessForSetup(Process *p) {
     if (!shownProcesses.contains(p) && p != nullptr && checkProcessEligibility(p)) {
         setupProcess(p);
     }
+}
+
+void ProcessModel::sort(int column, Qt::SortOrder order) {
+    sortColumn = column;
+    sortOrder = order;
+    performSort();
+}
+
+void ProcessModel::performSort() {
+    if (sortColumn == -1) return;
+
+    std::stable_sort(shownProcesses.begin(), shownProcesses.end(), [=](const Process* a, const Process* b) -> bool {
+        if (a == nullptr || b == nullptr) return false;
+        //Check if a < b
+        bool retVal = false;
+        switch (sortColumn) {
+            case Name:
+                retVal = getProcessDisplayName(a).toLower().localeAwareCompare(getProcessDisplayName(b).toLower()) < 0;
+                break;
+            case CPU:
+                retVal = a->property("cpuUsage").toDouble() < b->property("cpuUsage").toDouble();
+                break;
+            case Memory:
+                retVal = a->property("privateMem").toULongLong() < b->property("privateMem").toULongLong();
+                break;
+            case Pid:
+                retVal = a->property("pid").toInt() < b->property("pid").toInt();
+                break;
+        }
+
+        if (sortOrder == Qt::DescendingOrder) {
+            return !retVal;
+        } else {
+            return retVal;
+        }
+    });
+
+    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+}
+
+QString ProcessModel::getProcessDisplayName(const Process *p) const {
+    if (type == Applications) {
+        if (p->property("exe").toString().endsWith("/theshell")) {
+            return "theShell";
+        } else if (p->property("exe").toString().endsWith("/theshellb")) {
+            return "theShell Blueprint";
+        } else {
+            return p->property("x11-windowtitle").toString();
+        }
+    } else if (type == Processes) {
+        return p->property("process").toString();
+    }
+
+    return "";
+}
+
+void ProcessModel::newPid(int pid) {
+    Process* p = pm->processByPid(pid);
+    connect(p, &Process::propertiesChanged, this, &ProcessModel::processPropertiesChanged);
+    checkProcessForSetup(p);
 }
