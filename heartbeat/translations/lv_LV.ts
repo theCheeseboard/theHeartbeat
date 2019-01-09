@@ -159,22 +159,6 @@
     </message>
 </context>
 <context>
-    <name>MiniNumberPane</name>
-    <message>
-        <location filename="../panes/mininumberpane.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>NumberPane</name>
-    <message>
-        <location filename="../panes/numberpane.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ProcessModel</name>
     <message>
         <location filename="../processes/processmodel.cpp" line="49"/>
