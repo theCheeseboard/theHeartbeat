@@ -55,3 +55,25 @@ void SidePane::paintEvent(QPaintEvent *event) {
     p.fillRect(100, 0, 140, this->height(), g);
     p.fillRect(0, 0, 100, this->height(), this->palette().color(QPalette::Window));
 }
+
+QString SidePane::calculateText(qulonglong val) {
+    switch (u) {
+        case Kilobyte:
+            if (val < 1024) {
+                return tr("%1 KiB").arg(QString::number((double) val, 'f', 1));
+            } else if (val < 1048576) {
+                return tr("%1 MiB").arg(QString::number((double) val / 1024, 'f', 1));
+            } else /* (val < 1073741824) */ {
+                return tr("%1 GiB").arg(QString::number((double) val / 1048576, 'f', 1));
+            }
+        case KilobytePerSecond:
+            if (val < 1024) {
+                return tr("%1 KiB/s").arg(QString::number((double) val, 'f', 1));
+            } else if (val < 1048576) {
+                return tr("%1 MiB/s").arg(QString::number((double) val / 1024, 'f', 1));
+            } else /* (val < 1073741824) */ {
+                return tr("%1 GiB/s").arg(QString::number((double) val / 1048576, 'f', 1));
+            }
+    }
+    return "";
+}

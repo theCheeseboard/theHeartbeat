@@ -27,6 +27,11 @@ class SidePane : public QWidget
 {
         Q_OBJECT
     public:
+        enum Unit {
+            Kilobyte,
+            KilobytePerSecond
+        };
+
         explicit SidePane(QWidget *parent = nullptr);
 
     signals:
@@ -35,6 +40,9 @@ class SidePane : public QWidget
 
     protected:
         QList<double> percentageHistory;
+
+        QString calculateText(qulonglong value);
+        Unit u = Kilobyte;
 
     private:
         void paintEvent(QPaintEvent* event);

@@ -71,6 +71,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cpuUsageWidget->setTitle(tr("CPU Usage"));
     ui->memoryUsageWidget->setTitle(tr("Memory Usage"));
     ui->swapUsageWidget->setTitle(tr("Swap Usage"));
+    ui->netRxWidget->setTitle(tr("Network Receive"));
+    ui->netTxWidget->setTitle(tr("Network Send"));
+    ui->netRxWidget->setUnit(NumberPane::KilobytePerSecond);
+    ui->netTxWidget->setUnit(NumberPane::KilobytePerSecond);
 
     if (!sm->property("swapTotal").isValid() || sm->property("swapTotal").toULongLong() == 0) {
         ui->swapUsageWidget->setVisible(false);
@@ -78,12 +82,30 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->cpuIndividualUsageWidget->setFixedHeight(0);
     ui->cpuUsageWidget->setExpandable(true);
+    ui->netRxIndividualWidget->setFixedHeight(0);
+    ui->netRxWidget->setExpandable(true);
+    ui->netTxIndividualWidget->setFixedHeight(0);
+    ui->netTxWidget->setExpandable(true);
 
     for (int i = 0; i < sm->property("cpuCount").toInt(); i++) {
-        MiniPercentagePane* p = new MiniPercentagePane();
+        MiniPercentagePane* p = new MiniPercentagePane(this);
         p->setTitle(tr("CPU %1").arg(i));
         ui->cpuIndividualUsageLayout->addWidget(p);
         cpuPanes.append(p);
+    }
+
+    for (QString netDevice : sm->property("netDevices").toStringList()) {
+        MiniNumberPane* rxPane = new MiniNumberPane(this);
+        rxPane->setTitle(netDevice);
+        rxPane->setUnit(MiniNumberPane::KilobytePerSecond);
+        ui->netRxIndividualLayout->addWidget(rxPane);
+        networkRxPanes.insert(netDevice, rxPane);
+
+        MiniNumberPane* txPane = new MiniNumberPane(this);
+        txPane->setTitle(netDevice);
+        txPane->setUnit(MiniNumberPane::KilobytePerSecond);
+        ui->netTxIndividualLayout->addWidget(txPane);
+        networkTxPanes.insert(netDevice, txPane);
     }
 
     connect(sm, &SystemManager::newDataAvailable, [=] {
@@ -112,6 +134,18 @@ MainWindow::MainWindow(QWidget *parent) :
         if (swapTotal.isValid() && swapAvail.isValid()) {
             ui->swapUsageWidget->setMax(swapTotal.toULongLong());
             ui->swapUsageWidget->setValue(swapTotal.toULongLong() - swapAvail.toULongLong());
+        }
+
+        QVariant netRx = sm->property("netRx");
+        QVariant netTx = sm->property("netTx");
+        if (netRx.isValid() && netTx.isValid()) {
+            ui->netRxWidget->setValue(netRx.toULongLong() / 1024);
+            ui->netTxWidget->setValue(netTx.toULongLong() / 1024);
+        }
+
+        for (QString netDevice : sm->property("netDevices").toStringList()) {
+            networkRxPanes.value(netDevice)->setValue(sm->property(QString("netRx-").append(netDevice).toUtf8()).toULongLong() / 1024);
+            networkTxPanes.value(netDevice)->setValue(sm->property(QString("netTx-").append(netDevice).toUtf8()).toULongLong() / 1024);
         }
     });
 
@@ -235,6 +269,46 @@ void MainWindow::on_cpuUsageWidget_toggleExpand()
     anim->setEasingCurve(QEasingCurve::OutCubic);
     connect(anim, &tVariantAnimation::valueChanged, [=](QVariant value) {
         ui->cpuIndividualUsageWidget->setFixedHeight(value.toInt());
+    });
+    connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
+    anim->start();
+}
+
+void MainWindow::on_netRxWidget_toggleExpand()
+{
+    tVariantAnimation* anim = new tVariantAnimation();
+    anim->setStartValue(ui->netRxIndividualWidget->height());
+    if (ui->netRxIndividualWidget->height() == 0) {
+        anim->setEndValue(ui->netRxIndividualWidget->sizeHint().height());
+        ui->netRxWidget->setExpanded(true);
+    } else {
+        anim->setEndValue(0);
+        ui->netRxWidget->setExpanded(false);
+    }
+    anim->setDuration(500);
+    anim->setEasingCurve(QEasingCurve::OutCubic);
+    connect(anim, &tVariantAnimation::valueChanged, [=](QVariant value) {
+        ui->netRxIndividualWidget->setFixedHeight(value.toInt());
+    });
+    connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
+    anim->start();
+}
+
+void MainWindow::on_netTxWidget_toggleExpand()
+{
+    tVariantAnimation* anim = new tVariantAnimation();
+    anim->setStartValue(ui->netTxIndividualWidget->height());
+    if (ui->netTxIndividualWidget->height() == 0) {
+        anim->setEndValue(ui->netTxIndividualWidget->sizeHint().height());
+        ui->netTxWidget->setExpanded(true);
+    } else {
+        anim->setEndValue(0);
+        ui->netTxWidget->setExpanded(false);
+    }
+    anim->setDuration(500);
+    anim->setEasingCurve(QEasingCurve::OutCubic);
+    connect(anim, &tVariantAnimation::valueChanged, [=](QVariant value) {
+        ui->netTxIndividualWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
     anim->start();

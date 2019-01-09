@@ -30,6 +30,9 @@ struct SystemManagerPrivate {
 
     QList<qulonglong> cpusWork;
     QList<qulonglong> cpusIdle;
+
+    QMap<QString, qulonglong> netTx;
+    QMap<QString, qulonglong> netRx;
 };
 
 SystemManager::SystemManager(QObject *parent) : QObject(parent)
@@ -100,7 +103,6 @@ void SystemManager::updateData() {
         }
     }
 
-
     QFile mem("/proc/meminfo");
     mem.open(QFile::ReadOnly);
     QString memFile = mem.readAll();
@@ -120,6 +122,37 @@ void SystemManager::updateData() {
             this->setProperty("swapFree", value.split(" ").first().toULongLong());
         }
     }
+
+    QFile net("/proc/net/dev");
+    net.open(QFile::ReadOnly);
+    QString netFile = net.readAll();
+
+    qulonglong mainRx = 0, mainTx = 0;
+    for (QString line : netFile.split("\n")) {
+        if (!line.contains(":")) continue;
+        QStringList split = line.split(":");
+        QString name = split.first().trimmed();
+        QStringList parts = split.last().split(" ", QString::SkipEmptyParts);
+
+        if (d->netRx.contains(name)) {
+            qulonglong rx = parts.at(0).toULongLong() - d->netRx.value(name);
+            qulonglong tx = parts.at(8).toULongLong() - d->netTx.value(name);
+
+            mainRx += rx;
+            mainTx += tx;
+
+            this->setProperty(QString("netRx-").append(name).toUtf8(), rx);
+            this->setProperty(QString("netTx-").append(name).toUtf8(), tx);
+        }
+
+        d->netRx.insert(name, parts.at(0).toULongLong());
+        d->netTx.insert(name, parts.at(8).toULongLong());
+    }
+
+
+    this->setProperty("netRx", mainRx);
+    this->setProperty("netTx", mainTx);
+    this->setProperty("netDevices", QStringList(d->netRx.keys()));
 
     emit newDataAvailable();
 }

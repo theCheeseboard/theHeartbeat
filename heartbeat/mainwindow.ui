@@ -421,6 +421,54 @@
                  <widget class="MinMaxPane" name="swapUsageWidget" native="true"/>
                 </item>
                 <item>
+                 <widget class="NumberPane" name="netRxWidget" native="true"/>
+                </item>
+                <item>
+                 <widget class="QWidget" name="netRxIndividualWidget" native="true">
+                  <layout class="QVBoxLayout" name="netRxIndividualLayout">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="NumberPane" name="netTxWidget" native="true"/>
+                </item>
+                <item>
+                 <widget class="QWidget" name="netTxIndividualWidget" native="true">
+                  <layout class="QVBoxLayout" name="netTxIndividualLayout">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="verticalSpacer">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -578,6 +626,12 @@
    <class>MinMaxPane</class>
    <extends>QWidget</extends>
    <header>panes/minmaxpane.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>NumberPane</class>
+   <extends>QWidget</extends>
+   <header>panes/numberpane.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

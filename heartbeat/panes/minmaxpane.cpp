@@ -54,20 +54,6 @@ void MinMaxPane::setValue(qulonglong val) {
     this->update();
 }
 
-QString MinMaxPane::calculateText(qulonglong val) {
-    switch (u) {
-        case Kilobyte:
-            if (val < 1024) {
-                return tr("%1 KB").arg(QString::number((double) val, 'f', 1));
-            } else if (val < 1048576) {
-                return tr("%1 MB").arg(QString::number((double) val / 1024, 'f', 1));
-            } else if (val < 1073741824) {
-                return tr("%1 GB").arg(QString::number((double) val / 1048576, 'f', 1));
-            }
-    }
-    return "";
-}
-
 void MinMaxPane::setUnit(Unit u) {
     this->u = u;
 }

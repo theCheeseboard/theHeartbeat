@@ -34,7 +34,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.ui" line="80"/>
-        <location filename="../mainwindow.cpp" line="219"/>
+        <location filename="../mainwindow.cpp" line="253"/>
         <source>theHeartbeat</source>
         <translation>theHeartbeat</translation>
     </message>
@@ -46,14 +46,14 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="124"/>
-        <location filename="../mainwindow.ui" line="477"/>
+        <location filename="../mainwindow.ui" line="525"/>
         <source>Processes</source>
         <translation>Quá trình</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="265"/>
-        <location filename="../mainwindow.ui" line="493"/>
-        <location filename="../mainwindow.cpp" line="141"/>
+        <location filename="../mainwindow.ui" line="541"/>
+        <location filename="../mainwindow.cpp" line="175"/>
         <source>Terminate Process</source>
         <translation>Chấm dứt quá trình</translation>
     </message>
@@ -88,80 +88,88 @@
         <translation>Sử dụng bộ nhớ tráo đổi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="84"/>
+        <location filename="../mainwindow.cpp" line="74"/>
+        <source>Network Receive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="75"/>
+        <source>Network Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="92"/>
         <source>CPU %1</source>
         <translation>CPU %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="142"/>
+        <location filename="../mainwindow.cpp" line="176"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation>Bạn có chắc chắn muốn chấm dứt quá trình sau đây không? Bạn có thể mất việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="145"/>
+        <location filename="../mainwindow.cpp" line="179"/>
         <source>Kill Process</source>
         <translation>Bắt buộc chấm dứt quá trình</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="146"/>
+        <location filename="../mainwindow.cpp" line="180"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
         <translation>Bạn có muốn bắt buộc quá trình sau đây phải chấm dứt không? Bạn sẽ mất việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="149"/>
+        <location filename="../mainwindow.cpp" line="183"/>
         <source>Send %1</source>
         <translation>Gửi %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="184"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Bạn có chắc chắn muốn gửi %1 đến quá trình sau đây không?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="180"/>
-        <location filename="../mainwindow.cpp" line="183"/>
+        <location filename="../mainwindow.cpp" line="214"/>
+        <location filename="../mainwindow.cpp" line="217"/>
         <source>For %1</source>
         <translation>Cho %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="183"/>
+        <location filename="../mainwindow.cpp" line="217"/>
         <source>%n processes</source>
         <translation>
             <numerusform>%n quá trình</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="187"/>
+        <location filename="../mainwindow.cpp" line="221"/>
         <source>Send Signal</source>
         <translation>Gửi tín hiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="199"/>
+        <location filename="../mainwindow.cpp" line="233"/>
         <source>Terminate</source>
         <translation>Chấm dứt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="200"/>
+        <location filename="../mainwindow.cpp" line="234"/>
         <source>Kill</source>
         <translation>Bắt buộc chấm dứt</translation>
     </message>
 </context>
 <context>
-    <name>MinMaxPane</name>
+    <name>MiniNumberPane</name>
     <message>
-        <location filename="../panes/minmaxpane.cpp" line="61"/>
-        <source>%1 KB</source>
-        <translation>%1 KB</translation>
+        <location filename="../panes/mininumberpane.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>NumberPane</name>
     <message>
-        <location filename="../panes/minmaxpane.cpp" line="63"/>
-        <source>%1 MB</source>
-        <translation>%1 MB</translation>
-    </message>
-    <message>
-        <location filename="../panes/minmaxpane.cpp" line="65"/>
-        <source>%1 GB</source>
-        <translation>%1 GB</translation>
+        <location filename="../panes/numberpane.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -187,9 +195,42 @@
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="101"/>
+        <location filename="../processes/processmodel.cpp" line="107"/>
         <source>%1 KB</source>
         <translation>%1 KB</translation>
+    </message>
+</context>
+<context>
+    <name>SidePane</name>
+    <message>
+        <location filename="../panes/sidepane.cpp" line="63"/>
+        <source>%1 KiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../panes/sidepane.cpp" line="65"/>
+        <source>%1 MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../panes/sidepane.cpp" line="67"/>
+        <source>%1 GiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../panes/sidepane.cpp" line="71"/>
+        <source>%1 KiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../panes/sidepane.cpp" line="73"/>
+        <source>%1 MiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../panes/sidepane.cpp" line="75"/>
+        <source>%1 GiB/s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

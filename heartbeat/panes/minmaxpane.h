@@ -35,10 +35,6 @@ class MinMaxPane : public SidePane
         explicit MinMaxPane(QWidget *parent = nullptr);
         ~MinMaxPane();
 
-        enum Unit {
-            Kilobyte
-        };
-
         void setTitle(QString title);
         void setUnit(Unit u);
         void setMax(qulonglong max);
@@ -49,10 +45,6 @@ class MinMaxPane : public SidePane
 
         qulonglong max = 0;
         qulonglong val = 0;
-
-        Unit u = Kilobyte;
-
-        QString calculateText(qulonglong value);
 };
 
 #endif // MINMAXPANE_H

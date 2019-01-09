@@ -95,6 +95,8 @@ void Process::performUpdate() {
         checkers++;
         checkerMutex.unlock();
 
+        this->setProperty("exe", readLink("exe"));
+
         qulonglong sharedMem = 0, totalMem = 0;
         QString status = readFile("status");
         for (QString line : status.split("\n")) {

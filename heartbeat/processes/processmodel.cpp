@@ -84,7 +84,13 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
         switch (index.column()) {
             case Name:
                 if (type == Applications) {
-                    return p->property("x11-windowtitle");
+                    if (p->property("exe").toString().endsWith("/theshell")) {
+                        return "theShell";
+                    } else if (p->property("exe").toString().endsWith("/theshellb")) {
+                        return "theShell Blueprint";
+                    } else {
+                        return p->property("x11-windowtitle");
+                    }
                 } else if (type == Processes) {
                     return p->property("process");
                 }

@@ -26,6 +26,7 @@
 #include "processes/processmanager.h"
 #include "system/systemmanager.h"
 #include "panes/minipercentagepane.h"
+#include "panes/mininumberpane.h"
 
 namespace Ui {
     class MainWindow;
@@ -50,6 +51,10 @@ class MainWindow : public QMainWindow
 
         void sendSignal(QTreeView* tree, QString signalName, int signal);
 
+        void on_netRxWidget_toggleExpand();
+
+        void on_netTxWidget_toggleExpand();
+
     private:
         Ui::MainWindow *ui;
 
@@ -57,6 +62,8 @@ class MainWindow : public QMainWindow
         SystemManager* sm;
 
         QList<MiniPercentagePane*> cpuPanes;
+        QMap<QString, MiniNumberPane*> networkRxPanes;
+        QMap<QString, MiniNumberPane*> networkTxPanes;
 
         void resizeEvent(QResizeEvent* event);
 };
