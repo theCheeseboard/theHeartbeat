@@ -153,6 +153,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->sideStatusPane->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
     ui->sideStatusPaneContents->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
+    ui->appTitleLabel->setFixedHeight(ui->overviewLabel->height());
 
     ui->pages->setCurrentAnimation(tStackedWidget::Lift);
     ui->pages->setCurrentIndex(0);

@@ -303,7 +303,11 @@ void ProcessTitleDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         painter->setBrush(col);
         textPen = option.palette.color(QPalette::HighlightedText);
     } else {
-        painter->setBrush(option.palette.brush(QPalette::Window));
+        if (index.row() % 2 == 0) {
+            painter->setBrush(option.palette.brush(QPalette::Base));
+        } else {
+            painter->setBrush(option.palette.brush(QPalette::AlternateBase));
+        }
         textPen = option.palette.color(QPalette::WindowText);
     }
     painter->drawRect(option.rect);

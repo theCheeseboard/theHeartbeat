@@ -14,7 +14,8 @@
    <string>theHeartbeat</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="utilities-system-monitor"/>
+   <iconset theme="utilities-system-monitor">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -116,7 +117,8 @@
              <string>Overview</string>
             </property>
             <property name="icon">
-             <iconset theme="computer"/>
+             <iconset theme="computer">
+              <normaloff>.</normaloff>.</iconset>
             </property>
            </item>
            <item>
@@ -124,7 +126,8 @@
              <string>Processes</string>
             </property>
             <property name="icon">
-             <iconset theme="system-run"/>
+             <iconset theme="system-run">
+              <normaloff>.</normaloff>.</iconset>
             </property>
            </item>
           </widget>
@@ -179,7 +182,8 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset theme="application-menu"/>
+               <iconset theme="application-menu">
+                <normaloff>.</normaloff>.</iconset>
               </property>
               <property name="popupMode">
                <enum>QToolButton::InstantPopup</enum>
@@ -268,7 +272,8 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset theme="window-close"/>
+               <iconset theme="window-close">
+                <normaloff>.</normaloff>.</iconset>
               </property>
               <property name="flat">
                <bool>true</bool>
@@ -362,7 +367,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>200</width>
-                 <height>300</height>
+                 <height>50</height>
                 </rect>
                </property>
                <property name="minimumSize">
@@ -512,7 +517,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="overviewLabel">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                 <horstretch>0</horstretch>
