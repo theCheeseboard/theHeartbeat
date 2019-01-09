@@ -197,47 +197,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="109"/>
+        <location filename="../processes/processmodel.cpp" line="110"/>
         <source>%1 KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="111"/>
+        <location filename="../processes/processmodel.cpp" line="112"/>
         <source>%1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="113"/>
+        <location filename="../processes/processmodel.cpp" line="114"/>
         <source>%1 GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="141"/>
+        <location filename="../processes/processmodel.cpp" line="142"/>
         <source>Disk Sleep</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="143"/>
+        <location filename="../processes/processmodel.cpp" line="144"/>
         <source>Debugging</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="145"/>
+        <location filename="../processes/processmodel.cpp" line="146"/>
         <source>Stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="147"/>
+        <location filename="../processes/processmodel.cpp" line="148"/>
         <source>Zombie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="149"/>
+        <location filename="../processes/processmodel.cpp" line="150"/>
         <source>Dead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="151"/>
+        <location filename="../processes/processmodel.cpp" line="152"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -245,32 +245,32 @@
 <context>
     <name>SidePane</name>
     <message>
-        <location filename="../panes/sidepane.cpp" line="63"/>
+        <location filename="../panes/sidepane.cpp" line="65"/>
         <source>%1 KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="65"/>
+        <location filename="../panes/sidepane.cpp" line="67"/>
         <source>%1 MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="67"/>
+        <location filename="../panes/sidepane.cpp" line="69"/>
         <source>%1 GiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="71"/>
+        <location filename="../panes/sidepane.cpp" line="73"/>
         <source>%1 KiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="73"/>
+        <location filename="../panes/sidepane.cpp" line="75"/>
         <source>%1 MiB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="75"/>
+        <location filename="../panes/sidepane.cpp" line="77"/>
         <source>%1 GiB/s</source>
         <translation type="unfinished"></translation>
     </message>

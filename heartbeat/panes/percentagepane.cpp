@@ -39,7 +39,7 @@ void PercentagePane::setTitle(QString title) {
 }
 
 void PercentagePane::setPercentage(double percentage) {
-    ui->valueLabel->setText(QString::number(percentage * 100, 'f', 1) + "%");
+    ui->valueLabel->setText(QLocale().toString(percentage * 100, 'f', 1) + "%");
     percentageHistory.prepend(percentage);
     if (percentageHistory.count() > 300) {
         percentageHistory.removeLast();

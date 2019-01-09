@@ -84,6 +84,7 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
+    QLocale locale;
     Process* p = shownProcesses.value(index.row());
 
     if (role == Qt::DisplayRole) {
@@ -95,7 +96,7 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
                 if (cpuUsage == 0) {
                     return "";
                 } else {
-                    return QString::number(cpuUsage * 100, 'f', 1) + "%";
+                    return locale.toString(cpuUsage * 100, 'f', 1) + "%";
                 }
             }
             case Memory: {
@@ -106,15 +107,15 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
                     val = p->property("privateMem").toULongLong();
                 }
                 if (val < 1024) {
-                    return tr("%1 KiB").arg(QString::number((double) val, 'f', 1));
+                    return tr("%1 KiB").arg(locale.toString((double) val, 'f', 1));
                 } else if (val < 1048576) {
-                    return tr("%1 MiB").arg(QString::number((double) val / 1024, 'f', 1));
+                    return tr("%1 MiB").arg(locale.toString((double) val / 1024, 'f', 1));
                 } else /* (val < 1073741824) */ {
-                    return tr("%1 GiB").arg(QString::number((double) val / 1048576, 'f', 1));
+                    return tr("%1 GiB").arg(locale.toString((double) val / 1048576, 'f', 1));
                 }
             }
             case Pid:
-                return QString::number(p->property("pid").toInt());
+                return QString::number(p->property("pid").toInt()); //Use QString::number here because it doesn't depend on the locale ;)
         }
     } else if (role == Qt::DecorationRole) {
         if (index.column() == Name) {

@@ -21,6 +21,7 @@
 
 #include <QPaintEvent>
 #include <QPainter>
+#include <QLocale>
 
 SidePane::SidePane(QWidget *parent) : QWidget(parent)
 {
@@ -57,22 +58,23 @@ void SidePane::paintEvent(QPaintEvent *event) {
 }
 
 QString SidePane::calculateText(qulonglong val) {
+    QLocale locale;
     switch (u) {
         case Kilobyte:
             if (val < 1024) {
-                return tr("%1 KiB").arg(QString::number((double) val, 'f', 1));
+                return tr("%1 KiB").arg(locale.toString((double) val, 'f', 1));
             } else if (val < 1048576) {
-                return tr("%1 MiB").arg(QString::number((double) val / 1024, 'f', 1));
+                return tr("%1 MiB").arg(locale.toString((double) val / 1024, 'f', 1));
             } else /* (val < 1073741824) */ {
-                return tr("%1 GiB").arg(QString::number((double) val / 1048576, 'f', 1));
+                return tr("%1 GiB").arg(locale.toString((double) val / 1048576, 'f', 1));
             }
         case KilobytePerSecond:
             if (val < 1024) {
-                return tr("%1 KiB/s").arg(QString::number((double) val, 'f', 1));
+                return tr("%1 KiB/s").arg(locale.toString((double) val, 'f', 1));
             } else if (val < 1048576) {
-                return tr("%1 MiB/s").arg(QString::number((double) val / 1024, 'f', 1));
+                return tr("%1 MiB/s").arg(locale.toString((double) val / 1024, 'f', 1));
             } else /* (val < 1073741824) */ {
-                return tr("%1 GiB/s").arg(QString::number((double) val / 1048576, 'f', 1));
+                return tr("%1 GiB/s").arg(locale.toString((double) val / 1048576, 'f', 1));
             }
     }
     return "";
