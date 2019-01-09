@@ -6,27 +6,27 @@
     <message>
         <location filename="../aboutdialog.ui" line="14"/>
         <source>About theHeartbeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Giới thiệu về theHeartbeat</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="25"/>
         <source>theHeartbeat 0.1</source>
-        <translation type="unfinished"></translation>
+        <translation>theHeartbeat 0.1</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="32"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Trình theo dõi hệ thống</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="52"/>
         <source>Copyright (c) Victor Tran 2018. Licensed under the terms of the GNU General Public License, version 3 or later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bản quyền (c) Victor Tran 2018. Cấp phép với giấy phép Công cộng GNU, phiên bản 3 hoặc mới hơn.</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="77"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -60,17 +60,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="39"/>
         <source>File Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Báo cáo lỗi</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="42"/>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Mã nguồn</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="46"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Giới thiệu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
@@ -90,12 +90,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="76"/>
         <source>Network Receive</source>
-        <translation type="unfinished"></translation>
+        <translation>Mạng nhận</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="77"/>
         <source>Network Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Mạng gửi</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="94"/>
@@ -181,47 +181,47 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="110"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="112"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="114"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="142"/>
         <source>Disk Sleep</source>
-        <translation type="unfinished"></translation>
+        <translation>Chờ đĩa</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="144"/>
         <source>Debugging</source>
-        <translation type="unfinished"></translation>
+        <translation>Gỡ lỗi</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="146"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Dừng</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="148"/>
         <source>Zombie</source>
-        <translation type="unfinished"></translation>
+        <translation>Thây ma</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="150"/>
         <source>Dead</source>
-        <translation type="unfinished"></translation>
+        <translation>Chết</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="152"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Không xác định</translation>
     </message>
 </context>
 <context>
@@ -229,32 +229,32 @@
     <message>
         <location filename="../panes/sidepane.cpp" line="65"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="67"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="69"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="73"/>
         <source>%1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB/g</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="75"/>
         <source>%1 MiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB/g</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="77"/>
         <source>%1 GiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB/g</translation>
     </message>
 </context>
 </TS>
