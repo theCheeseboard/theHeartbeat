@@ -55,6 +55,12 @@ class MainWindow : public QMainWindow
 
         void on_netTxWidget_toggleExpand();
 
+        void on_pages_currentChanged(int arg1);
+
+        void prepareContextMenu(QTreeView* tree, QPoint pos);
+
+        void on_processesTable_customContextMenuRequested(const QPoint &pos);
+
     private:
         Ui::MainWindow *ui;
 

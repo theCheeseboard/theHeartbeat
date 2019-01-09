@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     pm = new ProcessManager(sm);
 
     ui->processTable->setModel(new ProcessModel(pm));
+    ui->processTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processTable->header()->setStretchLastSection(false);
     ui->processTable->header()->setDefaultSectionSize(100 * theLibsGlobal::getDPIScaling());
     ui->processTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
@@ -61,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->processTable->header()->setSectionResizeMode(3, QHeaderView::Interactive);
 
     ui->processesTable->setModel(new ProcessModel(pm, ProcessModel::Processes));
+    ui->processesTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processesTable->header()->setStretchLastSection(false);
     ui->processesTable->header()->setDefaultSectionSize(100 * theLibsGlobal::getDPIScaling());
     ui->processesTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
@@ -151,7 +153,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->sideStatusPane->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
     ui->sideStatusPaneContents->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
+
     ui->pages->setCurrentAnimation(tStackedWidget::Lift);
+    ui->pages->setCurrentIndex(0);
+    on_pages_currentChanged(0);
 
     this->resizeEvent(nullptr);
 }
@@ -207,9 +212,13 @@ void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
 
 void MainWindow::on_processTable_customContextMenuRequested(const QPoint &pos)
 {
-    if (ui->processTable->selectionModel()->selectedRows().count() > 0) {
+    prepareContextMenu(ui->processTable, pos);
+}
+
+void MainWindow::prepareContextMenu(QTreeView* view, QPoint pos) {
+    if (view->selectionModel()->selectedRows().count() > 0) {
         QMenu* m = new QMenu();
-        QModelIndexList selected = ui->processTable->selectionModel()->selectedRows();
+        QModelIndexList selected = view->selectionModel()->selectedRows();
         if (selected.count() == 1) {
             m->addSection(tr("For %1").arg(selected.first().data(Qt::DisplayRole).toString()));
 
@@ -219,20 +228,20 @@ void MainWindow::on_processTable_customContextMenuRequested(const QPoint &pos)
 
         QMenu* signalsMenu = new QMenu();
         signalsMenu->setTitle(tr("Send Signal"));
-        signalsMenu->addAction("SIGSTOP", [=] {sendSignal(ui->processTable, "SIGSTOP", SIGSTOP);});
-        signalsMenu->addAction("SIGCONT", [=] {sendSignal(ui->processTable, "SIGCONT", SIGCONT);});
-        signalsMenu->addAction("SIGHUP" , [=] {sendSignal(ui->processTable, "SIGHUP" , SIGHUP );});
-        signalsMenu->addAction("SIGINT" , [=] {sendSignal(ui->processTable, "SIGINT" , SIGINT );});
-        signalsMenu->addAction("SIGUSR1", [=] {sendSignal(ui->processTable, "SIGUSR1", SIGUSR1);});
-        signalsMenu->addAction("SIGUSR2", [=] {sendSignal(ui->processTable, "SIGUSR2", SIGUSR2);});
+        signalsMenu->addAction("SIGSTOP", [=] {sendSignal(view, "SIGSTOP", SIGSTOP);});
+        signalsMenu->addAction("SIGCONT", [=] {sendSignal(view, "SIGCONT", SIGCONT);});
+        signalsMenu->addAction("SIGHUP" , [=] {sendSignal(view, "SIGHUP" , SIGHUP );});
+        signalsMenu->addAction("SIGINT" , [=] {sendSignal(view, "SIGINT" , SIGINT );});
+        signalsMenu->addAction("SIGUSR1", [=] {sendSignal(view, "SIGUSR1", SIGUSR1);});
+        signalsMenu->addAction("SIGUSR2", [=] {sendSignal(view, "SIGUSR2", SIGUSR2);});
         signalsMenu->addSeparator();
-        signalsMenu->addAction("SIGTERM", [=] {sendSignal(ui->processTable, "SIGTERM", SIGTERM);});
-        signalsMenu->addAction("SIGKILL", [=] {sendSignal(ui->processTable, "SIGKILL", SIGKILL);});
+        signalsMenu->addAction("SIGTERM", [=] {sendSignal(view, "SIGTERM", SIGTERM);});
+        signalsMenu->addAction("SIGKILL", [=] {sendSignal(view, "SIGKILL", SIGKILL);});
 
         m->addMenu(signalsMenu);
-        m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [=] {sendSignal(ui->processTable, "SIGTERM", SIGTERM);});
-        m->addAction(QIcon::fromTheme("application-exit"), tr("Kill"), [=] {sendSignal(ui->processTable, "SIGKILL", SIGKILL);});
-        m->exec(ui->processTable->mapToGlobal(pos));
+        m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [=] {sendSignal(view, "SIGTERM", SIGTERM);});
+        m->addAction(QIcon::fromTheme("application-exit"), tr("Kill"), [=] {sendSignal(view, "SIGKILL", SIGKILL);});
+        m->exec(view->mapToGlobal(pos));
     }
 }
 
@@ -312,4 +321,26 @@ void MainWindow::on_netTxWidget_toggleExpand()
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
     anim->start();
+}
+
+void MainWindow::on_pages_currentChanged(int arg1)
+{
+    ui->paneSelection->setCurrentRow(arg1);
+
+    //Don't bother sorting process tables that aren't visible
+    ((ProcessModel*) ui->processTable->model())->setPerformSorting(false);
+    ((ProcessModel*) ui->processesTable->model())->setPerformSorting(false);
+
+    switch (arg1) {
+        case 0:
+            ((ProcessModel*) ui->processTable->model())->setPerformSorting(true);
+            break;
+        case 1:
+            ((ProcessModel*) ui->processesTable->model())->setPerformSorting(true);
+    }
+}
+
+void MainWindow::on_processesTable_customContextMenuRequested(const QPoint &pos)
+{
+    prepareContextMenu(ui->processesTable, pos);
 }

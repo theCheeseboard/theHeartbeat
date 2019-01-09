@@ -21,6 +21,7 @@
 
 #include <QSize>
 #include <QMutexLocker>
+#include <the-libs_global.h>
 #include "processmanager.h"
 #include "process.h"
 
@@ -97,8 +98,21 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
                     return QString::number(cpuUsage * 100, 'f', 1) + "%";
                 }
             }
-            case Memory:
-                return tr("%1 KB").arg(p->property("privateMem").toULongLong());
+            case Memory: {
+                qulonglong val = 0;
+                if (type == Applications) {
+                    val = p->property("totalX11PrivateMem").toULongLong();
+                } else if (type == Processes) {
+                    val = p->property("privateMem").toULongLong();
+                }
+                if (val < 1024) {
+                    return tr("%1 KiB").arg(QString::number((double) val, 'f', 1));
+                } else if (val < 1048576) {
+                    return tr("%1 MiB").arg(QString::number((double) val / 1024, 'f', 1));
+                } else /* (val < 1073741824) */ {
+                    return tr("%1 GiB").arg(QString::number((double) val / 1048576, 'f', 1));
+                }
+            }
             case Pid:
                 return QString::number(p->property("pid").toInt());
         }
@@ -108,6 +122,34 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
         }
     } else if (role == Qt::UserRole) {
         return QVariant::fromValue(p);
+    } else if (role == Qt::TextAlignmentRole) {
+        switch (index.column()) {
+            case Name:
+                return Qt::AlignLeft;
+            case CPU:
+                return Qt::AlignHCenter;
+            case Memory:
+                return Qt::AlignRight;
+            case Pid:
+                return Qt::AlignLeft;
+        }
+    } else if (role == Qt::UserRole + 1) {
+        QString status = p->property("status").toString();
+        if (status == "running" || status == "sleeping" || status == "idle") {
+            return "";
+        } else if (status == "disk sleep") {
+            return tr("Disk Sleep");
+        } else if (status == "debugging") {
+            return tr("Debugging");
+        } else if (status == "stopped") {
+            return tr("Stopped");
+        } else if (status == "zombie") {
+            return tr("Zombie");
+        } else if (status == "dead") {
+            return tr("Dead");
+        } else {
+            return tr("Unknown");
+        }
     }
 
     return QVariant();
@@ -180,7 +222,7 @@ void ProcessModel::sort(int column, Qt::SortOrder order) {
 }
 
 void ProcessModel::performSort() {
-    if (sortColumn == -1) return;
+    if (sortColumn == -1 || !performSorting) return;
 
     std::stable_sort(shownProcesses.begin(), shownProcesses.end(), [=](const Process* a, const Process* b) -> bool {
         if (a == nullptr || b == nullptr) return false;
@@ -231,4 +273,75 @@ void ProcessModel::newPid(int pid) {
     Process* p = pm->processByPid(pid);
     connect(p, &Process::propertiesChanged, this, &ProcessModel::processPropertiesChanged);
     checkProcessForSetup(p);
+}
+
+void ProcessModel::setPerformSorting(bool performSorting) {
+    this->performSorting = performSorting;
+    if (performSorting) {
+        performSort();
+    }
+}
+
+ProcessTitleDelegate::ProcessTitleDelegate(QObject* parent) : QStyledItemDelegate(parent) {
+
+}
+
+
+void ProcessTitleDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+    QPen transientColor = option.palette.color(QPalette::Disabled, QPalette::WindowText);
+
+    painter->setPen(Qt::transparent);
+    QPen textPen;
+    if (option.state & QStyle::State_Selected) {
+        painter->setBrush(option.palette.brush(QPalette::Highlight));
+        textPen = option.palette.color(QPalette::HighlightedText);
+        transientColor = textPen;
+    } else if (option.state & QStyle::State_MouseOver) {
+        QColor col = option.palette.color(QPalette::Highlight);
+        col.setAlpha(127);
+        painter->setBrush(col);
+        textPen = option.palette.color(QPalette::HighlightedText);
+    } else {
+        painter->setBrush(option.palette.brush(QPalette::Window));
+        textPen = option.palette.color(QPalette::WindowText);
+    }
+    painter->drawRect(option.rect);
+
+    QRect iconRect, textRect = option.rect;
+
+    iconRect.setSize(QSize(16, 16) * theLibsGlobal::getDPIScaling());
+    QPixmap icon = index.data(Qt::DecorationRole).value<QPixmap>();
+    iconRect.moveLeft(option.rect.left() + 2 * theLibsGlobal::getDPIScaling());
+    iconRect.moveTop(option.rect.top() + (option.rect.height() / 2) - (iconRect.height() / 2));
+    painter->drawPixmap(iconRect, icon);
+    textRect.setLeft(iconRect.right() + 6 * theLibsGlobal::getDPIScaling());
+
+    //Draw the process name
+    QRect nameRect = textRect;
+    painter->setPen(option.palette.color(QPalette::WindowText));
+    nameRect.setWidth(option.fontMetrics.width(index.data().toString()) + 1);
+    textRect.setLeft(nameRect.right() + 6 * theLibsGlobal::getDPIScaling());
+
+    if (nameRect.right() > option.rect.right()) {
+        //We need to squish the text
+        painter->save();
+
+        int availableSpace = option.rect.right() - nameRect.left();
+        int requestedSpace = nameRect.width();
+
+        qreal scaleFactor = (qreal) availableSpace / (qreal) requestedSpace;
+        painter->scale(scaleFactor, 1);
+        nameRect.moveLeft(nameRect.left() / scaleFactor);
+
+        painter->drawText(nameRect, Qt::AlignLeft | Qt::AlignVCenter, index.data().toString());
+        painter->restore();
+    } else {
+        painter->drawText(nameRect, Qt::AlignLeft | Qt::AlignVCenter, index.data().toString());
+    }
+
+    //Draw the process status
+    if (index.data(Qt::UserRole + 1).toString() != "") {
+        painter->setPen(transientColor);
+        painter->drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, "· " + index.data(Qt::UserRole + 1).toString());
+    }
 }

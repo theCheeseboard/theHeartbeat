@@ -62,7 +62,7 @@ void ProcessManager::checkProcesses() {
             bool isAnInteger;
             int pid = process.toInt(&isAnInteger);
             if (isAnInteger && !d->processes.contains(pid)) {
-                Process* p = new Process(pid, d->sm);
+                Process* p = new Process(pid, this, d->sm);
                 connect(p, SIGNAL(processGone(Process*)), this, SLOT(processGone(Process*)));
 
                 d->processesLocker.lock();

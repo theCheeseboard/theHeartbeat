@@ -23,6 +23,9 @@
 #include <QAbstractItemModel>
 #include <QTimer>
 #include <QMutex>
+#include <QPainter>
+#include <QStyleOptionViewItem>
+#include <QStyledItemDelegate>
 
 class ProcessManager;
 class Process;
@@ -58,6 +61,9 @@ class ProcessModel : public QAbstractTableModel
 
         void setModelType(ModelType type);
 
+    public slots:
+        void setPerformSorting(bool performSorting);
+
     private slots:
         void processGone(Process* p);
         void processPropertiesChanged(Process* p);
@@ -73,12 +79,23 @@ class ProcessModel : public QAbstractTableModel
         Qt::SortOrder sortOrder;
         void performSort();
         QTimer* sortTimer;
+        bool performSorting = false;
 
         void loadProcesses();
         void checkProcessForSetup(Process* p);
         bool checkProcessEligibility(Process* p);
         void setupProcess(Process* p);
         QString getProcessDisplayName(const Process* p) const;
+};
+
+
+class ProcessTitleDelegate : public QStyledItemDelegate {
+    Q_OBJECT
+
+    public:
+        explicit ProcessTitleDelegate(QObject* parent = nullptr);
+
+        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
 
 #endif // PROCESSMODEL_H

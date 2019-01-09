@@ -25,17 +25,17 @@
 
 struct ProcessPrivate;
 class SystemManager;
+class ProcessManager;
 
 class Process : public QObject
 {
         Q_OBJECT
     public:
-        explicit Process(int pid, SystemManager* sm, QObject *parent = nullptr);
+        explicit Process(int pid, ProcessManager* pm, SystemManager* sm, QObject *parent = nullptr);
         ~Process();
 
         bool setProperty(const char *name, const QVariant &value);
         QVariant property(const char *name) const;
-
 
     signals:
         void processGone(Process* p);
@@ -47,6 +47,8 @@ class Process : public QObject
 
     private:
         ProcessPrivate* d;
+
+        void addCascadingProcess(Process* p);
 
         QString readFile(QString file);
         QString readLink(QString link);

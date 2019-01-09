@@ -30,6 +30,7 @@
 #include <QMutexLocker>
 #include <tpromise.h>
 #include "system/systemmanager.h"
+#include "processmanager.h"
 
 #include <unistd.h>
 #include <X11/Xlib.h>
@@ -42,18 +43,25 @@ struct ProcessPrivate {
     int pid;
 
     SystemManager* sm;
+    ProcessManager* pm;
+
     QMutex* updateLocker;
     QMutex* propertyLocker;
+    QMutex* childrenLocker;
 
     qulonglong oldUtime = 0, oldStime = 0;
+
+    QVector<Process*> children;
 };
 
-Process::Process(int pid, SystemManager* sm, QObject *parent) : QObject(parent)
+Process::Process(int pid, ProcessManager* pm, SystemManager* sm, QObject *parent) : QObject(parent)
 {
     d = new ProcessPrivate();
     d->sm = sm;
+    d->pm = pm;
     d->updateLocker = new QMutex();
     d->propertyLocker = new QMutex();
+    d->childrenLocker = new QMutex();
 
     d->pid = pid;
     this->setProperty("pid", d->pid);
@@ -64,6 +72,7 @@ Process::Process(int pid, SystemManager* sm, QObject *parent) : QObject(parent)
 Process::~Process() {
     delete d->updateLocker;
     delete d->propertyLocker;
+    delete d->childrenLocker;
     delete d;
 }
 
@@ -97,6 +106,8 @@ void Process::performUpdate() {
 
         this->setProperty("exe", readLink("exe"));
 
+        int parent = 1;
+
         qulonglong sharedMem = 0, totalMem = 0;
         QString status = readFile("status");
         for (QString line : status.split("\n")) {
@@ -124,11 +135,10 @@ void Process::performUpdate() {
                         this->setProperty("status", "disk sleep");
                         break;
                     case 'T':
-                        if (value.contains("tracing")) {
-                            this->setProperty("status", "debugging");
-                        } else {
-                            this->setProperty("status", "stopped");
-                        }
+                        this->setProperty("status", "stopped");
+                        break;
+                    case 't':
+                        this->setProperty("status", "debugging");
                         break;
                     case 'Z':
                         this->setProperty("status", "zombie");
@@ -136,11 +146,15 @@ void Process::performUpdate() {
                     case 'X':
                         this->setProperty("status", "dead");
                         break;
+                    case 'I':
+                        this->setProperty("status", "idle");
+                        break;
                     default:
                         this->setProperty("status", "unknown");
                 }
             } else if (name == "PPid") {
-                this->setProperty("parent", value.toInt());
+                parent = value.toInt();
+                this->setProperty("parent", parent);
             } else if (name == "TracerPid") {
                 this->setProperty("tracer", value.toInt());
             } else if (name == "Uid") {
@@ -152,8 +166,31 @@ void Process::performUpdate() {
             }
         }
 
+        qulonglong totalPrivateMem = totalMem - sharedMem;
+        qulonglong totalX11PrivateMem = totalPrivateMem; //The amount of memory taken up by children processes excluding those with a window
         this->setProperty("sharedMem", sharedMem);
-        this->setProperty("privateMem", totalMem - sharedMem);
+        this->setProperty("privateMem", totalPrivateMem);
+
+        if (parent != -1) {
+            Process* pp = d->pm->processByPid(parent);
+            if (pp != nullptr) pp->addCascadingProcess(this);
+        }
+
+        d->childrenLocker->lock();
+        for (Process* p : d->children) {
+            QVariant privateMem = p->property("totalPrivateMem");
+            QVariant x11PrivateMem = p->property("totalX11PrivateMem");
+            if (privateMem.isValid()) {
+                totalPrivateMem += privateMem.toULongLong();
+            }
+
+            if (x11PrivateMem.isValid() && !p->property("x11-window").isValid()) {
+                totalX11PrivateMem += x11PrivateMem.toULongLong();
+            }
+        }
+        d->childrenLocker->unlock();
+        this->setProperty("totalPrivateMem", totalPrivateMem);
+        this->setProperty("totalX11PrivateMem", totalX11PrivateMem);
 
         QStringList statFile = readFile("stat").split(" ");
         if (statFile.count() > 14) {
@@ -310,4 +347,17 @@ QString Process::readLink(QString link) {
 
 void Process::sendSignal(int signal) {
     kill(d->pid, signal);
+}
+
+void Process::addCascadingProcess(Process *p) {
+    d->childrenLocker->lock();
+    if (!d->children.contains(p)) {
+        d->children.append(p);
+        connect(p, &Process::processGone, [=] {
+            d->childrenLocker->lock();
+            d->children.removeOne(p);
+            d->childrenLocker->unlock();
+        });
+    }
+    d->childrenLocker->unlock();
 }
