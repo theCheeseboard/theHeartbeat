@@ -215,7 +215,7 @@
       <item>
        <widget class="tStackedWidget" name="pages">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page">
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -367,7 +367,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>200</width>
-                 <height>50</height>
+                 <height>300</height>
                 </rect>
                </property>
                <property name="minimumSize">
@@ -475,6 +475,9 @@
                    </property>
                   </layout>
                  </widget>
+                </item>
+                <item>
+                 <widget class="NumberPane" name="cpuTempWidget" native="true"/>
                 </item>
                 <item>
                  <spacer name="verticalSpacer">

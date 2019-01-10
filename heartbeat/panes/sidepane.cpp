@@ -76,6 +76,8 @@ QString SidePane::calculateText(qulonglong val) {
             } else /* (val < 1073741824) */ {
                 return tr("%1 GiB/s").arg(locale.toString((double) val / 1048576, 'f', 1));
             }
+        case MillidegreeCelsius:
+            return tr("%1 °C").arg(locale.toString((double) val / 1000, 'f', 1));
     }
     return "";
 }

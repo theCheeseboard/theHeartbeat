@@ -25,6 +25,8 @@ NumberPane::NumberPane(QWidget *parent) :
     ui(new Ui::NumberPane)
 {
     ui->setupUi(this);
+
+    ui->expandButton->setVisible(false);
 }
 
 NumberPane::~NumberPane()

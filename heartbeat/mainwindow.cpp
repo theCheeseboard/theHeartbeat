@@ -77,6 +77,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->netTxWidget->setTitle(tr("Network Send"));
     ui->netRxWidget->setUnit(NumberPane::KilobytePerSecond);
     ui->netTxWidget->setUnit(NumberPane::KilobytePerSecond);
+    ui->cpuTempWidget->setTitle(tr("CPU Temperature"));
+    ui->cpuTempWidget->setUnit(NumberPane::MillidegreeCelsius);
 
     if (!sm->property("swapTotal").isValid() || sm->property("swapTotal").toULongLong() == 0) {
         ui->swapUsageWidget->setVisible(false);
@@ -148,6 +150,14 @@ MainWindow::MainWindow(QWidget *parent) :
         for (QString netDevice : sm->property("netDevices").toStringList()) {
             networkRxPanes.value(netDevice)->setValue(sm->property(QString("netRx-").append(netDevice).toUtf8()).toULongLong() / 1024);
             networkTxPanes.value(netDevice)->setValue(sm->property(QString("netTx-").append(netDevice).toUtf8()).toULongLong() / 1024);
+        }
+
+        QVariant cpuTemp = sm->property("cpuTemp");
+        if (cpuTemp.isValid()) {
+            ui->cpuTempWidget->setValue(cpuTemp.toLongLong());
+            ui->cpuTempWidget->setVisible(true);
+        } else {
+            ui->cpuTempWidget->setVisible(false);
         }
     });
 

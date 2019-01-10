@@ -23,6 +23,7 @@
 #include <QFile>
 #include <QVariant>
 #include <QDebug>
+#include <QDir>
 
 struct SystemManagerPrivate {
     qulonglong cpuWork = 0;
@@ -33,6 +34,8 @@ struct SystemManagerPrivate {
 
     QMap<QString, qulonglong> netTx;
     QMap<QString, qulonglong> netRx;
+
+    QString cpuTempPath;
 };
 
 SystemManager::SystemManager(QObject *parent) : QObject(parent)
@@ -45,6 +48,16 @@ SystemManager::SystemManager(QObject *parent) : QObject(parent)
     timer->setInterval(1000);
     connect(timer, &QTimer::timeout, this, &SystemManager::updateData);
     timer->start();
+
+    //Search each thermal zone for CPU temperature
+    QDir thermalZones("/sys/class/thermal/");
+    for (QString zone : thermalZones.entryList()) {
+        QFile type(thermalZones.absoluteFilePath(zone + "/type"));
+        type.open(QFile::ReadOnly);
+        if (type.readAll().trimmed() == "x86_pkg_temp") {
+            d->cpuTempPath = thermalZones.absoluteFilePath(zone + "/temp");
+        }
+    }
 }
 
 SystemManager::~SystemManager() {
@@ -149,10 +162,17 @@ void SystemManager::updateData() {
         d->netTx.insert(name, parts.at(8).toULongLong());
     }
 
-
     this->setProperty("netRx", mainRx);
     this->setProperty("netTx", mainTx);
     this->setProperty("netDevices", QStringList(d->netRx.keys()));
+
+    QFile cpuTemp(d->cpuTempPath);
+    if (cpuTemp.exists() && d->cpuTempPath != "") {
+        cpuTemp.open(QFile::ReadOnly);
+        this->setProperty("cpuTemp", cpuTemp.readAll().trimmed().toLongLong());
+    } else {
+        this->setProperty("cpuTemp", QVariant());
+    }
 
     emit newDataAvailable();
 }

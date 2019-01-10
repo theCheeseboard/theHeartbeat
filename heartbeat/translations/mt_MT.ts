@@ -34,7 +34,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.ui" line="81"/>
-        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="273"/>
         <source>theHeartbeat</source>
         <translation type="unfinished"></translation>
     </message>
@@ -46,14 +46,14 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="126"/>
-        <location filename="../mainwindow.ui" line="533"/>
+        <location filename="../mainwindow.ui" line="536"/>
         <source>Processes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="269"/>
-        <location filename="../mainwindow.ui" line="549"/>
-        <location filename="../mainwindow.cpp" line="181"/>
+        <location filename="../mainwindow.ui" line="552"/>
+        <location filename="../mainwindow.cpp" line="191"/>
         <source>Terminate Process</source>
         <translation type="unfinished"></translation>
     </message>
@@ -98,43 +98,48 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="94"/>
+        <location filename="../mainwindow.cpp" line="80"/>
+        <source>CPU Temperature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="96"/>
         <source>CPU %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="182"/>
+        <location filename="../mainwindow.cpp" line="192"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="185"/>
+        <location filename="../mainwindow.cpp" line="195"/>
         <source>Kill Process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="186"/>
+        <location filename="../mainwindow.cpp" line="196"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="189"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Send %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="190"/>
+        <location filename="../mainwindow.cpp" line="200"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="224"/>
-        <location filename="../mainwindow.cpp" line="227"/>
+        <location filename="../mainwindow.cpp" line="234"/>
+        <location filename="../mainwindow.cpp" line="237"/>
         <source>For %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="227"/>
+        <location filename="../mainwindow.cpp" line="237"/>
         <source>%n processes</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -144,17 +149,17 @@
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="231"/>
+        <location filename="../mainwindow.cpp" line="241"/>
         <source>Send Signal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="253"/>
         <source>Terminate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Kill</source>
         <translation type="unfinished"></translation>
     </message>
@@ -257,6 +262,11 @@
     <message>
         <location filename="../panes/sidepane.cpp" line="77"/>
         <source>%1 GiB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../panes/sidepane.cpp" line="80"/>
+        <source>%1 °C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

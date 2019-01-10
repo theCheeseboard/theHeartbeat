@@ -29,7 +29,8 @@ class SidePane : public QWidget
     public:
         enum Unit {
             Kilobyte,
-            KilobytePerSecond
+            KilobytePerSecond,
+            MillidegreeCelsius
         };
 
         explicit SidePane(QWidget *parent = nullptr);
