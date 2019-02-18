@@ -228,20 +228,47 @@ void ProcessModel::performSort() {
     std::stable_sort(shownProcesses.begin(), shownProcesses.end(), [=](const Process* a, const Process* b) -> bool {
         if (a == nullptr || b == nullptr) return false;
         //Check if a < b
-        bool retVal = false;
+
+        qlonglong val1, val2;
+
+        //bool retVal = false;
         switch (sortColumn) {
             case Name:
-                retVal = getProcessDisplayName(a).toLower().localeAwareCompare(getProcessDisplayName(b).toLower()) < 0;
+                //retVal = getProcessDisplayName(a).toLower().localeAwareCompare(getProcessDisplayName(b).toLower()) < 0;
+                val1 = getProcessDisplayName(a).toLower().localeAwareCompare(getProcessDisplayName(b).toLower());
+                val2 = 0;
                 break;
             case CPU:
-                retVal = a->property("cpuUsage").toDouble() < b->property("cpuUsage").toDouble();
+                //retVal = a->property("cpuUsage").toDouble() < b->property("cpuUsage").toDouble();
+                val1 = a->property("cpuUsage").toDouble();
+                val2 = b->property("cpuUsage").toDouble();
                 break;
             case Memory:
-                retVal = a->property("privateMem").toULongLong() < b->property("privateMem").toULongLong();
+                if (type == Applications) {
+                    //retVal = a->property("totalX11PrivateMem").toULongLong() < b->property("totalX11PrivateMem").toULongLong();
+                    val1 = a->property("totalX11PrivateMem").toULongLong();
+                    val2 = b->property("totalX11PrivateMem").toULongLong();
+                } else if (type == Processes) {
+                    //retVal = a->property("privateMem").toULongLong() < b->property("privateMem").toULongLong();
+                    val1 = a->property("privateMem").toULongLong();
+                    val2 = b->property("privateMem").toULongLong();
+                }
                 break;
             case Pid:
-                retVal = a->property("pid").toInt() < b->property("pid").toInt();
+                //retVal = a->property("pid").toInt() < b->property("pid").toInt();
+                val1 = a->property("pid").toInt();
+                val2 = b->property("pid").toInt();
                 break;
+        }
+
+        bool retVal;
+        if (val1 == val2) {
+            //Compare on PIDs: they should never be the same
+            retVal = a->property("pid").toInt() < b->property("pid").toInt();
+        } else if (val1 < val2) {
+            retVal = true;
+        } else {
+            retVal = false;
         }
 
         if (sortOrder == Qt::DescendingOrder) {
