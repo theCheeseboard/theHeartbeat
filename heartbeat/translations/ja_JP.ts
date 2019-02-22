@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" sourcelanguage="en_US">
+<TS version="2.1" sourcelanguage="en_US" language="ja_JP">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../aboutdialog.ui" line="14"/>
         <source>About theHeartbeat</source>
-        <translation type="unfinished"></translation>
+        <translation>ハートビートについて</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="25"/>
         <source>theHeartbeat 0.1</source>
-        <translation type="unfinished"></translation>
+        <translation>のハートビート 0.1</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="32"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>システムモニタ</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="52"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../aboutdialog.ui" line="77"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>はい</translation>
     </message>
 </context>
 <context>
