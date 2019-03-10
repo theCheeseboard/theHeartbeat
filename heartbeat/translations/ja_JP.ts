@@ -36,31 +36,31 @@
         <location filename="../mainwindow.ui" line="81"/>
         <location filename="../mainwindow.cpp" line="272"/>
         <source>theHeartbeat</source>
-        <translation type="unfinished"></translation>
+        <translation>ハートビート</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="117"/>
         <location filename="../mainwindow.ui" line="253"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>概要</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="126"/>
         <location filename="../mainwindow.ui" line="536"/>
         <source>Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>プロセス</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="269"/>
         <location filename="../mainwindow.ui" line="552"/>
         <location filename="../mainwindow.cpp" line="190"/>
         <source>Terminate Process</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">キルプロセス</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="39"/>
         <source>File Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルのバグ</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="42"/>
@@ -70,22 +70,22 @@
     <message>
         <location filename="../mainwindow.cpp" line="46"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>約</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="73"/>
         <source>CPU Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>コンピュータの使用法</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="74"/>
         <source>Memory Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>メモリ使用量</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>Swap Usage</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">スワップの使用</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="76"/>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>CPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>コンピューター温度</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="96"/>
