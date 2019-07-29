@@ -100,7 +100,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="80"/>
         <source>CPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>Nhiệt độ CPU</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="96"/>
@@ -264,7 +264,7 @@
     <message>
         <location filename="../panes/sidepane.cpp" line="80"/>
         <source>%1 °C</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 °C</translation>
     </message>
 </context>
 <context>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../main.cpp" line="41"/>
         <source>System Monitor</source>
-        <translation type="unfinished">Trình theo dõi hệ thống</translation>
+        <translation>Trình theo dõi hệ thống</translation>
     </message>
 </context>
 </TS>
