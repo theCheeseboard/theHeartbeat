@@ -23,6 +23,7 @@
 #include <QMutex>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <QDir>
 
 QMutex checkerMutex;
 int checkers = 0;
@@ -31,17 +32,27 @@ int main(int argc, char *argv[])
 {
     tApplication a(argc, argv);
 
+    a.installTranslators();
+
     a.setOrganizationName("theSuite");
-    a.setOrganizationDomain("");
-    a.setApplicationName("theHeartbeat");
-
-    QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    a.installTranslator(&qtTranslator);
-
-    QTranslator localTranslator;
-    localTranslator.load(QLocale::system().name(), "/usr/share/theheartbeat/translations");
-    a.installTranslator(&localTranslator);
+    a.setOrganizationDomain("vicr123.com");
+    a.setApplicationIcon(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor", QIcon(":/icons/icon.svg"))));
+    a.setApplicationVersion("1.0");
+    a.setGenericName(QApplication::translate("main", "System Monitor"));
+    a.setAboutDialogSplashGraphic(a.aboutDialogSplashGraphicFromSvg(":/icons/aboutsplash.svg"));
+    a.setApplicationLicense(tApplication::Gpl3OrLater);
+    a.setCopyrightHolder("Victor Tran");
+    a.setCopyrightYear("2019");
+    #ifdef T_BLUEPRINT_BUILD
+        a.setApplicationName("theHeartbeat Blueprint");
+    #else
+        a.setApplicationName("theHeartbeat");
+    #endif
+    if (QDir("/usr/share/theheartbeat").exists()) {
+        a.setShareDir("/usr/share/theheartbeat");
+    } else if (QDir(QDir::cleanPath(QApplication::applicationDirPath() + "/../share/theheartbeat/")).exists()) {
+        a.setShareDir(QDir::cleanPath(QApplication::applicationDirPath() + "/../share/theheartbeat/"));
+    }
 
     MainWindow w;
     w.show();

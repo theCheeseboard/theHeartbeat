@@ -26,7 +26,7 @@
 #include <tpopover.h>
 #include <QMenu>
 #include <QDesktopServices>
-#include "aboutdialog.h"
+#include <taboutdialog.h>
 #include "processaction.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -44,8 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
     });
     menu->addSeparator();
     menu->addAction(QIcon::fromTheme("help-about"), tr("About"), [=] {
-        AboutDialog d;
-        d.exec();
+        tAboutDialog aboutWindow;
+        aboutWindow.exec();
     });
     ui->menuButton->setMenu(menu);
 
