@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" sourcelanguage="en_US" language="ja_JP">
+<TS version="2.1" language="ja_JP" sourcelanguage="en_US">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -270,9 +270,9 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="41"/>
+        <location filename="../main.cpp" line="42"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">システムモニタ</translation>
     </message>
 </context>
 </TS>

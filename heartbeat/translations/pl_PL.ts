@@ -141,10 +141,12 @@
     <message numerus="yes">
         <location filename="../mainwindow.cpp" line="236"/>
         <source>%n processes</source>
-        <translation><numerusform>%n proces</numerusform>
-        <numerusform>%n procesy</numerusform>
-        <numerusform>%n procesów</numerusform>
-        </translation></message>
+        <translation>
+            <numerusform>%n proces</numerusform>
+            <numerusform>%n procesy</numerusform>
+            <numerusform>%n procesów</numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../mainwindow.cpp" line="240"/>
         <source>Send Signal</source>
@@ -270,9 +272,9 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="41"/>
+        <location filename="../main.cpp" line="42"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Monitor systemu</translation>
     </message>
 </context>
 </TS>

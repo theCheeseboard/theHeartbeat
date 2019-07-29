@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
 
     a.setOrganizationName("theSuite");
     a.setOrganizationDomain("vicr123.com");
+    a.setDesktopFileName("com.vicr123.theheartbeat");
     a.setApplicationIcon(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor", QIcon(":/icons/icon.svg"))));
     a.setApplicationVersion("1.0");
     a.setGenericName(QApplication::translate("main", "System Monitor"));
