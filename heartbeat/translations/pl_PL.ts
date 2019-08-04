@@ -34,7 +34,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.ui" line="81"/>
-        <location filename="../mainwindow.cpp" line="272"/>
+        <location filename="../mainwindow.cpp" line="274"/>
         <source>theHeartbeat</source>
         <translation>theHeartbeat</translation>
     </message>
@@ -53,114 +53,114 @@
     <message>
         <location filename="../mainwindow.ui" line="269"/>
         <location filename="../mainwindow.ui" line="552"/>
-        <location filename="../mainwindow.cpp" line="190"/>
+        <location filename="../mainwindow.cpp" line="192"/>
         <source>Terminate Process</source>
         <translation>Zakończ proces</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="39"/>
+        <location filename="../mainwindow.cpp" line="41"/>
         <source>File Bug</source>
         <translation>Zgłoś błąd</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="42"/>
+        <location filename="../mainwindow.cpp" line="44"/>
         <source>Sources</source>
         <translation>Źródła</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="46"/>
+        <location filename="../mainwindow.cpp" line="48"/>
         <source>About</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="73"/>
+        <location filename="../mainwindow.cpp" line="75"/>
         <source>CPU Usage</source>
         <translation>Użycie CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="74"/>
+        <location filename="../mainwindow.cpp" line="76"/>
         <source>Memory Usage</source>
         <translation>Użycie pamięci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="75"/>
+        <location filename="../mainwindow.cpp" line="77"/>
         <source>Swap Usage</source>
         <translation>Użycie przestrzeni wymiany</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="76"/>
+        <location filename="../mainwindow.cpp" line="78"/>
         <source>Network Receive</source>
         <translation>Odbieranie sieci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="77"/>
+        <location filename="../mainwindow.cpp" line="79"/>
         <source>Network Send</source>
         <translation>Wysyłanie sieci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="80"/>
+        <location filename="../mainwindow.cpp" line="82"/>
         <source>CPU Temperature</source>
         <translation>Temperatura CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
+        <location filename="../mainwindow.cpp" line="98"/>
         <source>CPU %1</source>
         <translation>%1 CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="191"/>
+        <location filename="../mainwindow.cpp" line="193"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
-        <translation>Czy na pewno chcesz zakończyć te procesy? Możesz stracić niezapisaną pracę.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="194"/>
+        <location filename="../mainwindow.cpp" line="196"/>
         <source>Kill Process</source>
-        <translation>Zabij proces</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="195"/>
+        <location filename="../mainwindow.cpp" line="197"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
-        <translation>Czy na pewno chcesz zabić te procesy? Stracisz całą niezapisaną pracę.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="198"/>
+        <location filename="../mainwindow.cpp" line="200"/>
         <source>Send %1</source>
-        <translation>Wyślij %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="199"/>
+        <location filename="../mainwindow.cpp" line="201"/>
         <source>Do you want to send %1 to these processes?</source>
-        <translation>Czy chcesz wysłać %1 do tych procesów?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="233"/>
-        <location filename="../mainwindow.cpp" line="236"/>
+        <location filename="../mainwindow.cpp" line="235"/>
+        <location filename="../mainwindow.cpp" line="238"/>
         <source>For %1</source>
-        <translation>Dla %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="236"/>
+        <location filename="../mainwindow.cpp" line="238"/>
         <source>%n processes</source>
-        <translation>
-            <numerusform>%n proces</numerusform>
-            <numerusform>%n procesy</numerusform>
-            <numerusform>%n procesów</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="240"/>
+        <location filename="../mainwindow.cpp" line="242"/>
         <source>Send Signal</source>
-        <translation>Wyślij sygnał</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="252"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Terminate</source>
-        <translation>Zakończ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="255"/>
         <source>Kill</source>
-        <translation>Zabij</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

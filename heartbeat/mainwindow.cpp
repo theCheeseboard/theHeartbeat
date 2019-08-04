@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setWindowIcon(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor")));
+
     QMenu* menu = new QMenu();
     menu->addAction(QIcon::fromTheme("tools-report-bug"), tr("File Bug"), [=] {
         QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat/issues"));
@@ -55,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->processTable->setModel(new ProcessModel(pm));
     ui->processTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processTable->header()->setStretchLastSection(false);
-    ui->processTable->header()->setDefaultSectionSize(100 * theLibsGlobal::getDPIScaling());
+    ui->processTable->header()->setDefaultSectionSize(SC_DPI(100));
     ui->processTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->processTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
     ui->processTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
@@ -64,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->processesTable->setModel(new ProcessModel(pm, ProcessModel::Processes));
     ui->processesTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processesTable->header()->setStretchLastSection(false);
-    ui->processesTable->header()->setDefaultSectionSize(100 * theLibsGlobal::getDPIScaling());
+    ui->processesTable->header()->setDefaultSectionSize(SC_DPI(100));
     ui->processesTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->processesTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
     ui->processesTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
@@ -161,8 +163,8 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     });
 
-    ui->sideStatusPane->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
-    ui->sideStatusPaneContents->setFixedWidth(200 * theLibsGlobal::getDPIScaling());
+    ui->sideStatusPane->setFixedWidth(SC_DPI(200));
+    ui->sideStatusPaneContents->setFixedWidth(SC_DPI(200));
 
     ui->pages->setCurrentAnimation(tStackedWidget::Lift);
     ui->pages->setCurrentIndex(0);
@@ -204,7 +206,7 @@ void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
         }
 
         tPopover* p = new tPopover(act);
-        p->setPopoverWidth(400 * theLibsGlobal::getDPIScaling());
+        p->setPopoverWidth(SC_DPI(400));
         connect(act, &ProcessAction::dismiss, p, &tPopover::dismiss);
         connect(act, &ProcessAction::accept, [=] {
             for (QModelIndex i : tree->selectionModel()->selectedRows()) {
@@ -262,13 +264,13 @@ void MainWindow::on_paneSelection_currentRowChanged(int currentRow)
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
     //Move items around accordingly
-    if (this->width() < 1000 * theLibsGlobal::getDPIScaling()) {
+    if (this->width() < SC_DPI(1000)) {
         //Collapse sidebar
-        ui->sidePane->setMaximumSize(42 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
-        ui->appTitleLabel->setPixmap(QIcon::fromTheme("utilities-system-monitor").pixmap(QSize(24, 24) * theLibsGlobal::getDPIScaling()));
+        ui->sidePane->setMaximumSize(SC_DPI(42), QWIDGETSIZE_MAX);
+        ui->appTitleLabel->setPixmap(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor")).pixmap(SC_DPI_T(QSize(24, 24), QSize)));
     } else {
         //Expand sidebar
-        ui->sidePane->setMaximumSize(300 * theLibsGlobal::getDPIScaling(), QWIDGETSIZE_MAX);
+        ui->sidePane->setMaximumSize(SC_DPI(300), QWIDGETSIZE_MAX);
         ui->appTitleLabel->setText(tr("theHeartbeat"));
     }
 }
