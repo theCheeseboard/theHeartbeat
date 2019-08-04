@@ -32,6 +32,11 @@ int main(int argc, char *argv[])
 {
     tApplication a(argc, argv);
 
+    if (QDir("/usr/share/theheartbeat").exists()) {
+        a.setShareDir("/usr/share/theheartbeat");
+    } else if (QDir(QDir::cleanPath(QApplication::applicationDirPath() + "/../share/theheartbeat/")).exists()) {
+        a.setShareDir(QDir::cleanPath(QApplication::applicationDirPath() + "/../share/theheartbeat/"));
+    }
     a.installTranslators();
 
     a.setOrganizationName("theSuite");
@@ -49,11 +54,6 @@ int main(int argc, char *argv[])
     #else
         a.setApplicationName("theHeartbeat");
     #endif
-    if (QDir("/usr/share/theheartbeat").exists()) {
-        a.setShareDir("/usr/share/theheartbeat");
-    } else if (QDir(QDir::cleanPath(QApplication::applicationDirPath() + "/../share/theheartbeat/")).exists()) {
-        a.setShareDir(QDir::cleanPath(QApplication::applicationDirPath() + "/../share/theheartbeat/"));
-    }
 
     MainWindow w;
     w.show();

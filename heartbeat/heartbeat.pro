@@ -24,7 +24,10 @@ unix:!macx {
     desktop.path = /usr/share/applications
     desktop.files = com.vicr123.theheartbeat.desktop
 
-    INSTALLS += target desktop
+    icon.path = /usr/share/icons/hicolor/scalable/apps/
+    icon.files = theheartbeat.svg
+
+    INSTALLS += target desktop icon
 }
 
 # The following define makes your compiler emit warnings if you use
