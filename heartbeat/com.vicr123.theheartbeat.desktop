@@ -5,6 +5,7 @@ Version=1.0
 Name=theHeartbeat
 GenericName=System Monitor
 GenericName[vi]=Trình theo dõi hệ thống
+GenericName[nl]=Systeemmonitor
 GenericName[pl]=Monitor systemu
 Exec=theheartbeat
 Icon=theheartbeat

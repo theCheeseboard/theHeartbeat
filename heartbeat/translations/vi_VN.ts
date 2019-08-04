@@ -141,8 +141,10 @@
     <message numerus="yes">
         <location filename="../mainwindow.cpp" line="238"/>
         <source>%n processes</source>
-        <translation><numerusform>%n quá trình</numerusform>
-        </translation></message>
+        <translation>
+            <numerusform>%n quá trình</numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../mainwindow.cpp" line="242"/>
         <source>Send Signal</source>
