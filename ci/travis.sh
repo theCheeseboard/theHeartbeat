@@ -28,8 +28,8 @@ elif [ $STAGE = "after_success" ]; then
     if [ $TRAVIS_OS_NAME = "linux" ]; then
         echo "[TRAVIS] Publishing AppImage"
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-        cp com.vicr123.theHeartbeat*.AppImage theHeartbeat-linux.AppImage
-        cp com.vicr123.theHeartbeat*.AppImage.zsync theHeartbeat-linux.AppImage.zsync
+        cp theHeartbeat*.AppImage theHeartbeat-linux.AppImage
+        cp theHeartbeat*.AppImage.zsync theHeartbeat-linux.AppImage.zsync
         bash upload.sh theHeartbeat-linux.AppImage*
     fi
 fi
