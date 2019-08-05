@@ -21,6 +21,7 @@ addons:
       - qt510tools
       - qt510translations
       - qt510svg
+      - qt510multimedia
       - xorg-dev
       - libxcb-util0-dev
       - libgl1-mesa-dev
