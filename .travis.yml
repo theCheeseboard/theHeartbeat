@@ -4,10 +4,10 @@ os:
 before_install:
   - export STAGE=before_install
   - ci/travis.sh
-  script:
+script:
   - export STAGE=script
   - ci/travis.sh
-  after_success:
+after_success:
   - export STAGE=after_success
   - ci/travis.sh
 
