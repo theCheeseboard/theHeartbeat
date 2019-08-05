@@ -9,3 +9,4 @@ GenericName[nl]=Systeemmonitor
 GenericName[pl]=Monitor systemu
 Exec=theheartbeat
 Icon=theheartbeat
+Categories=Utility;
