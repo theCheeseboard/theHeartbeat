@@ -26,6 +26,7 @@
 #include <tpopover.h>
 #include <QMenu>
 #include <QDesktopServices>
+#include <QScroller>
 #include <taboutdialog.h>
 #include "processaction.h"
 
@@ -169,6 +170,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pages->setCurrentAnimation(tStackedWidget::Lift);
     ui->pages->setCurrentIndex(0);
     on_pages_currentChanged(0);
+
+    QScroller::grabGesture(ui->processTable->viewport(), QScroller::LeftMouseButtonGesture);
+    QScroller::grabGesture(ui->processesTable->viewport(), QScroller::LeftMouseButtonGesture);
+    QScroller::grabGesture(ui->sideStatusPane->viewport(), QScroller::LeftMouseButtonGesture);
 
     this->resizeEvent(nullptr);
 }

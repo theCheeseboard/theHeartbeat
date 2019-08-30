@@ -2,39 +2,11 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="vi_VN" sourcelanguage="en_US">
 <context>
-    <name>AboutDialog</name>
-    <message>
-        <location filename="../aboutdialog.ui" line="14"/>
-        <source>About theHeartbeat</source>
-        <translation>Giới thiệu về theHeartbeat</translation>
-    </message>
-    <message>
-        <location filename="../aboutdialog.ui" line="25"/>
-        <source>theHeartbeat 0.1</source>
-        <translation>theHeartbeat 0.1</translation>
-    </message>
-    <message>
-        <location filename="../aboutdialog.ui" line="32"/>
-        <source>System Monitor</source>
-        <translation>Trình theo dõi hệ thống</translation>
-    </message>
-    <message>
-        <location filename="../aboutdialog.ui" line="52"/>
-        <source>Copyright (c) Victor Tran 2018. Licensed under the terms of the GNU General Public License, version 3 or later.</source>
-        <translation>Bản quyền (c) Victor Tran 2018. Cấp phép với giấy phép Công cộng GNU, phiên bản 3 hoặc mới hơn.</translation>
-    </message>
-    <message>
-        <location filename="../aboutdialog.ui" line="77"/>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.ui" line="81"/>
-        <location filename="../mainwindow.cpp" line="274"/>
+        <location filename="../mainwindow.cpp" line="279"/>
         <source>theHeartbeat</source>
         <translation>theHeartbeat</translation>
     </message>
@@ -53,110 +25,110 @@
     <message>
         <location filename="../mainwindow.ui" line="269"/>
         <location filename="../mainwindow.ui" line="552"/>
-        <location filename="../mainwindow.cpp" line="192"/>
+        <location filename="../mainwindow.cpp" line="197"/>
         <source>Terminate Process</source>
         <translation>Chấm dứt quá trình</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="41"/>
+        <location filename="../mainwindow.cpp" line="42"/>
         <source>File Bug</source>
         <translation>Báo cáo lỗi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="44"/>
+        <location filename="../mainwindow.cpp" line="45"/>
         <source>Sources</source>
         <translation>Mã nguồn</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="48"/>
+        <location filename="../mainwindow.cpp" line="49"/>
         <source>About</source>
         <translation>Giới thiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="75"/>
+        <location filename="../mainwindow.cpp" line="76"/>
         <source>CPU Usage</source>
         <translation>Sử dụng CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="76"/>
+        <location filename="../mainwindow.cpp" line="77"/>
         <source>Memory Usage</source>
         <translation>Sử dụng bộ nhớ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="77"/>
+        <location filename="../mainwindow.cpp" line="78"/>
         <source>Swap Usage</source>
         <translation>Sử dụng bộ nhớ tráo đổi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="78"/>
+        <location filename="../mainwindow.cpp" line="79"/>
         <source>Network Receive</source>
         <translation>Mạng nhận</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="79"/>
+        <location filename="../mainwindow.cpp" line="80"/>
         <source>Network Send</source>
         <translation>Mạng gửi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="83"/>
         <source>CPU Temperature</source>
         <translation>Nhiệt độ CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="98"/>
+        <location filename="../mainwindow.cpp" line="99"/>
         <source>CPU %1</source>
         <translation>CPU %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="193"/>
+        <location filename="../mainwindow.cpp" line="198"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation>Bạn có chắc chắn muốn chấm dứt các quá trình này không? Bạn sẽ mất các việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="196"/>
+        <location filename="../mainwindow.cpp" line="201"/>
         <source>Kill Process</source>
         <translation>Bắt buộc chấm dứt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="197"/>
+        <location filename="../mainwindow.cpp" line="202"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
         <translation>Bạn có chắc chắn muốn bắt buộc các quá trình này phải chấm dứt không? Bạn sẽ mất các việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="200"/>
+        <location filename="../mainwindow.cpp" line="205"/>
         <source>Send %1</source>
         <translation>Gửi %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="201"/>
+        <location filename="../mainwindow.cpp" line="206"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Bạn có muốn gửi %1 đến các quá trình này không?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="235"/>
-        <location filename="../mainwindow.cpp" line="238"/>
+        <location filename="../mainwindow.cpp" line="240"/>
+        <location filename="../mainwindow.cpp" line="243"/>
         <source>For %1</source>
         <translation>Cho %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="238"/>
+        <location filename="../mainwindow.cpp" line="243"/>
         <source>%n processes</source>
         <translation>
             <numerusform>%n quá trình</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="242"/>
+        <location filename="../mainwindow.cpp" line="247"/>
         <source>Send Signal</source>
         <translation>Gửi tín hiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
+        <location filename="../mainwindow.cpp" line="259"/>
         <source>Terminate</source>
         <translation>Chấm dứt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="260"/>
         <source>Kill</source>
         <translation>Bắt buộc chấm dứt</translation>
     </message>
