@@ -6,7 +6,7 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <location filename="../mainwindow.ui" line="81"/>
-        <location filename="../mainwindow.cpp" line="279"/>
+        <location filename="../mainwindow.cpp" line="285"/>
         <source>theHeartbeat</source>
         <translation>theHeartbeat</translation>
     </message>
@@ -18,14 +18,14 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="126"/>
-        <location filename="../mainwindow.ui" line="536"/>
+        <location filename="../mainwindow.ui" line="539"/>
         <source>Processes</source>
         <translation>Quá trình</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="269"/>
-        <location filename="../mainwindow.ui" line="552"/>
-        <location filename="../mainwindow.cpp" line="197"/>
+        <location filename="../mainwindow.ui" line="555"/>
+        <location filename="../mainwindow.cpp" line="205"/>
         <source>Terminate Process</source>
         <translation>Chấm dứt quá trình</translation>
     </message>
@@ -75,60 +75,65 @@
         <translation>Nhiệt độ CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="99"/>
+        <location filename="../mainwindow.cpp" line="85"/>
+        <source>GPU Temperature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="101"/>
         <source>CPU %1</source>
         <translation>CPU %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="198"/>
+        <location filename="../mainwindow.cpp" line="206"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation>Bạn có chắc chắn muốn chấm dứt các quá trình này không? Bạn sẽ mất các việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="201"/>
+        <location filename="../mainwindow.cpp" line="209"/>
         <source>Kill Process</source>
         <translation>Bắt buộc chấm dứt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="202"/>
+        <location filename="../mainwindow.cpp" line="210"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
         <translation>Bạn có chắc chắn muốn bắt buộc các quá trình này phải chấm dứt không? Bạn sẽ mất các việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="205"/>
+        <location filename="../mainwindow.cpp" line="213"/>
         <source>Send %1</source>
         <translation>Gửi %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="206"/>
+        <location filename="../mainwindow.cpp" line="214"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Bạn có muốn gửi %1 đến các quá trình này không?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="240"/>
-        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="247"/>
+        <location filename="../mainwindow.cpp" line="250"/>
         <source>For %1</source>
         <translation>Cho %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="250"/>
         <source>%n processes</source>
         <translation>
             <numerusform>%n quá trình</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="247"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Send Signal</source>
         <translation>Gửi tín hiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="266"/>
         <source>Terminate</source>
         <translation>Chấm dứt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="260"/>
+        <location filename="../mainwindow.cpp" line="267"/>
         <source>Kill</source>
         <translation>Bắt buộc chấm dứt</translation>
     </message>

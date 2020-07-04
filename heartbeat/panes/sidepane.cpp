@@ -22,13 +22,13 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QLocale>
+#include <QPainterPath>
 
-SidePane::SidePane(QWidget *parent) : QWidget(parent)
-{
+SidePane::SidePane(QWidget* parent) : QWidget(parent) {
 
 }
 
-void SidePane::paintEvent(QPaintEvent *event) {
+void SidePane::paintEvent(QPaintEvent* event) {
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
 
@@ -65,7 +65,7 @@ QString SidePane::calculateText(qulonglong val) {
                 return tr("%1 KiB").arg(locale.toString((double) val, 'f', 1));
             } else if (val < 1048576) {
                 return tr("%1 MiB").arg(locale.toString((double) val / 1024, 'f', 1));
-            } else /* (val < 1073741824) */ {
+            } else { /* (val < 1073741824) */
                 return tr("%1 GiB").arg(locale.toString((double) val / 1048576, 'f', 1));
             }
         case KilobytePerSecond:
@@ -73,7 +73,7 @@ QString SidePane::calculateText(qulonglong val) {
                 return tr("%1 KiB/s").arg(locale.toString((double) val, 'f', 1));
             } else if (val < 1048576) {
                 return tr("%1 MiB/s").arg(locale.toString((double) val / 1024, 'f', 1));
-            } else /* (val < 1073741824) */ {
+            } else { /* (val < 1073741824) */
                 return tr("%1 GiB/s").arg(locale.toString((double) val / 1048576, 'f', 1));
             }
         case MillidegreeCelsius:

@@ -480,6 +480,9 @@
                  <widget class="NumberPane" name="cpuTempWidget" native="true"/>
                 </item>
                 <item>
+                 <widget class="NumberPane" name="gpuTempWidget" native="true"/>
+                </item>
+                <item>
                  <spacer name="verticalSpacer">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>

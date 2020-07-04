@@ -27,26 +27,26 @@
 #include <QMenu>
 #include <QDesktopServices>
 #include <QScroller>
+#include <QUrl>
 #include <taboutdialog.h>
 #include "processaction.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+    ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     this->setWindowIcon(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor")));
 
     QMenu* menu = new QMenu();
-    menu->addAction(QIcon::fromTheme("tools-report-bug"), tr("File Bug"), [=] {
+    menu->addAction(QIcon::fromTheme("tools-report-bug"), tr("File Bug"), [ = ] {
         QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat/issues"));
     });
-    menu->addAction(QIcon::fromTheme("commit"), tr("Sources"), [=] {
+    menu->addAction(QIcon::fromTheme("commit"), tr("Sources"), [ = ] {
         QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat"));
     });
     menu->addSeparator();
-    menu->addAction(QIcon::fromTheme("help-about"), tr("About"), [=] {
+    menu->addAction(QIcon::fromTheme("help-about"), tr("About"), [ = ] {
         tAboutDialog aboutWindow;
         aboutWindow.exec();
     });
@@ -82,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->netTxWidget->setUnit(NumberPane::KilobytePerSecond);
     ui->cpuTempWidget->setTitle(tr("CPU Temperature"));
     ui->cpuTempWidget->setUnit(NumberPane::MillidegreeCelsius);
+    ui->gpuTempWidget->setTitle(tr("GPU Temperature"));
+    ui->gpuTempWidget->setUnit(NumberPane::MillidegreeCelsius);
 
     if (!sm->property("swapTotal").isValid() || sm->property("swapTotal").toULongLong() == 0) {
         ui->swapUsageWidget->setVisible(false);
@@ -115,7 +117,7 @@ MainWindow::MainWindow(QWidget *parent) :
         networkTxPanes.insert(netDevice, txPane);
     }
 
-    connect(sm, &SystemManager::newDataAvailable, [=] {
+    connect(sm, &SystemManager::newDataAvailable, [ = ] {
         QVariant cpuUsage = sm->property("cpu");
         if (cpuUsage.isValid()) {
             ui->cpuUsageWidget->setPercentage(cpuUsage.toDouble());
@@ -162,6 +164,14 @@ MainWindow::MainWindow(QWidget *parent) :
         } else {
             ui->cpuTempWidget->setVisible(false);
         }
+
+        QVariant gpuTemp = sm->property("gpuTemp");
+        if (gpuTemp.isValid()) {
+            ui->gpuTempWidget->setValue(gpuTemp.toLongLong());
+            ui->gpuTempWidget->setVisible(true);
+        } else {
+            ui->gpuTempWidget->setVisible(false);
+        }
     });
 
     ui->sideStatusPane->setFixedWidth(SC_DPI(200));
@@ -178,13 +188,11 @@ MainWindow::MainWindow(QWidget *parent) :
     this->resizeEvent(nullptr);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::on_OverviewTerminateButton_clicked()
-{
+void MainWindow::on_OverviewTerminateButton_clicked() {
     sendSignal(ui->processTable, "SIGTERM", SIGTERM);
 }
 
@@ -213,13 +221,13 @@ void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
         tPopover* p = new tPopover(act);
         p->setPopoverWidth(SC_DPI(400));
         connect(act, &ProcessAction::dismiss, p, &tPopover::dismiss);
-        connect(act, &ProcessAction::accept, [=] {
+        connect(act, &ProcessAction::accept, [ = ] {
             for (QModelIndex i : tree->selectionModel()->selectedRows()) {
                 i.data(Qt::UserRole).value<Process*>()->sendSignal(signal);
             }
             p->dismiss();
         });
-        connect(p, &tPopover::dismissed, [=] {
+        connect(p, &tPopover::dismissed, [ = ] {
             p->deleteLater();
             act->deleteLater();
         });
@@ -227,8 +235,7 @@ void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
     }
 }
 
-void MainWindow::on_processTable_customContextMenuRequested(const QPoint &pos)
-{
+void MainWindow::on_processTable_customContextMenuRequested(const QPoint& pos) {
     prepareContextMenu(ui->processTable, pos);
 }
 
@@ -245,29 +252,28 @@ void MainWindow::prepareContextMenu(QTreeView* view, QPoint pos) {
 
         QMenu* signalsMenu = new QMenu();
         signalsMenu->setTitle(tr("Send Signal"));
-        signalsMenu->addAction("SIGSTOP", [=] {sendSignal(view, "SIGSTOP", SIGSTOP);});
-        signalsMenu->addAction("SIGCONT", [=] {sendSignal(view, "SIGCONT", SIGCONT);});
-        signalsMenu->addAction("SIGHUP" , [=] {sendSignal(view, "SIGHUP" , SIGHUP );});
-        signalsMenu->addAction("SIGINT" , [=] {sendSignal(view, "SIGINT" , SIGINT );});
-        signalsMenu->addAction("SIGUSR1", [=] {sendSignal(view, "SIGUSR1", SIGUSR1);});
-        signalsMenu->addAction("SIGUSR2", [=] {sendSignal(view, "SIGUSR2", SIGUSR2);});
+        signalsMenu->addAction("SIGSTOP", [ = ] {sendSignal(view, "SIGSTOP", SIGSTOP);});
+        signalsMenu->addAction("SIGCONT", [ = ] {sendSignal(view, "SIGCONT", SIGCONT);});
+        signalsMenu->addAction("SIGHUP", [ = ] {sendSignal(view, "SIGHUP", SIGHUP );});
+        signalsMenu->addAction("SIGINT", [ = ] {sendSignal(view, "SIGINT", SIGINT );});
+        signalsMenu->addAction("SIGUSR1", [ = ] {sendSignal(view, "SIGUSR1", SIGUSR1);});
+        signalsMenu->addAction("SIGUSR2", [ = ] {sendSignal(view, "SIGUSR2", SIGUSR2);});
         signalsMenu->addSeparator();
-        signalsMenu->addAction("SIGTERM", [=] {sendSignal(view, "SIGTERM", SIGTERM);});
-        signalsMenu->addAction("SIGKILL", [=] {sendSignal(view, "SIGKILL", SIGKILL);});
+        signalsMenu->addAction("SIGTERM", [ = ] {sendSignal(view, "SIGTERM", SIGTERM);});
+        signalsMenu->addAction("SIGKILL", [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
 
         m->addMenu(signalsMenu);
-        m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [=] {sendSignal(view, "SIGTERM", SIGTERM);});
-        m->addAction(QIcon::fromTheme("application-exit"), tr("Kill"), [=] {sendSignal(view, "SIGKILL", SIGKILL);});
+        m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [ = ] {sendSignal(view, "SIGTERM", SIGTERM);});
+        m->addAction(QIcon::fromTheme("application-exit"), tr("Kill"), [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
         m->exec(view->mapToGlobal(pos));
     }
 }
 
-void MainWindow::on_paneSelection_currentRowChanged(int currentRow)
-{
+void MainWindow::on_paneSelection_currentRowChanged(int currentRow) {
     ui->pages->setCurrentIndex(currentRow);
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event) {
+void MainWindow::resizeEvent(QResizeEvent* event) {
     //Move items around accordingly
     if (this->width() < SC_DPI(1000)) {
         //Collapse sidebar
@@ -280,8 +286,7 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     }
 }
 
-void MainWindow::on_cpuUsageWidget_toggleExpand()
-{
+void MainWindow::on_cpuUsageWidget_toggleExpand() {
     tVariantAnimation* anim = new tVariantAnimation();
     anim->setStartValue(ui->cpuIndividualUsageWidget->height());
     if (ui->cpuIndividualUsageWidget->height() == 0) {
@@ -293,15 +298,14 @@ void MainWindow::on_cpuUsageWidget_toggleExpand()
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, [=](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, [ = ](QVariant value) {
         ui->cpuIndividualUsageWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
     anim->start();
 }
 
-void MainWindow::on_netRxWidget_toggleExpand()
-{
+void MainWindow::on_netRxWidget_toggleExpand() {
     tVariantAnimation* anim = new tVariantAnimation();
     anim->setStartValue(ui->netRxIndividualWidget->height());
     if (ui->netRxIndividualWidget->height() == 0) {
@@ -313,15 +317,14 @@ void MainWindow::on_netRxWidget_toggleExpand()
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, [=](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, [ = ](QVariant value) {
         ui->netRxIndividualWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
     anim->start();
 }
 
-void MainWindow::on_netTxWidget_toggleExpand()
-{
+void MainWindow::on_netTxWidget_toggleExpand() {
     tVariantAnimation* anim = new tVariantAnimation();
     anim->setStartValue(ui->netTxIndividualWidget->height());
     if (ui->netTxIndividualWidget->height() == 0) {
@@ -333,15 +336,14 @@ void MainWindow::on_netTxWidget_toggleExpand()
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, [=](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, [ = ](QVariant value) {
         ui->netTxIndividualWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
     anim->start();
 }
 
-void MainWindow::on_pages_currentChanged(int arg1)
-{
+void MainWindow::on_pages_currentChanged(int arg1) {
     ui->paneSelection->setCurrentRow(arg1);
 
     //Don't bother sorting process tables that aren't visible
@@ -357,7 +359,6 @@ void MainWindow::on_pages_currentChanged(int arg1)
     }
 }
 
-void MainWindow::on_processesTable_customContextMenuRequested(const QPoint &pos)
-{
+void MainWindow::on_processesTable_customContextMenuRequested(const QPoint& pos) {
     prepareContextMenu(ui->processesTable, pos);
 }
