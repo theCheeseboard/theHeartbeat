@@ -32,18 +32,18 @@ namespace Ui {
     class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+struct MainWindowPrivate;
+class MainWindow : public QMainWindow {
         Q_OBJECT
 
     public:
-        explicit MainWindow(QWidget *parent = nullptr);
+        explicit MainWindow(QWidget* parent = nullptr);
         ~MainWindow();
 
     private slots:
         void on_OverviewTerminateButton_clicked();
 
-        void on_processTable_customContextMenuRequested(const QPoint &pos);
+        void on_processTable_customContextMenuRequested(const QPoint& pos);
 
         void on_paneSelection_currentRowChanged(int currentRow);
 
@@ -59,19 +59,15 @@ class MainWindow : public QMainWindow
 
         void prepareContextMenu(QTreeView* tree, QPoint pos);
 
-        void on_processesTable_customContextMenuRequested(const QPoint &pos);
+        void on_processesTable_customContextMenuRequested(const QPoint& pos);
+
+        void on_overviewButton_toggled(bool checked);
+
+        void on_processesButton_toggled(bool checked);
 
     private:
-        Ui::MainWindow *ui;
-
-        ProcessManager* pm;
-        SystemManager* sm;
-
-        QList<MiniPercentagePane*> cpuPanes;
-        QMap<QString, MiniNumberPane*> networkRxPanes;
-        QMap<QString, MiniNumberPane*> networkTxPanes;
-
-        void resizeEvent(QResizeEvent* event);
+        Ui::MainWindow* ui;
+        MainWindowPrivate* d;
 };
 
 #endif // MAINWINDOW_H

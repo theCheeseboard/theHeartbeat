@@ -29,33 +29,67 @@
 #include <QScroller>
 #include <QUrl>
 #include <taboutdialog.h>
+#include <tcsdtools.h>
 #include "processaction.h"
+
+struct MainWindowPrivate {
+    ProcessManager* pm;
+    SystemManager* sm;
+
+    QList<MiniPercentagePane*> cpuPanes;
+    QMap<QString, MiniNumberPane*> networkRxPanes;
+    QMap<QString, MiniNumberPane*> networkTxPanes;
+
+    tCsdTools csd;
+};
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    d = new MainWindowPrivate;
+    d->csd.installMoveAction(ui->topWidget);
+    d->csd.installResizeAction(this);
+
+    if (tCsdGlobal::windowControlsEdge() == tCsdGlobal::Left) {
+        ui->leftCsdLayout->addWidget(d->csd.csdBoxForWidget(this));
+    } else {
+        ui->rightCsdLayout->addWidget(d->csd.csdBoxForWidget(this));
+    }
+
     this->setWindowIcon(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor")));
 
     QMenu* menu = new QMenu();
-    menu->addAction(QIcon::fromTheme("tools-report-bug"), tr("File Bug"), [ = ] {
+
+    QMenu* helpMenu = new QMenu();
+    helpMenu->setIcon(QIcon::fromTheme("help-contents"));
+    helpMenu->setTitle(tr("Help"));
+    helpMenu->addAction(QIcon::fromTheme("tools-report-bug"), tr("File Bug"), [ = ] {
         QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat/issues"));
     });
-    menu->addAction(QIcon::fromTheme("commit"), tr("Sources"), [ = ] {
+    helpMenu->addAction(QIcon::fromTheme("commit"), tr("Sources"), [ = ] {
         QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat"));
     });
-    menu->addSeparator();
-    menu->addAction(QIcon::fromTheme("help-about"), tr("About"), [ = ] {
+    helpMenu->addSeparator();
+    helpMenu->addAction(QIcon::fromTheme("help-about"), tr("About"), [ = ] {
         tAboutDialog aboutWindow;
         aboutWindow.exec();
     });
+
+    menu->addMenu(helpMenu);
+    menu->addSeparator();
+    menu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), [ = ] {
+        QApplication::exit();
+    });
+
+    ui->menuButton->setIconSize(SC_DPI_T(QSize(24, 24), QSize));
     ui->menuButton->setMenu(menu);
 
-    sm = new SystemManager();
-    pm = new ProcessManager(sm);
+    d->sm = new SystemManager();
+    d->pm = new ProcessManager(d->sm);
 
-    ui->processTable->setModel(new ProcessModel(pm));
+    ui->processTable->setModel(new ProcessModel(d->pm));
     ui->processTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processTable->header()->setStretchLastSection(false);
     ui->processTable->header()->setDefaultSectionSize(SC_DPI(100));
@@ -63,8 +97,9 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->processTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
     ui->processTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
     ui->processTable->header()->setSectionResizeMode(3, QHeaderView::Interactive);
+    ui->processTable->model()->sort(0);
 
-    ui->processesTable->setModel(new ProcessModel(pm, ProcessModel::Processes));
+    ui->processesTable->setModel(new ProcessModel(d->pm, ProcessModel::Processes));
     ui->processesTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processesTable->header()->setStretchLastSection(false);
     ui->processesTable->header()->setDefaultSectionSize(SC_DPI(100));
@@ -72,6 +107,7 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->processesTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
     ui->processesTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
     ui->processesTable->header()->setSectionResizeMode(3, QHeaderView::Interactive);
+    ui->processesTable->model()->sort(0);
 
     ui->cpuUsageWidget->setTitle(tr("CPU Usage"));
     ui->memoryUsageWidget->setTitle(tr("Memory Usage"));
@@ -85,7 +121,7 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->gpuTempWidget->setTitle(tr("GPU Temperature"));
     ui->gpuTempWidget->setUnit(NumberPane::MillidegreeCelsius);
 
-    if (!sm->property("swapTotal").isValid() || sm->property("swapTotal").toULongLong() == 0) {
+    if (!d->sm->property("swapTotal").isValid() || d->sm->property("swapTotal").toULongLong() == 0) {
         ui->swapUsageWidget->setVisible(false);
     }
 
@@ -96,68 +132,68 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->netTxIndividualWidget->setFixedHeight(0);
     ui->netTxWidget->setExpandable(true);
 
-    for (int i = 0; i < sm->property("cpuCount").toInt(); i++) {
+    for (int i = 0; i < d->sm->property("cpuCount").toInt(); i++) {
         MiniPercentagePane* p = new MiniPercentagePane(this);
         p->setTitle(tr("CPU %1").arg(i));
         ui->cpuIndividualUsageLayout->addWidget(p);
-        cpuPanes.append(p);
+        d->cpuPanes.append(p);
     }
 
-    for (QString netDevice : sm->property("netDevices").toStringList()) {
+    for (QString netDevice : d->sm->property("netDevices").toStringList()) {
         MiniNumberPane* rxPane = new MiniNumberPane(this);
         rxPane->setTitle(netDevice);
         rxPane->setUnit(MiniNumberPane::KilobytePerSecond);
         ui->netRxIndividualLayout->addWidget(rxPane);
-        networkRxPanes.insert(netDevice, rxPane);
+        d->networkRxPanes.insert(netDevice, rxPane);
 
         MiniNumberPane* txPane = new MiniNumberPane(this);
         txPane->setTitle(netDevice);
         txPane->setUnit(MiniNumberPane::KilobytePerSecond);
         ui->netTxIndividualLayout->addWidget(txPane);
-        networkTxPanes.insert(netDevice, txPane);
+        d->networkTxPanes.insert(netDevice, txPane);
     }
 
-    connect(sm, &SystemManager::newDataAvailable, [ = ] {
-        QVariant cpuUsage = sm->property("cpu");
+    connect(d->sm, &SystemManager::newDataAvailable, [ = ] {
+        QVariant cpuUsage = d->sm->property("cpu");
         if (cpuUsage.isValid()) {
             ui->cpuUsageWidget->setPercentage(cpuUsage.toDouble());
         }
-        for (int i = 0; i < sm->property("cpuCount").toInt(); i++) {
-            MiniPercentagePane* p = cpuPanes.at(i);
+        for (int i = 0; i < d->sm->property("cpuCount").toInt(); i++) {
+            MiniPercentagePane* p = d->cpuPanes.at(i);
 
-            QVariant cpuUsage = sm->property(QString("cpu").append(QString::number(i)).toUtf8());
+            QVariant cpuUsage = d->sm->property(QString("cpu").append(QString::number(i)).toUtf8());
             if (cpuUsage.isValid()) {
                 p->setPercentage(cpuUsage.toDouble());
             }
         }
 
-        QVariant memTotal = sm->property("memTotal");
-        QVariant memAvail = sm->property("memAvailable");
+        QVariant memTotal = d->sm->property("memTotal");
+        QVariant memAvail = d->sm->property("memAvailable");
         if (memTotal.isValid() && memAvail.isValid()) {
             ui->memoryUsageWidget->setMax(memTotal.toULongLong());
             ui->memoryUsageWidget->setValue(memTotal.toULongLong() - memAvail.toULongLong());
         }
 
-        QVariant swapTotal = sm->property("swapTotal");
-        QVariant swapAvail = sm->property("swapFree");
+        QVariant swapTotal = d->sm->property("swapTotal");
+        QVariant swapAvail = d->sm->property("swapFree");
         if (swapTotal.isValid() && swapAvail.isValid()) {
             ui->swapUsageWidget->setMax(swapTotal.toULongLong());
             ui->swapUsageWidget->setValue(swapTotal.toULongLong() - swapAvail.toULongLong());
         }
 
-        QVariant netRx = sm->property("netRx");
-        QVariant netTx = sm->property("netTx");
+        QVariant netRx = d->sm->property("netRx");
+        QVariant netTx = d->sm->property("netTx");
         if (netRx.isValid() && netTx.isValid()) {
             ui->netRxWidget->setValue(netRx.toULongLong() / 1024);
             ui->netTxWidget->setValue(netTx.toULongLong() / 1024);
         }
 
-        for (QString netDevice : sm->property("netDevices").toStringList()) {
-            networkRxPanes.value(netDevice)->setValue(sm->property(QString("netRx-").append(netDevice).toUtf8()).toULongLong() / 1024);
-            networkTxPanes.value(netDevice)->setValue(sm->property(QString("netTx-").append(netDevice).toUtf8()).toULongLong() / 1024);
+        for (QString netDevice : d->sm->property("netDevices").toStringList()) {
+            d->networkRxPanes.value(netDevice)->setValue(d->sm->property(QString("netRx-").append(netDevice).toUtf8()).toULongLong() / 1024);
+            d->networkTxPanes.value(netDevice)->setValue(d->sm->property(QString("netTx-").append(netDevice).toUtf8()).toULongLong() / 1024);
         }
 
-        QVariant cpuTemp = sm->property("cpuTemp");
+        QVariant cpuTemp = d->sm->property("cpuTemp");
         if (cpuTemp.isValid()) {
             ui->cpuTempWidget->setValue(cpuTemp.toLongLong());
             ui->cpuTempWidget->setVisible(true);
@@ -165,7 +201,7 @@ MainWindow::MainWindow(QWidget* parent) :
             ui->cpuTempWidget->setVisible(false);
         }
 
-        QVariant gpuTemp = sm->property("gpuTemp");
+        QVariant gpuTemp = d->sm->property("gpuTemp");
         if (gpuTemp.isValid()) {
             ui->gpuTempWidget->setValue(gpuTemp.toLongLong());
             ui->gpuTempWidget->setVisible(true);
@@ -177,7 +213,7 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->sideStatusPane->setFixedWidth(SC_DPI(200));
     ui->sideStatusPaneContents->setFixedWidth(SC_DPI(200));
 
-    ui->pages->setCurrentAnimation(tStackedWidget::Lift);
+    ui->pages->setCurrentAnimation(tStackedWidget::SlideHorizontal);
     ui->pages->setCurrentIndex(0);
     on_pages_currentChanged(0);
 
@@ -273,19 +309,6 @@ void MainWindow::on_paneSelection_currentRowChanged(int currentRow) {
     ui->pages->setCurrentIndex(currentRow);
 }
 
-void MainWindow::resizeEvent(QResizeEvent* event) {
-    //Move items around accordingly
-    if (this->width() < SC_DPI(1000)) {
-        //Collapse sidebar
-        ui->sidePane->setMaximumSize(SC_DPI(42), QWIDGETSIZE_MAX);
-        ui->appTitleLabel->setPixmap(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor")).pixmap(SC_DPI_T(QSize(24, 24), QSize)));
-    } else {
-        //Expand sidebar
-        ui->sidePane->setMaximumSize(SC_DPI(300), QWIDGETSIZE_MAX);
-        ui->appTitleLabel->setText(tr("theHeartbeat"));
-    }
-}
-
 void MainWindow::on_cpuUsageWidget_toggleExpand() {
     tVariantAnimation* anim = new tVariantAnimation();
     anim->setStartValue(ui->cpuIndividualUsageWidget->height());
@@ -344,8 +367,6 @@ void MainWindow::on_netTxWidget_toggleExpand() {
 }
 
 void MainWindow::on_pages_currentChanged(int arg1) {
-    ui->paneSelection->setCurrentRow(arg1);
-
     //Don't bother sorting process tables that aren't visible
     ((ProcessModel*) ui->processTable->model())->setPerformSorting(false);
     ((ProcessModel*) ui->processesTable->model())->setPerformSorting(false);
@@ -361,4 +382,16 @@ void MainWindow::on_pages_currentChanged(int arg1) {
 
 void MainWindow::on_processesTable_customContextMenuRequested(const QPoint& pos) {
     prepareContextMenu(ui->processesTable, pos);
+}
+
+void MainWindow::on_overviewButton_toggled(bool checked) {
+    if (checked) {
+        ui->pages->setCurrentWidget(ui->overviewPane);
+    }
+}
+
+void MainWindow::on_processesButton_toggled(bool checked) {
+    if (checked) {
+        ui->pages->setCurrentWidget(ui->processesPane);
+    }
 }

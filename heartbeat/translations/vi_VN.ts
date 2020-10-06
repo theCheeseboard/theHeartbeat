@@ -5,135 +5,143 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.ui" line="81"/>
-        <location filename="../mainwindow.cpp" line="285"/>
         <source>theHeartbeat</source>
         <translation>theHeartbeat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="117"/>
-        <location filename="../mainwindow.ui" line="253"/>
+        <location filename="../mainwindow.ui" line="93"/>
+        <location filename="../mainwindow.ui" line="202"/>
         <source>Overview</source>
         <translation>Tổng quan</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="126"/>
-        <location filename="../mainwindow.ui" line="539"/>
+        <location filename="../mainwindow.ui" line="119"/>
+        <location filename="../mainwindow.ui" line="488"/>
         <source>Processes</source>
         <translation>Quá trình</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="269"/>
-        <location filename="../mainwindow.ui" line="555"/>
-        <location filename="../mainwindow.cpp" line="205"/>
+        <location filename="../mainwindow.ui" line="218"/>
+        <location filename="../mainwindow.ui" line="504"/>
+        <location filename="../mainwindow.cpp" line="241"/>
         <source>Terminate Process</source>
         <translation>Chấm dứt quá trình</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="42"/>
+        <location filename="../mainwindow.cpp" line="67"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="68"/>
         <source>File Bug</source>
         <translation>Báo cáo lỗi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="45"/>
+        <location filename="../mainwindow.cpp" line="71"/>
         <source>Sources</source>
         <translation>Mã nguồn</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="49"/>
+        <location filename="../mainwindow.cpp" line="75"/>
         <source>About</source>
         <translation>Giới thiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="76"/>
+        <location filename="../mainwindow.cpp" line="82"/>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="112"/>
         <source>CPU Usage</source>
         <translation>Sử dụng CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="77"/>
+        <location filename="../mainwindow.cpp" line="113"/>
         <source>Memory Usage</source>
         <translation>Sử dụng bộ nhớ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="78"/>
+        <location filename="../mainwindow.cpp" line="114"/>
         <source>Swap Usage</source>
         <translation>Sử dụng bộ nhớ tráo đổi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="79"/>
+        <location filename="../mainwindow.cpp" line="115"/>
         <source>Network Receive</source>
         <translation>Mạng nhận</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="80"/>
+        <location filename="../mainwindow.cpp" line="116"/>
         <source>Network Send</source>
         <translation>Mạng gửi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="83"/>
+        <location filename="../mainwindow.cpp" line="119"/>
         <source>CPU Temperature</source>
         <translation>Nhiệt độ CPU</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
+        <location filename="../mainwindow.cpp" line="121"/>
         <source>GPU Temperature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="101"/>
+        <location filename="../mainwindow.cpp" line="137"/>
         <source>CPU %1</source>
         <translation>CPU %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="206"/>
+        <location filename="../mainwindow.cpp" line="242"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation>Bạn có chắc chắn muốn chấm dứt các quá trình này không? Bạn sẽ mất các việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="209"/>
+        <location filename="../mainwindow.cpp" line="245"/>
         <source>Kill Process</source>
         <translation>Bắt buộc chấm dứt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="210"/>
+        <location filename="../mainwindow.cpp" line="246"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
         <translation>Bạn có chắc chắn muốn bắt buộc các quá trình này phải chấm dứt không? Bạn sẽ mất các việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="213"/>
+        <location filename="../mainwindow.cpp" line="249"/>
         <source>Send %1</source>
         <translation>Gửi %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="214"/>
+        <location filename="../mainwindow.cpp" line="250"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Bạn có muốn gửi %1 đến các quá trình này không?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="247"/>
-        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="286"/>
         <source>For %1</source>
         <translation>Cho %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="286"/>
         <source>%n processes</source>
         <translation>
             <numerusform>%n quá trình</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
+        <location filename="../mainwindow.cpp" line="290"/>
         <source>Send Signal</source>
         <translation>Gửi tín hiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="266"/>
+        <location filename="../mainwindow.cpp" line="302"/>
         <source>Terminate</source>
         <translation>Chấm dứt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="303"/>
         <source>Kill</source>
         <translation>Bắt buộc chấm dứt</translation>
     </message>
@@ -141,67 +149,67 @@
 <context>
     <name>ProcessModel</name>
     <message>
-        <location filename="../processes/processmodel.cpp" line="49"/>
+        <location filename="../processes/processmodel.cpp" line="47"/>
         <source>Name</source>
         <translation>Tên</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="51"/>
+        <location filename="../processes/processmodel.cpp" line="49"/>
         <source>CPU %</source>
         <translation>CPU %</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="53"/>
+        <location filename="../processes/processmodel.cpp" line="51"/>
         <source>Memory</source>
         <translation>Bộ nhớ</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="55"/>
+        <location filename="../processes/processmodel.cpp" line="53"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="110"/>
+        <location filename="../processes/processmodel.cpp" line="105"/>
         <source>%1 KiB</source>
         <translation>%1 KiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="112"/>
+        <location filename="../processes/processmodel.cpp" line="107"/>
         <source>%1 MiB</source>
         <translation>%1 MiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="114"/>
+        <location filename="../processes/processmodel.cpp" line="109"/>
         <source>%1 GiB</source>
         <translation>%1 GiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="142"/>
+        <location filename="../processes/processmodel.cpp" line="137"/>
         <source>Disk Sleep</source>
         <translation>Chờ đĩa</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="144"/>
+        <location filename="../processes/processmodel.cpp" line="139"/>
         <source>Debugging</source>
         <translation>Gỡ lỗi</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="146"/>
+        <location filename="../processes/processmodel.cpp" line="141"/>
         <source>Stopped</source>
         <translation>Dừng</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="148"/>
+        <location filename="../processes/processmodel.cpp" line="143"/>
         <source>Zombie</source>
         <translation>Thây ma</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="150"/>
+        <location filename="../processes/processmodel.cpp" line="145"/>
         <source>Dead</source>
         <translation>Chết</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="152"/>
+        <location filename="../processes/processmodel.cpp" line="147"/>
         <source>Unknown</source>
         <translation>Không xác định</translation>
     </message>

@@ -5,118 +5,126 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.ui" line="81"/>
-        <location filename="../mainwindow.cpp" line="285"/>
         <source>theHeartbeat</source>
         <translation>yrCuriadCalon</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="117"/>
-        <location filename="../mainwindow.ui" line="253"/>
+        <location filename="../mainwindow.ui" line="93"/>
+        <location filename="../mainwindow.ui" line="202"/>
         <source>Overview</source>
         <translation>Trosolwg</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="126"/>
-        <location filename="../mainwindow.ui" line="539"/>
+        <location filename="../mainwindow.ui" line="119"/>
+        <location filename="../mainwindow.ui" line="488"/>
         <source>Processes</source>
         <translation>Brosesau</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="269"/>
-        <location filename="../mainwindow.ui" line="555"/>
-        <location filename="../mainwindow.cpp" line="205"/>
+        <location filename="../mainwindow.ui" line="218"/>
+        <location filename="../mainwindow.ui" line="504"/>
+        <location filename="../mainwindow.cpp" line="241"/>
         <source>Terminate Process</source>
         <translation>Derfynu&apos;r Broses</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="42"/>
+        <location filename="../mainwindow.cpp" line="67"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="68"/>
         <source>File Bug</source>
         <translation>Adrodd Gwall</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="45"/>
+        <location filename="../mainwindow.cpp" line="71"/>
         <source>Sources</source>
         <translation>Ffynonellau</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="49"/>
+        <location filename="../mainwindow.cpp" line="75"/>
         <source>About</source>
         <translation>Amdano</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="76"/>
+        <location filename="../mainwindow.cpp" line="82"/>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="112"/>
         <source>CPU Usage</source>
         <translation>Defnydd UBC</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="77"/>
+        <location filename="../mainwindow.cpp" line="113"/>
         <source>Memory Usage</source>
         <translation>Defnydd Cof</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="78"/>
+        <location filename="../mainwindow.cpp" line="114"/>
         <source>Swap Usage</source>
         <translation>Cyfnewid yr Defnydd</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="79"/>
+        <location filename="../mainwindow.cpp" line="115"/>
         <source>Network Receive</source>
         <translation>Rhwydwaith yn Derbyn</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="80"/>
+        <location filename="../mainwindow.cpp" line="116"/>
         <source>Network Send</source>
         <translation>Rhywdwaith yn Anfon</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="83"/>
+        <location filename="../mainwindow.cpp" line="119"/>
         <source>CPU Temperature</source>
         <translation>Tymheredd yr UBC</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
+        <location filename="../mainwindow.cpp" line="121"/>
         <source>GPU Temperature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="101"/>
+        <location filename="../mainwindow.cpp" line="137"/>
         <source>CPU %1</source>
         <translation>UBC %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="206"/>
+        <location filename="../mainwindow.cpp" line="242"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation>Ydych yn siwr rydych eisiau cloi processau yma? Gallwch colli gwaith sydd heb ei arbed.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="209"/>
+        <location filename="../mainwindow.cpp" line="245"/>
         <source>Kill Process</source>
         <translation>Chwalu&apos;r Broses</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="210"/>
+        <location filename="../mainwindow.cpp" line="246"/>
         <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
         <translation>Ydych yn siwr rydych eisiau cau brosesau yma? Gallwch colli gwaith heb ei achub.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="213"/>
+        <location filename="../mainwindow.cpp" line="249"/>
         <source>Send %1</source>
         <translation>Anfon %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="214"/>
+        <location filename="../mainwindow.cpp" line="250"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Ydych eisiau anfon %1 i processau yma?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="247"/>
-        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="286"/>
         <source>For %1</source>
         <translation>Am %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="286"/>
         <source>%n processes</source>
         <translation>
             <numerusform>Sero</numerusform>
@@ -127,17 +135,17 @@
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
+        <location filename="../mainwindow.cpp" line="290"/>
         <source>Send Signal</source>
         <translation>Anfon Signal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="266"/>
+        <location filename="../mainwindow.cpp" line="302"/>
         <source>Terminate</source>
         <translation>Chwalu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="303"/>
         <source>Kill</source>
         <translation>Lladd</translation>
     </message>
@@ -145,67 +153,67 @@
 <context>
     <name>ProcessModel</name>
     <message>
-        <location filename="../processes/processmodel.cpp" line="49"/>
+        <location filename="../processes/processmodel.cpp" line="47"/>
         <source>Name</source>
         <translation>Enw</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="51"/>
+        <location filename="../processes/processmodel.cpp" line="49"/>
         <source>CPU %</source>
         <translation>UBC %</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="53"/>
+        <location filename="../processes/processmodel.cpp" line="51"/>
         <source>Memory</source>
         <translation>Cof</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="55"/>
+        <location filename="../processes/processmodel.cpp" line="53"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="110"/>
+        <location filename="../processes/processmodel.cpp" line="105"/>
         <source>%1 KiB</source>
         <translation>%1 KiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="112"/>
+        <location filename="../processes/processmodel.cpp" line="107"/>
         <source>%1 MiB</source>
         <translation>%1 MiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="114"/>
+        <location filename="../processes/processmodel.cpp" line="109"/>
         <source>%1 GiB</source>
         <translation>%1 GiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="142"/>
+        <location filename="../processes/processmodel.cpp" line="137"/>
         <source>Disk Sleep</source>
         <translation>Disg Cysgu</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="144"/>
+        <location filename="../processes/processmodel.cpp" line="139"/>
         <source>Debugging</source>
         <translation>Datnamu</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="146"/>
+        <location filename="../processes/processmodel.cpp" line="141"/>
         <source>Stopped</source>
         <translation>Wedi stopio</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="148"/>
+        <location filename="../processes/processmodel.cpp" line="143"/>
         <source>Zombie</source>
         <translation>Zombie</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="150"/>
+        <location filename="../processes/processmodel.cpp" line="145"/>
         <source>Dead</source>
         <translation>Wedi Marw</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="152"/>
+        <location filename="../processes/processmodel.cpp" line="147"/>
         <source>Unknown</source>
         <translation>Ddim yn gwybod</translation>
     </message>
