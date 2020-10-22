@@ -179,27 +179,27 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="144"/>
         <source>Debugging</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata ayıklama</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="146"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Durduruldu</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="148"/>
         <source>Zombie</source>
-        <translation type="unfinished"></translation>
+        <translation>Zombi</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="150"/>
         <source>Dead</source>
-        <translation type="unfinished"></translation>
+        <translation>Ölü</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="152"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilinmeyen</translation>
     </message>
 </context>
 <context>
@@ -207,37 +207,37 @@
     <message>
         <location filename="../panes/sidepane.cpp" line="65"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="67"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="69"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="73"/>
         <source>%1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="75"/>
         <source>%1 MiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="77"/>
         <source>%1 GiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="80"/>
         <source>%1 °C</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 °C</translation>
     </message>
 </context>
 <context>
@@ -245,7 +245,7 @@
     <message>
         <location filename="../main.cpp" line="47"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistem Monitörü</translation>
     </message>
 </context>
 </TS>
