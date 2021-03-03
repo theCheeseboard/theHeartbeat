@@ -30,7 +30,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Yardım</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
@@ -50,7 +50,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="82"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="112"/>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
         <source>GPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>GPU Sıcaklığı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="137"/>
@@ -102,12 +102,12 @@
         <location filename="../mainwindow.cpp" line="249"/>
         <location filename="../mainwindow.cpp" line="309"/>
         <source>Force Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Zorla durdurma</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu süreçleri durdurmak için zorlamak istediğinizden emin misin? Kaydedilmemiş tüm işleri kaybedersin.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="253"/>
@@ -150,7 +150,7 @@
     <message>
         <location filename="../processaction.ui" line="35"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Başlık</translation>
     </message>
 </context>
 <context>
