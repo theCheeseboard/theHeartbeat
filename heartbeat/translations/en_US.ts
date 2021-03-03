@@ -98,6 +98,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="308"/>
+        <source>Terminate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="247"/>
         <location filename="../mainwindow.cpp" line="249"/>
         <location filename="../mainwindow.cpp" line="309"/>
@@ -136,12 +142,6 @@
     <message>
         <location filename="../mainwindow.cpp" line="296"/>
         <source>Send Signal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="243"/>
-        <location filename="../mainwindow.cpp" line="308"/>
-        <source>Terminate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

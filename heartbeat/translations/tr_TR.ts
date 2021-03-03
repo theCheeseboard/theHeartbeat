@@ -6,26 +6,26 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>theHeartbeat</source>
-        <translation type="unfinished"></translation>
+        <translation>theHeartbeat</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <location filename="../mainwindow.ui" line="202"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel Bakış</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <location filename="../mainwindow.ui" line="488"/>
         <source>Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>Süreçler</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="218"/>
         <location filename="../mainwindow.ui" line="504"/>
         <location filename="../mainwindow.cpp" line="241"/>
         <source>Terminate Process</source>
-        <translation type="unfinished"></translation>
+        <translation>İşlemi Sonlandır</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
@@ -35,17 +35,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
         <source>File Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya Hatası</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="71"/>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynaklar</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Hakkında</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="82"/>
@@ -55,32 +55,32 @@
     <message>
         <location filename="../mainwindow.cpp" line="112"/>
         <source>CPU Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU kullanımı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="113"/>
         <source>Memory Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Hafıza kullanımı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="114"/>
         <source>Swap Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Swap Kullanımı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="115"/>
         <source>Network Receive</source>
-        <translation type="unfinished"></translation>
+        <translation>Ağ Alımı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="116"/>
         <source>Network Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Ağ Gönderimi</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="119"/>
         <source>CPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU Sıcaklığı</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
@@ -90,12 +90,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="137"/>
         <source>CPU %1</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="242"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu işlemleri sonlandırmak istediğinizden emin misiniz? Kaydedilmemiş herhangi bir çalışmayı kaybedebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="247"/>
@@ -113,36 +113,36 @@
         <location filename="../mainwindow.cpp" line="253"/>
         <location filename="../mainwindow.cpp" line="255"/>
         <source>Send %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 gönder</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
         <source>Do you want to send %1 to these processes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu işlemlere %1 göndermek istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="289"/>
         <location filename="../mainwindow.cpp" line="292"/>
         <source>For %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 için</translation>
     </message>
     <message numerus="yes">
         <location filename="../mainwindow.cpp" line="292"/>
         <source>%n processes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n süreç</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="296"/>
         <source>Send Signal</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinyal Gönder</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="243"/>
         <location filename="../mainwindow.cpp" line="308"/>
         <source>Terminate</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonlandır</translation>
     </message>
 </context>
 <context>
@@ -158,67 +158,67 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="47"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ad</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="49"/>
         <source>CPU %</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU %</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="51"/>
         <source>Memory</source>
-        <translation type="unfinished"></translation>
+        <translation>Bellek</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="53"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="105"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="107"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="109"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="137"/>
         <source>Disk Sleep</source>
-        <translation type="unfinished"></translation>
+        <translation>Disk Uykusu</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="139"/>
         <source>Debugging</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata ayıklama</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="141"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Durduruldu</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="143"/>
         <source>Zombie</source>
-        <translation type="unfinished"></translation>
+        <translation>Zombi</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="145"/>
         <source>Dead</source>
-        <translation type="unfinished"></translation>
+        <translation>Ölü</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="147"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilinmeyen</translation>
     </message>
 </context>
 <context>
@@ -226,37 +226,37 @@
     <message>
         <location filename="../panes/sidepane.cpp" line="65"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="67"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="69"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="73"/>
         <source>%1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="75"/>
         <source>%1 MiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="77"/>
         <source>%1 GiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="80"/>
         <source>%1 °C</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 °C</translation>
     </message>
 </context>
 <context>
@@ -264,7 +264,7 @@
     <message>
         <location filename="../main.cpp" line="47"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistem Monitörü</translation>
     </message>
 </context>
 </TS>
