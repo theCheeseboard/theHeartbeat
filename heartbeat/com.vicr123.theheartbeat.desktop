@@ -2,11 +2,9 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=theHeartbeat
-GenericName=System Monitor
-GenericName[vi]=Trình theo dõi hệ thống
-GenericName[nl]=Systeemmonitor
-GenericName[pl]=Monitor systemu
+Name[]=theHeartbeat
+GenericName[]=System Monitor
 Exec=theheartbeat
 Icon=theheartbeat
 Categories=Utility;
+StartupWMClass=theHeartbeat

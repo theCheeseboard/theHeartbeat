@@ -81,6 +81,8 @@ FORMS += \
     panes/numberpane.ui \
     panes/mininumberpane.ui
 
+DESKTOP_FILES += com.vicr123.theheartbeat.desktop
+
 # Turn off stripping as this causes the install to fail :(
 QMAKE_STRIP = echo
 

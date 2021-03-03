@@ -240,14 +240,20 @@ void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
             case SIGTERM:
                 act->setTitle(tr("Terminate Process"));
                 act->setText(tr("Are you sure you want to terminate these processes? You may lose any unsaved work."));
+                act->setOkText(tr("Terminate"));
+                act->setOkIcon(QIcon::fromTheme("window-close"));
                 break;
             case SIGKILL:
-                act->setTitle(tr("Kill Process"));
-                act->setText(tr("Are you sure you want to kill these processes? You'll lose any unsaved work."));
+                act->setTitle(tr("Force Stop"));
+                act->setText(tr("Are you sure you want to force these processes to stop? You'll lose any unsaved work."));
+                act->setOkText(tr("Force Stop"));
+                act->setOkIcon(QIcon::fromTheme("application-exit"));
                 break;
             default:
                 act->setTitle(tr("Send %1").arg(signalName));
                 act->setText(tr("Do you want to send %1 to these processes?").arg(signalName));
+                act->setOkText(tr("Send %1").arg(signalName));
+                act->setOkIcon(QIcon::fromTheme("dialog-ok"));
         }
 
         for (QModelIndex i : tree->selectionModel()->selectedRows()) {
@@ -263,7 +269,7 @@ void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
             }
             p->dismiss();
         });
-        connect(p, &tPopover::dismissed, [ = ] {
+        connect(p, &tPopover::dismissed, this, [ = ] {
             p->deleteLater();
             act->deleteLater();
         });
@@ -288,20 +294,21 @@ void MainWindow::prepareContextMenu(QTreeView* view, QPoint pos) {
 
         QMenu* signalsMenu = new QMenu();
         signalsMenu->setTitle(tr("Send Signal"));
-        signalsMenu->addAction("SIGSTOP", [ = ] {sendSignal(view, "SIGSTOP", SIGSTOP);});
-        signalsMenu->addAction("SIGCONT", [ = ] {sendSignal(view, "SIGCONT", SIGCONT);});
-        signalsMenu->addAction("SIGHUP", [ = ] {sendSignal(view, "SIGHUP", SIGHUP );});
-        signalsMenu->addAction("SIGINT", [ = ] {sendSignal(view, "SIGINT", SIGINT );});
-        signalsMenu->addAction("SIGUSR1", [ = ] {sendSignal(view, "SIGUSR1", SIGUSR1);});
-        signalsMenu->addAction("SIGUSR2", [ = ] {sendSignal(view, "SIGUSR2", SIGUSR2);});
+        signalsMenu->addAction("SIGSTOP", this, [ = ] {sendSignal(view, "SIGSTOP", SIGSTOP);});
+        signalsMenu->addAction("SIGCONT", this, [ = ] {sendSignal(view, "SIGCONT", SIGCONT);});
+        signalsMenu->addAction("SIGHUP", this, [ = ] {sendSignal(view, "SIGHUP", SIGHUP );});
+        signalsMenu->addAction("SIGINT", this, [ = ] {sendSignal(view, "SIGINT", SIGINT );});
+        signalsMenu->addAction("SIGUSR1", this, [ = ] {sendSignal(view, "SIGUSR1", SIGUSR1);});
+        signalsMenu->addAction("SIGUSR2", this, [ = ] {sendSignal(view, "SIGUSR2", SIGUSR2);});
         signalsMenu->addSeparator();
-        signalsMenu->addAction("SIGTERM", [ = ] {sendSignal(view, "SIGTERM", SIGTERM);});
-        signalsMenu->addAction("SIGKILL", [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
+        signalsMenu->addAction("SIGTERM", this, [ = ] {sendSignal(view, "SIGTERM", SIGTERM);});
+        signalsMenu->addAction("SIGKILL", this, [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
 
         m->addMenu(signalsMenu);
         m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [ = ] {sendSignal(view, "SIGTERM", SIGTERM);});
-        m->addAction(QIcon::fromTheme("application-exit"), tr("Kill"), [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
-        m->exec(view->mapToGlobal(pos));
+        m->addAction(QIcon::fromTheme("application-exit"), tr("Force Stop"), [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
+        connect(m, &QMenu::aboutToHide, m, &QMenu::deleteLater);
+        m->popup(view->mapToGlobal(pos));
     }
 }
 
@@ -321,7 +328,7 @@ void MainWindow::on_cpuUsageWidget_toggleExpand() {
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, [ = ](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, this, [ = ](QVariant value) {
         ui->cpuIndividualUsageWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
@@ -340,7 +347,7 @@ void MainWindow::on_netRxWidget_toggleExpand() {
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, [ = ](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, this, [ = ](QVariant value) {
         ui->netRxIndividualWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
@@ -359,7 +366,7 @@ void MainWindow::on_netTxWidget_toggleExpand() {
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, [ = ](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, this, [ = ](QVariant value) {
         ui->netTxIndividualWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);

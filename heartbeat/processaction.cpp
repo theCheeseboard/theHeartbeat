@@ -22,15 +22,15 @@
 
 #include "processes/process.h"
 
-ProcessAction::ProcessAction(QWidget *parent) :
+ProcessAction::ProcessAction(QWidget* parent) :
     QWidget(parent),
-    ui(new Ui::ProcessAction)
-{
+    ui(new Ui::ProcessAction) {
     ui->setupUi(this);
+
+    ui->titleLabel->setBackButtonShown(true);
 }
 
-ProcessAction::~ProcessAction()
-{
+ProcessAction::~ProcessAction() {
     delete ui;
 }
 
@@ -42,17 +42,22 @@ void ProcessAction::setText(QString text) {
     ui->messageLabel->setText(text);
 }
 
+void ProcessAction::setOkText(QString text) {
+    ui->acceptButton->setText(text);
+}
+
+void ProcessAction::setOkIcon(QIcon icon) {
+    ui->acceptButton->setIcon(icon);
+}
+
 void ProcessAction::addProcess(Process* p) {
     ui->processesWidget->addItem(p->property("process").toString());
 }
 
-void ProcessAction::on_backButton_clicked()
-{
-    emit dismiss();
+void ProcessAction::on_acceptButton_clicked() {
+    emit accept();
 }
 
-
-void ProcessAction::on_acceptButton_clicked()
-{
-    emit accept();
+void ProcessAction::on_titleLabel_backButtonClicked() {
+    emit dismiss();
 }

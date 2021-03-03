@@ -98,33 +98,36 @@
         <translation>Bist du sicher, dass du diesen Prozess beenden willst? Nicht gespeicherte Daten könnten verloren gehen.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="245"/>
-        <source>Kill Process</source>
-        <translation>Process beenden erzwingen</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="246"/>
-        <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
-        <translation>Bist du sicher, dass du das beenden dieses Prozesses erzwingen willst? Nicht gespeicherte Daten werden verloren gehen</translation>
-    </message>
-    <message>
+        <location filename="../mainwindow.cpp" line="247"/>
         <location filename="../mainwindow.cpp" line="249"/>
+        <location filename="../mainwindow.cpp" line="309"/>
+        <source>Force Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="248"/>
+        <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="255"/>
         <source>Send %1</source>
         <translation>Sende %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Möchtest du %1 an diese Prozesse senden?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="283"/>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="289"/>
+        <location filename="../mainwindow.cpp" line="292"/>
         <source>For %1</source>
         <translation>Für %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="292"/>
         <source>%n processes</source>
         <translation>
             <numerusform>%n Prozess</numerusform>
@@ -132,19 +135,23 @@
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="290"/>
+        <location filename="../mainwindow.cpp" line="296"/>
         <source>Send Signal</source>
         <translation>Signal Senden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="308"/>
         <source>Terminate</source>
         <translation>Beenden</translation>
     </message>
+</context>
+<context>
+    <name>ProcessAction</name>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
-        <source>Kill</source>
-        <translation>Beenden erzwingen</translation>
+        <location filename="../processaction.ui" line="35"/>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

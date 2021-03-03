@@ -98,52 +98,59 @@
         <translation>Bạn có chắc chắn muốn chấm dứt các quá trình này không? Bạn sẽ mất các việc chưa lưu.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="245"/>
-        <source>Kill Process</source>
-        <translation>Bắt buộc chấm dứt</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="246"/>
-        <source>Are you sure you want to kill these processes? You&apos;ll lose any unsaved work.</source>
-        <translation>Bạn có chắc chắn muốn bắt buộc các quá trình này phải chấm dứt không? Bạn sẽ mất các việc chưa lưu.</translation>
-    </message>
-    <message>
+        <location filename="../mainwindow.cpp" line="247"/>
         <location filename="../mainwindow.cpp" line="249"/>
+        <location filename="../mainwindow.cpp" line="309"/>
+        <source>Force Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="248"/>
+        <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="255"/>
         <source>Send %1</source>
         <translation>Gửi %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="250"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Bạn có muốn gửi %1 đến các quá trình này không?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="283"/>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="289"/>
+        <location filename="../mainwindow.cpp" line="292"/>
         <source>For %1</source>
         <translation>Cho %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="292"/>
         <source>%n processes</source>
         <translation>
             <numerusform>%n quá trình</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="290"/>
+        <location filename="../mainwindow.cpp" line="296"/>
         <source>Send Signal</source>
         <translation>Gửi tín hiệu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="308"/>
         <source>Terminate</source>
         <translation>Chấm dứt</translation>
     </message>
+</context>
+<context>
+    <name>ProcessAction</name>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
-        <source>Kill</source>
-        <translation>Bắt buộc chấm dứt</translation>
+        <location filename="../processaction.ui" line="35"/>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
