@@ -30,7 +30,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hulp</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
@@ -50,7 +50,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="82"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="112"/>
@@ -85,7 +85,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
         <source>GPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>GPU-temperatuur</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="137"/>
@@ -102,12 +102,12 @@
         <location filename="../mainwindow.cpp" line="249"/>
         <location filename="../mainwindow.cpp" line="309"/>
         <source>Force Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Geforceerd Stoppen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wil je deze processen echt geforceerd stoppen? Onopgeslagen werk zal verloren gaan.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="253"/>
@@ -151,7 +151,7 @@
     <message>
         <location filename="../processaction.ui" line="35"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titel</translation>
     </message>
 </context>
 <context>
