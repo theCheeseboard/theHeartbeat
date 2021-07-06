@@ -6,109 +6,109 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>theHeartbeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Heartbeat</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <location filename="../mainwindow.ui" line="202"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Pregled</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <location filename="../mainwindow.ui" line="488"/>
         <source>Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesi</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="218"/>
         <location filename="../mainwindow.ui" line="504"/>
         <location filename="../mainwindow.cpp" line="241"/>
         <source>Terminate Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Prekini Proces</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomoč</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
         <source>File Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Prijavite napako</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="71"/>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Viri</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="82"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Izhod</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="112"/>
         <source>CPU Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>dejavnost procesorja</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="113"/>
         <source>Memory Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>poraba pomnilnika</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="114"/>
         <source>Swap Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>poraba Swap</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="115"/>
         <source>Network Receive</source>
-        <translation type="unfinished"></translation>
+        <translation>Omrežje Prihod</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="116"/>
         <source>Network Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Omrežje odhod</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="119"/>
         <source>CPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>temperatura procesorja</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
         <source>GPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>temperatura grafične kartice</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="137"/>
         <source>CPU %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesor %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="242"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ali ste prepričani, da želite končati te procese? Lahko izgubite vsa neshanjena dela.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="243"/>
         <location filename="../mainwindow.cpp" line="308"/>
         <source>Terminate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustavi</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="247"/>
         <location filename="../mainwindow.cpp" line="249"/>
         <location filename="../mainwindow.cpp" line="309"/>
         <source>Force Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Prisilna ustavitev</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
