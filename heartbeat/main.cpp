@@ -28,8 +28,7 @@
 QMutex checkerMutex;
 int checkers = 0;
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char* argv[]) {
     tApplication a(argc, argv);
 
     if (QDir("/usr/share/theheartbeat").exists()) {
@@ -43,17 +42,17 @@ int main(int argc, char *argv[])
     a.setOrganizationDomain("vicr123.com");
     a.setDesktopFileName("com.vicr123.theheartbeat");
     a.setApplicationIcon(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor")));
-    a.setApplicationVersion("1.0");
+    a.setApplicationVersion("1.1");
     a.setGenericName(QApplication::translate("main", "System Monitor"));
     a.setAboutDialogSplashGraphic(a.aboutDialogSplashGraphicFromSvg(":/icons/aboutsplash.svg"));
     a.setApplicationLicense(tApplication::Gpl3OrLater);
     a.setCopyrightHolder("Victor Tran");
-    a.setCopyrightYear("2019");
-    #ifdef T_BLUEPRINT_BUILD
-        a.setApplicationName("theHeartbeat Blueprint");
-    #else
-        a.setApplicationName("theHeartbeat");
-    #endif
+    a.setCopyrightYear("2021");
+#ifdef T_BLUEPRINT_BUILD
+    a.setApplicationName("theHeartbeat Blueprint");
+#else
+    a.setApplicationName("theHeartbeat");
+#endif
 
     MainWindow w;
     w.show();

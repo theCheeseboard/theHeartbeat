@@ -262,7 +262,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="47"/>
+        <location filename="../main.cpp" line="46"/>
         <source>System Monitor</source>
         <translation>Trình theo dõi hệ thống</translation>
     </message>

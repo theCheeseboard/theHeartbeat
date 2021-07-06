@@ -264,7 +264,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="47"/>
+        <location filename="../main.cpp" line="46"/>
         <source>System Monitor</source>
         <translation type="unfinished">Monitor systemu</translation>
     </message>
