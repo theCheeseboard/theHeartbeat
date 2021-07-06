@@ -6,143 +6,144 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>theHeartbeat</source>
-        <translation type="unfinished"></translation>
+        <translation>theHeartbeat</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <location filename="../mainwindow.ui" line="202"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Oversigt</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <location filename="../mainwindow.ui" line="488"/>
         <source>Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>Processer</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="218"/>
         <location filename="../mainwindow.ui" line="504"/>
         <location filename="../mainwindow.cpp" line="241"/>
         <source>Terminate Process</source>
-        <translation type="unfinished"></translation>
+        <translation>Afslut process</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjælp</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
         <source>File Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapporter fejl</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="71"/>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Kildekode</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="82"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Luk</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="112"/>
         <source>CPU Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU-forbrug</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="113"/>
         <source>Memory Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Hukommelses-forbrug</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="114"/>
         <source>Swap Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Swap-forbrug</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="115"/>
         <source>Network Receive</source>
-        <translation type="unfinished"></translation>
+        <translation>Netværk - Modtaget</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="116"/>
         <source>Network Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Netværk - Sendt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="119"/>
         <source>CPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU-temperatur</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
         <source>GPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>GPU-temperatur</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="137"/>
         <source>CPU %1</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="242"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du vil afslutte disse processer? Du vil muligvis miste data som du ikke har gemt.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="243"/>
         <location filename="../mainwindow.cpp" line="308"/>
         <source>Terminate</source>
-        <translation type="unfinished"></translation>
+        <translation>Afslut</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="247"/>
         <location filename="../mainwindow.cpp" line="249"/>
         <location filename="../mainwindow.cpp" line="309"/>
         <source>Force Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvangsstop</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du vil tvinge disse processer til at stoppe? Du vil miste alt data som du ikke har gemt.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="253"/>
         <location filename="../mainwindow.cpp" line="255"/>
         <source>Send %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Send %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
         <source>Do you want to send %1 to these processes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du vil sende %1 til disse processer?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="289"/>
         <location filename="../mainwindow.cpp" line="292"/>
         <source>For %1</source>
-        <translation type="unfinished"></translation>
+        <translation>For %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../mainwindow.cpp" line="292"/>
         <source>%n processes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n process</numerusform>
+            <numerusform>%n processer</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="296"/>
         <source>Send Signal</source>
-        <translation type="unfinished"></translation>
+        <translation>Send signal</translation>
     </message>
 </context>
 <context>
@@ -150,7 +151,7 @@
     <message>
         <location filename="../processaction.ui" line="35"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titel</translation>
     </message>
 </context>
 <context>
@@ -158,67 +159,67 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="47"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Navn</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="49"/>
         <source>CPU %</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU %</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="51"/>
         <source>Memory</source>
-        <translation type="unfinished"></translation>
+        <translation>Hukommelse</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="53"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="105"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="107"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="109"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="137"/>
         <source>Disk Sleep</source>
-        <translation type="unfinished"></translation>
+        <translation>Venter på disk</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="139"/>
         <source>Debugging</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejlfinder</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="141"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Stoppet</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="143"/>
         <source>Zombie</source>
-        <translation type="unfinished"></translation>
+        <translation>Zombie</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="145"/>
         <source>Dead</source>
-        <translation type="unfinished"></translation>
+        <translation>Død</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="147"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukendt</translation>
     </message>
 </context>
 <context>
@@ -226,37 +227,37 @@
     <message>
         <location filename="../panes/sidepane.cpp" line="65"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="67"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="69"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="73"/>
         <source>%1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="75"/>
         <source>%1 MiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="77"/>
         <source>%1 GiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="80"/>
         <source>%1 °C</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 °C</translation>
     </message>
 </context>
 <context>
@@ -264,7 +265,7 @@
     <message>
         <location filename="../main.cpp" line="46"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Systemoversigt</translation>
     </message>
 </context>
 </TS>
