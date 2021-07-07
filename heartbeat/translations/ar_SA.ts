@@ -6,143 +6,148 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>theHeartbeat</source>
-        <translation type="unfinished"></translation>
+        <translation>theHeartbeat</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <location filename="../mainwindow.ui" line="202"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>ملخص</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <location filename="../mainwindow.ui" line="488"/>
         <source>Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>العمليات</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="218"/>
         <location filename="../mainwindow.ui" line="504"/>
         <location filename="../mainwindow.cpp" line="241"/>
         <source>Terminate Process</source>
-        <translation type="unfinished"></translation>
+        <translation>إقاف العملية</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>مساعده</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
         <source>File Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>أرسال مشكلة</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="71"/>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation>مصادر</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>حول</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="82"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>الخروج</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="112"/>
         <source>CPU Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>استخدام المعالج</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="113"/>
         <source>Memory Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>استخدام الذاكرة</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="114"/>
         <source>Swap Usage</source>
-        <translation type="unfinished"></translation>
+        <translation>مبادلة الستخدام</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="115"/>
         <source>Network Receive</source>
-        <translation type="unfinished"></translation>
+        <translation>استقبال الشبكة</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="116"/>
         <source>Network Send</source>
-        <translation type="unfinished"></translation>
+        <translation>أرسال الشبكة</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="119"/>
         <source>CPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>درجة حرارة المالج</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
         <source>GPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>درجة حرارة بطاقة الرسومات</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="137"/>
         <source>CPU %1</source>
-        <translation type="unfinished"></translation>
+        <translation>المعالج 1%</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="242"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>هل أنت متأكد أنك تريد إنهاء هذه العمليات؟ يمكنك أن تفقد العمل الغير المحفوظ.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="243"/>
         <location filename="../mainwindow.cpp" line="308"/>
         <source>Terminate</source>
-        <translation type="unfinished"></translation>
+        <translation>إنهاء</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="247"/>
         <location filename="../mainwindow.cpp" line="249"/>
         <location filename="../mainwindow.cpp" line="309"/>
         <source>Force Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>توقف إجباري</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>هل أنت متأكد أنك تريد إنهاء هذه العمليات؟ يمكنك أن تفقد العمل الغير المحفوظ.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="253"/>
         <location filename="../mainwindow.cpp" line="255"/>
         <source>Send %1</source>
-        <translation type="unfinished"></translation>
+        <translation>إرسل %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
         <source>Do you want to send %1 to these processes?</source>
-        <translation type="unfinished"></translation>
+        <translation>هل تريد إرسال٪ 1 إلى هذه العمليات؟</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="289"/>
         <location filename="../mainwindow.cpp" line="292"/>
         <source>For %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ل %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../mainwindow.cpp" line="292"/>
         <source>%n processes</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>صفر</numerusform>
+            <numerusform>واحد</numerusform>
+            <numerusform>إثنان</numerusform>
+            <numerusform>عدد قليل</numerusform>
+            <numerusform>عديدة</numerusform>
+            <numerusform>آخر</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="296"/>
         <source>Send Signal</source>
-        <translation type="unfinished"></translation>
+        <translation>إرسال إشارة</translation>
     </message>
 </context>
 <context>
@@ -150,7 +155,7 @@
     <message>
         <location filename="../processaction.ui" line="35"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>لقب</translation>
     </message>
 </context>
 <context>
@@ -158,67 +163,67 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="47"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>أسم</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="49"/>
         <source>CPU %</source>
-        <translation type="unfinished"></translation>
+        <translation>المعالج %</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="51"/>
         <source>Memory</source>
-        <translation type="unfinished"></translation>
+        <translation>الذاكرة</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="53"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="105"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="107"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="109"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="137"/>
         <source>Disk Sleep</source>
-        <translation type="unfinished"></translation>
+        <translation>القرص نوم</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="139"/>
         <source>Debugging</source>
-        <translation type="unfinished"></translation>
+        <translation>تصحيح</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="141"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>توقفت</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="143"/>
         <source>Zombie</source>
-        <translation type="unfinished"></translation>
+        <translation>الاموات الاحياء</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="145"/>
         <source>Dead</source>
-        <translation type="unfinished"></translation>
+        <translation>متوفى</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="147"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>مجهول</translation>
     </message>
 </context>
 <context>
@@ -226,37 +231,37 @@
     <message>
         <location filename="../panes/sidepane.cpp" line="65"/>
         <source>%1 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="67"/>
         <source>%1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="69"/>
         <source>%1 GiB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="73"/>
         <source>%1 KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 KiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="75"/>
         <source>%1 MiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="77"/>
         <source>%1 GiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GiB/s</translation>
     </message>
     <message>
         <location filename="../panes/sidepane.cpp" line="80"/>
         <source>%1 °C</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 °C</translation>
     </message>
 </context>
 <context>
@@ -264,7 +269,7 @@
     <message>
         <location filename="../main.cpp" line="46"/>
         <source>System Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>مراقب النظام</translation>
     </message>
 </context>
 </TS>
