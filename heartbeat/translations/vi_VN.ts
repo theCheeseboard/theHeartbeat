@@ -30,7 +30,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Thoát</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="97"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="106"/>
         <source>GPU Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation>Nhiệt độ GPU</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="122"/>
@@ -82,12 +82,12 @@
         <location filename="../mainwindow.cpp" line="234"/>
         <location filename="../mainwindow.cpp" line="294"/>
         <source>Force Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Buộc dừng</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="233"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bạn có muốn bắt buộc các quá trình này phải dừng không? Bạn sẽ mất các dữ liệu chưa được lưu.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="238"/>
@@ -130,7 +130,7 @@
     <message>
         <location filename="../processaction.ui" line="35"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiêu đề</translation>
     </message>
 </context>
 <context>
