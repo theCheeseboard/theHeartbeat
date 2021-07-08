@@ -38,6 +38,8 @@ int main(int argc, char* argv[]) {
     }
     a.installTranslators();
 
+//    a.setLayoutDirection(QLocale().textDirection());
+
     a.setOrganizationName("theSuite");
     a.setOrganizationDomain("vicr123.com");
     a.setDesktopFileName("com.vicr123.theheartbeat");

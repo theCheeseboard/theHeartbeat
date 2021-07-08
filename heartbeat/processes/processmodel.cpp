@@ -332,29 +332,46 @@ void ProcessTitleDelegate::paint(QPainter* painter, const QStyleOptionViewItem& 
 
     QRect iconRect, textRect = option.rect;
 
-    iconRect.setSize(QSize(16, 16) * theLibsGlobal::getDPIScaling());
+    iconRect.setSize(SC_DPI_T(QSize(16, 16), QSize));
     QPixmap icon = index.data(Qt::DecorationRole).value<QPixmap>();
-    iconRect.moveLeft(option.rect.left() + 2 * theLibsGlobal::getDPIScaling());
+
+    if (option.direction == Qt::LeftToRight) {
+        iconRect.moveLeft(option.rect.left() + SC_DPI(2));
+        textRect.setLeft(iconRect.right() + SC_DPI(6));
+    } else {
+        iconRect.moveRight(option.rect.right() - SC_DPI(2));
+        textRect.setRight(iconRect.left() - SC_DPI(6));
+    }
     iconRect.moveTop(option.rect.top() + (option.rect.height() / 2) - (iconRect.height() / 2));
     painter->drawPixmap(iconRect, icon);
-    textRect.setLeft(iconRect.right() + 6 * theLibsGlobal::getDPIScaling());
 
     //Draw the process name
     QRect nameRect = textRect;
     painter->setPen(option.palette.color(QPalette::WindowText));
-    nameRect.setWidth(option.fontMetrics.width(index.data().toString()) + 1);
-    textRect.setLeft(nameRect.right() + 6 * theLibsGlobal::getDPIScaling());
+    nameRect.setWidth(option.fontMetrics.horizontalAdvance(index.data().toString()) + 1);
+    if (option.direction == Qt::LeftToRight) {
+        textRect.setLeft(nameRect.right() + SC_DPI(6));
+    } else {
+        nameRect.moveRight(textRect.right());
+        textRect.setRight(nameRect.left() - SC_DPI(6));
+    }
 
-    if (nameRect.right() > option.rect.right()) {
+    if ((option.direction == Qt::LeftToRight && nameRect.right() > option.rect.right()) ||
+        (option.direction == Qt::RightToLeft && nameRect.left() < option.rect.left())) {
         //We need to squish the text
         painter->save();
 
-        int availableSpace = option.rect.right() - nameRect.left();
+        int availableSpace = option.direction == Qt::LeftToRight ? (option.rect.right() - nameRect.left()) : (nameRect.right() - option.rect.left());
         int requestedSpace = nameRect.width();
 
-        qreal scaleFactor = (qreal) availableSpace / (qreal) requestedSpace;
+        qreal scaleFactor = static_cast<qreal>(availableSpace) / requestedSpace;
         painter->scale(scaleFactor, 1);
-        nameRect.moveLeft(nameRect.left() / scaleFactor);
+
+        if (option.direction == Qt::LeftToRight) {
+            nameRect.moveLeft(nameRect.left() / scaleFactor);
+        } else {
+            nameRect.moveRight(nameRect.right() / scaleFactor);
+        }
 
         painter->drawText(nameRect, Qt::AlignLeft | Qt::AlignVCenter, index.data().toString());
         painter->restore();
