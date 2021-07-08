@@ -48,6 +48,8 @@ int main(int argc, char* argv[]) {
     a.setApplicationLicense(tApplication::Gpl3OrLater);
     a.setCopyrightHolder("Victor Tran");
     a.setCopyrightYear("2021");
+    a.setApplicationUrl(tApplication::Sources, QUrl("https://github.com/vicr123/theheartbeat"));
+    a.setApplicationUrl(tApplication::FileBug, QUrl("https://github.com/vicr123/theheartbeat/issues"));
 #ifdef T_BLUEPRINT_BUILD
     a.setApplicationName("theHeartbeat Blueprint");
 #else

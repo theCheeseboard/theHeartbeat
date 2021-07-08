@@ -23,111 +23,91 @@
     <message>
         <location filename="../mainwindow.ui" line="218"/>
         <location filename="../mainwindow.ui" line="504"/>
-        <location filename="../mainwindow.cpp" line="241"/>
+        <location filename="../mainwindow.cpp" line="226"/>
         <source>Terminate Process</source>
         <translation>Proces Stoppen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="67"/>
-        <source>Help</source>
-        <translation>Hulp</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="68"/>
-        <source>File Bug</source>
-        <translation>Een Bug Rapporteren</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="71"/>
-        <source>Sources</source>
-        <translation>Bronnen</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="75"/>
-        <source>About</source>
-        <translation>Over</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="82"/>
         <source>Exit</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="112"/>
+        <location filename="../mainwindow.cpp" line="97"/>
         <source>CPU Usage</source>
         <translation>CPU-gebruik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="113"/>
+        <location filename="../mainwindow.cpp" line="98"/>
         <source>Memory Usage</source>
         <translation>Geheugengebruik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="114"/>
+        <location filename="../mainwindow.cpp" line="99"/>
         <source>Swap Usage</source>
         <translation>Wisselgebruik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="115"/>
+        <location filename="../mainwindow.cpp" line="100"/>
         <source>Network Receive</source>
         <translation>Netwerkontvangst</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="116"/>
+        <location filename="../mainwindow.cpp" line="101"/>
         <source>Network Send</source>
         <translation>Netwerkverzending</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="119"/>
+        <location filename="../mainwindow.cpp" line="104"/>
         <source>CPU Temperature</source>
         <translation>CPU-temperatuur</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="121"/>
+        <location filename="../mainwindow.cpp" line="106"/>
         <source>GPU Temperature</source>
         <translation>GPU-temperatuur</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="137"/>
+        <location filename="../mainwindow.cpp" line="122"/>
         <source>CPU %1</source>
         <translation>CPU %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="242"/>
+        <location filename="../mainwindow.cpp" line="227"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation>Weet je zeker dat je deze processen wilt stoppen? Je kunt al je onopgeslagen werk verliezen.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="247"/>
-        <location filename="../mainwindow.cpp" line="249"/>
-        <location filename="../mainwindow.cpp" line="309"/>
+        <location filename="../mainwindow.cpp" line="232"/>
+        <location filename="../mainwindow.cpp" line="234"/>
+        <location filename="../mainwindow.cpp" line="294"/>
         <source>Force Stop</source>
         <translation>Geforceerd Stoppen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="233"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
         <translation>Wil je deze processen echt geforceerd stoppen? Onopgeslagen werk zal verloren gaan.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
-        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="238"/>
+        <location filename="../mainwindow.cpp" line="240"/>
         <source>Send %1</source>
         <translation>%1 Verzenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
+        <location filename="../mainwindow.cpp" line="239"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>Wil je %1 naar deze processen sturen?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="289"/>
-        <location filename="../mainwindow.cpp" line="292"/>
+        <location filename="../mainwindow.cpp" line="274"/>
+        <location filename="../mainwindow.cpp" line="277"/>
         <source>For %1</source>
         <translation>Voor %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="292"/>
+        <location filename="../mainwindow.cpp" line="277"/>
         <source>%n processes</source>
         <translation>
             <numerusform>%n proces</numerusform>
@@ -135,13 +115,13 @@
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="296"/>
+        <location filename="../mainwindow.cpp" line="281"/>
         <source>Send Signal</source>
         <translation>Signaal Verzenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="243"/>
-        <location filename="../mainwindow.cpp" line="308"/>
+        <location filename="../mainwindow.cpp" line="228"/>
+        <location filename="../mainwindow.cpp" line="293"/>
         <source>Terminate</source>
         <translation>Stoppen</translation>
     </message>
@@ -225,37 +205,37 @@
 <context>
     <name>SidePane</name>
     <message>
-        <location filename="../panes/sidepane.cpp" line="65"/>
+        <location filename="../panes/sidepane.cpp" line="80"/>
         <source>%1 KiB</source>
         <translation>%1 KiB</translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="67"/>
+        <location filename="../panes/sidepane.cpp" line="82"/>
         <source>%1 MiB</source>
         <translation>%1 MiB</translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="69"/>
+        <location filename="../panes/sidepane.cpp" line="84"/>
         <source>%1 GiB</source>
         <translation>%1 GiB</translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="73"/>
+        <location filename="../panes/sidepane.cpp" line="88"/>
         <source>%1 KiB/s</source>
         <translation>%1 KiB/s</translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="75"/>
+        <location filename="../panes/sidepane.cpp" line="90"/>
         <source>%1 MiB/s</source>
         <translation>%1 MiB/s</translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="77"/>
+        <location filename="../panes/sidepane.cpp" line="92"/>
         <source>%1 GiB/s</source>
         <translation>%1 GiB/s</translation>
     </message>
     <message>
-        <location filename="../panes/sidepane.cpp" line="80"/>
+        <location filename="../panes/sidepane.cpp" line="95"/>
         <source>%1 °C</source>
         <translation>%1 °C</translation>
     </message>

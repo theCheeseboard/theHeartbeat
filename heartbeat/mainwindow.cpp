@@ -30,6 +30,7 @@
 #include <QUrl>
 #include <taboutdialog.h>
 #include <tcsdtools.h>
+#include <thelpmenu.h>
 #include "processaction.h"
 
 struct MainWindowPrivate {
@@ -61,23 +62,7 @@ MainWindow::MainWindow(QWidget* parent) :
     this->setWindowIcon(QIcon::fromTheme("theheartbeat", QIcon::fromTheme("utilities-system-monitor")));
 
     QMenu* menu = new QMenu();
-
-    QMenu* helpMenu = new QMenu();
-    helpMenu->setIcon(QIcon::fromTheme("help-contents"));
-    helpMenu->setTitle(tr("Help"));
-    helpMenu->addAction(QIcon::fromTheme("tools-report-bug"), tr("File Bug"), [ = ] {
-        QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat/issues"));
-    });
-    helpMenu->addAction(QIcon::fromTheme("commit"), tr("Sources"), [ = ] {
-        QDesktopServices::openUrl(QUrl("https://github.com/vicr123/theheartbeat"));
-    });
-    helpMenu->addSeparator();
-    helpMenu->addAction(QIcon::fromTheme("help-about"), tr("About"), [ = ] {
-        tAboutDialog aboutWindow;
-        aboutWindow.exec();
-    });
-
-    menu->addMenu(helpMenu);
+    menu->addMenu(new tHelpMenu(this));
     menu->addSeparator();
     menu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), [ = ] {
         QApplication::exit();

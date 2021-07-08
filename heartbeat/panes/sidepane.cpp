@@ -33,13 +33,23 @@ void SidePane::paintEvent(QPaintEvent* event) {
     p.setRenderHint(QPainter::Antialiasing);
 
     QPainterPath path;
-    path.moveTo(this->width() + 1, 0);
+    if (this->layoutDirection() == Qt::LeftToRight) {
+        path.moveTo(this->width() + 1, 0);
 
-    for (int i = 0; i < percentageHistory.count(); i++) {
-        path.lineTo(this->width() - i * 4, this->height() - ((double) this->height() * percentageHistory.at(i)));
+        for (int i = 0; i < percentageHistory.count(); i++) {
+            path.lineTo(this->width() - i * 4, this->height() - ((double) this->height() * percentageHistory.at(i)));
+        }
+        path.lineTo(this->width() - percentageHistory.count() * 4, this->height());
+        path.lineTo(this->width() + 1, this->height());
+    } else {
+        path.moveTo(-1, 0);
+
+        for (int i = 0; i < percentageHistory.count(); i++) {
+            path.lineTo(i * 4, this->height() - ((double) this->height() * percentageHistory.at(i)));
+        }
+        path.lineTo(percentageHistory.count() * 4, this->height());
+        path.lineTo(-1, this->height());
     }
-    path.lineTo(this->width() - percentageHistory.count() * 4, this->height());
-    path.lineTo(this->width() + 1, this->height());
 
     QColor col = this->palette().color(QPalette::Highlight);
     col.setAlpha(100);
@@ -48,13 +58,18 @@ void SidePane::paintEvent(QPaintEvent* event) {
     QLinearGradient g;
     g.setStart(100, 0);
     g.setFinalStop(140, 0);
-    g.setColorAt(0, this->palette().color(QPalette::Window));
+    g.setColorAt(this->layoutDirection() == Qt::RightToLeft ? 1 : 0, this->palette().color(QPalette::Window));
 
     QColor c = this->palette().color(QPalette::Window);
     c.setAlpha(0);
-    g.setColorAt(1, c);
-    p.fillRect(100, 0, 140, this->height(), g);
-    p.fillRect(0, 0, 100, this->height(), this->palette().color(QPalette::Window));
+    g.setColorAt(this->layoutDirection() == Qt::RightToLeft ? 0 : 1, c);
+    p.fillRect(100, 0, 40, this->height(), g);
+
+    if (this->layoutDirection() == Qt::RightToLeft) {
+        p.fillRect(140, 0, 100, this->height(), this->palette().color(QPalette::Window));
+    } else {
+        p.fillRect(0, 0, 100, this->height(), this->palette().color(QPalette::Window));
+    }
 }
 
 QString SidePane::calculateText(qulonglong val) {
