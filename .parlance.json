@@ -1,0 +1,17 @@
+{
+    "name": "theHeartbeat",
+    "subprojects": [
+        {
+            "name": "theHeartbeat Desktop",
+            "type": "qt",
+            "path": "/heartbeat/translations/{lang}.ts",
+            "baseLang": "en_US"
+        },
+        {
+            "name": "theHeartbeat Desktop File",
+            "type": "webext-json",
+            "path": "/heartbeat/translations/desktop/com.vicr123.theheartbeat/{lang}.json",
+            "baseLang": "en"
+        }
+    ]
+}
