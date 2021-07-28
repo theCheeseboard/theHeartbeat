@@ -35,11 +35,10 @@ struct SystemManagerPrivate {
     QMap<QString, qulonglong> netTx;
     QMap<QString, qulonglong> netRx;
 
-    QString cpuTempPath;
+    QString cpuTempPath, gpuTempPath;
 };
 
-SystemManager::SystemManager(QObject *parent) : QObject(parent)
-{
+SystemManager::SystemManager(QObject* parent) : QObject(parent) {
     d = new SystemManagerPrivate();
 
     updateData();
@@ -49,13 +48,25 @@ SystemManager::SystemManager(QObject *parent) : QObject(parent)
     connect(timer, &QTimer::timeout, this, &SystemManager::updateData);
     timer->start();
 
-    //Search each thermal zone for CPU temperature
-    QDir thermalZones("/sys/class/thermal/");
+    //Search hwmon CPU temperature
+    QStringList cpuMonitors = {
+        "coretemp",
+        "k10temp"
+    };
+    QStringList gpuMonitors = {
+        "amdgpu"
+    };
+
+    QDir thermalZones("/sys/class/hwmon/");
     for (QString zone : thermalZones.entryList()) {
-        QFile type(thermalZones.absoluteFilePath(zone + "/type"));
-        type.open(QFile::ReadOnly);
-        if (type.readAll().trimmed() == "x86_pkg_temp") {
-            d->cpuTempPath = thermalZones.absoluteFilePath(zone + "/temp");
+        QFile typeFile(thermalZones.absoluteFilePath(zone + "/name"));
+        typeFile.open(QFile::ReadOnly);
+
+        QString type = typeFile.readAll().trimmed();
+        if (cpuMonitors.contains(type)) {
+            d->cpuTempPath = thermalZones.absoluteFilePath(zone + "/temp1_input");
+        } else if (gpuMonitors.contains(type)) {
+            d->gpuTempPath = thermalZones.absoluteFilePath(zone + "/temp1_input");
         }
     }
 }
@@ -70,7 +81,7 @@ void SystemManager::updateData() {
     QString statFile = stat.readAll();
 
     for (QString line : statFile.split("\n")) {
-        QStringList splits = line.split(" ", QString::SkipEmptyParts);
+        QStringList splits = line.split(" ", Qt::SkipEmptyParts);
         if (splits.count() == 0) continue;
         QString name = splits.first().trimmed();
         if (name.startsWith("cpu")) {
@@ -121,7 +132,7 @@ void SystemManager::updateData() {
     QString memFile = mem.readAll();
 
     for (QString line : memFile.split("\n")) {
-        QStringList splits = line.split(":", QString::SkipEmptyParts);
+        QStringList splits = line.split(":", Qt::SkipEmptyParts);
         if (splits.count() == 0) continue;
         QString name = splits.first().trimmed();
         QString value = splits.last().trimmed();
@@ -145,7 +156,7 @@ void SystemManager::updateData() {
         if (!line.contains(":")) continue;
         QStringList split = line.split(":");
         QString name = split.first().trimmed();
-        QStringList parts = split.last().split(" ", QString::SkipEmptyParts);
+        QStringList parts = split.last().split(" ", Qt::SkipEmptyParts);
 
         if (d->netRx.contains(name)) {
             qulonglong rx = parts.at(0).toULongLong() - d->netRx.value(name);
@@ -172,6 +183,15 @@ void SystemManager::updateData() {
         this->setProperty("cpuTemp", cpuTemp.readAll().trimmed().toLongLong());
     } else {
         this->setProperty("cpuTemp", QVariant());
+    }
+
+
+    QFile gpuTemp(d->gpuTempPath);
+    if (gpuTemp.exists() && d->gpuTempPath != "") {
+        gpuTemp.open(QFile::ReadOnly);
+        this->setProperty("gpuTemp", gpuTemp.readAll().trimmed().toLongLong());
+    } else {
+        this->setProperty("gpuTemp", QVariant());
     }
 
     emit newDataAvailable();

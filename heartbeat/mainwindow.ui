@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>716</width>
-    <height>372</height>
+    <width>795</width>
+    <height>798</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,6 +18,9 @@
     <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <property name="spacing">
      <number>0</number>
@@ -35,16 +38,122 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="Line" name="line_5">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>1</height>
-       </size>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
+     <widget class="QWidget" name="topWidget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="leftCsdLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+        </layout>
+       </item>
+       <item>
+        <widget class="QToolButton" name="menuButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset theme="theheartbeat"/>
+         </property>
+         <property name="popupMode">
+          <enum>QToolButton::InstantPopup</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="overviewButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Overview</string>
+         </property>
+         <property name="icon">
+          <iconset theme="computer">
+           <normaloff>../../the24/application</normaloff>../../the24/application</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="processesButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Processes</string>
+         </property>
+         <property name="icon">
+          <iconset theme="system-run">
+           <normaloff>../../the24/application</normaloff>../../the24/application</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="jobButtonLayout"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="rightCsdLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
@@ -53,171 +162,11 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="sidePane" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="appTitleLabel">
-           <property name="font">
-            <font>
-             <pointsize>15</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>theHeartbeat</string>
-           </property>
-           <property name="margin">
-            <number>9</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="Line" name="line_4">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>1</height>
-            </size>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QListWidget" name="paneSelection">
-           <property name="frameShape">
-            <enum>QFrame::NoFrame</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <item>
-            <property name="text">
-             <string>Overview</string>
-            </property>
-            <property name="icon">
-             <iconset theme="computer">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Processes</string>
-            </property>
-            <property name="icon">
-             <iconset theme="system-run">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="Line" name="line_7">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>1</height>
-            </size>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="widget" native="true">
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>0</width>
-                <height>0</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QToolButton" name="menuButton">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset theme="application-menu">
-                <normaloff>.</normaloff>.</iconset>
-              </property>
-              <property name="popupMode">
-               <enum>QToolButton::InstantPopup</enum>
-              </property>
-              <property name="autoRaise">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="Line" name="line_3">
-        <property name="maximumSize">
-         <size>
-          <width>1</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="tStackedWidget" name="pages">
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="page">
+        <widget class="QWidget" name="overviewPane">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="spacing">
            <number>0</number>
@@ -367,7 +316,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>200</width>
-                 <height>300</height>
+                 <height>721</height>
                 </rect>
                </property>
                <property name="minimumSize">
@@ -480,6 +429,9 @@
                  <widget class="NumberPane" name="cpuTempWidget" native="true"/>
                 </item>
                 <item>
+                 <widget class="NumberPane" name="gpuTempWidget" native="true"/>
+                </item>
+                <item>
                  <spacer name="verticalSpacer">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
@@ -500,7 +452,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="page_2">
+        <widget class="QWidget" name="processesPane">
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <property name="spacing">
            <number>0</number>
@@ -608,16 +560,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>716</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -626,6 +568,9 @@
    <extends>QStackedWidget</extends>
    <header location="global">tstackedwidget.h</header>
    <container>1</container>
+   <slots>
+    <signal>switchingFrame(int)</signal>
+   </slots>
   </customwidget>
   <customwidget>
    <class>PercentagePane</class>

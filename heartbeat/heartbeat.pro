@@ -21,13 +21,10 @@ unix:!macx {
 
     target.path = /usr/bin
 
-    desktop.path = /usr/share/applications
-    desktop.files = com.vicr123.theheartbeat.desktop
-
     icon.path = /usr/share/icons/hicolor/scalable/apps/
     icon.files = theheartbeat.svg
 
-    INSTALLS += target desktop icon
+    INSTALLS += target icon
 }
 
 # The following define makes your compiler emit warnings if you use
@@ -80,6 +77,8 @@ FORMS += \
     panes/minipercentagepane.ui \
     panes/numberpane.ui \
     panes/mininumberpane.ui
+
+DESKTOP_FILE += com.vicr123.theheartbeat.desktop
 
 # Turn off stripping as this causes the install to fail :(
 QMAKE_STRIP = echo

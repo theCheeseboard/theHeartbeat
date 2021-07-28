@@ -30,94 +30,9 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="Line" name="line">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>1</height>
-      </size>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="backButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="go-previous"/>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="titleLabel">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>15</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string notr="true">Title</string>
-       </property>
-       <property name="margin">
-        <number>9</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="acceptButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string notr="true"/>
-       </property>
-       <property name="icon">
-        <iconset theme="dialog-ok"/>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="Line" name="line_3">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>1</height>
-      </size>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+    <widget class="tTitleLabel" name="titleLabel">
+     <property name="text">
+      <string>Title</string>
      </property>
     </widget>
    </item>
@@ -131,6 +46,13 @@
      </property>
      <property name="margin">
       <number>9</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="acceptButton">
+     <property name="text">
+      <string notr="true">OK</string>
      </property>
     </widget>
    </item>
@@ -156,6 +78,16 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>tTitleLabel</class>
+   <extends>QLabel</extends>
+   <header location="global">ttitlelabel.h</header>
+   <slots>
+    <signal>backButtonClicked()</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

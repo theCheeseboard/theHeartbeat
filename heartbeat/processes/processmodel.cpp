@@ -25,15 +25,14 @@
 #include "processmanager.h"
 #include "process.h"
 
-ProcessModel::ProcessModel(ProcessManager* pm, ModelType t, QObject *parent)
-    : QAbstractTableModel(parent)
-{
+ProcessModel::ProcessModel(ProcessManager* pm, ModelType t, QObject* parent)
+    : QAbstractTableModel(parent) {
     this->pm = pm;
 
     sortTimer = new QTimer();
     sortTimer->setInterval(100);
     sortTimer->setSingleShot(true);
-    connect(sortTimer, &QTimer::timeout, [=] {
+    connect(sortTimer, &QTimer::timeout, [ = ] {
         performSort();
     });
 
@@ -41,8 +40,7 @@ ProcessModel::ProcessModel(ProcessManager* pm, ModelType t, QObject *parent)
     connect(pm, SIGNAL(newPid(int)), this, SLOT(newPid(int)));
 }
 
-QVariant ProcessModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
+QVariant ProcessModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (role == Qt::DisplayRole) {
         switch (section) {
             case Name:
@@ -60,8 +58,7 @@ QVariant ProcessModel::headerData(int section, Qt::Orientation orientation, int 
     return QAbstractTableModel::headerData(section, orientation, role);
 }
 
-int ProcessModel::rowCount(const QModelIndex &parent) const
-{
+int ProcessModel::rowCount(const QModelIndex& parent) const {
     if (parent.isValid()) {
         return 0;
     }
@@ -69,8 +66,7 @@ int ProcessModel::rowCount(const QModelIndex &parent) const
     return shownProcesses.count();
 }
 
-int ProcessModel::columnCount(const QModelIndex &parent) const
-{
+int ProcessModel::columnCount(const QModelIndex& parent) const {
     if (parent.isValid()) {
         return 0;
     }
@@ -78,8 +74,7 @@ int ProcessModel::columnCount(const QModelIndex &parent) const
     return 4;
 }
 
-QVariant ProcessModel::data(const QModelIndex &index, int role) const
-{
+QVariant ProcessModel::data(const QModelIndex& index, int role) const {
     if (!index.isValid()) {
         return QVariant();
     }
@@ -110,7 +105,7 @@ QVariant ProcessModel::data(const QModelIndex &index, int role) const
                     return tr("%1 KiB").arg(locale.toString((double) val, 'f', 1));
                 } else if (val < 1048576) {
                     return tr("%1 MiB").arg(locale.toString((double) val / 1024, 'f', 1));
-                } else /* (val < 1073741824) */ {
+                } else { /* (val < 1073741824) */
                     return tr("%1 GiB").arg(locale.toString((double) val / 1048576, 'f', 1));
                 }
             }
@@ -183,7 +178,7 @@ void ProcessModel::processPropertiesChanged(Process* p) {
     }
 }
 
-bool ProcessModel::checkProcessEligibility(Process *p) {
+bool ProcessModel::checkProcessEligibility(Process* p) {
     switch (type) {
         case Applications:
             return p->property("x11-window").isValid();
@@ -192,7 +187,7 @@ bool ProcessModel::checkProcessEligibility(Process *p) {
     }
 }
 
-void ProcessModel::setupProcess(Process *p) {
+void ProcessModel::setupProcess(Process* p) {
     this->beginInsertRows(QModelIndex(), rowCount() - 1, rowCount() - 1);
     shownProcesses.append(p);
     connect(p, SIGNAL(processGone(Process*)), this, SLOT(processGone(Process*)));
@@ -210,7 +205,7 @@ void ProcessModel::processGone(Process* p) {
     this->endRemoveRows();
 }
 
-void ProcessModel::checkProcessForSetup(Process *p) {
+void ProcessModel::checkProcessForSetup(Process* p) {
     if (!shownProcesses.contains(p) && p != nullptr && checkProcessEligibility(p)) {
         setupProcess(p);
     }
@@ -225,37 +220,31 @@ void ProcessModel::sort(int column, Qt::SortOrder order) {
 void ProcessModel::performSort() {
     if (sortColumn == -1 || !performSorting) return;
 
-    std::stable_sort(shownProcesses.begin(), shownProcesses.end(), [=](const Process* a, const Process* b) -> bool {
+    std::stable_sort(shownProcesses.begin(), shownProcesses.end(), [ = ](const Process * a, const Process * b) -> bool {
         if (a == nullptr || b == nullptr) return false;
         //Check if a < b
 
         qlonglong val1, val2;
 
-        //bool retVal = false;
         switch (sortColumn) {
             case Name:
-                //retVal = getProcessDisplayName(a).toLower().localeAwareCompare(getProcessDisplayName(b).toLower()) < 0;
                 val1 = getProcessDisplayName(a).toLower().localeAwareCompare(getProcessDisplayName(b).toLower());
                 val2 = 0;
                 break;
             case CPU:
-                //retVal = a->property("cpuUsage").toDouble() < b->property("cpuUsage").toDouble();
                 val1 = a->property("cpuUsage").toDouble();
                 val2 = b->property("cpuUsage").toDouble();
                 break;
             case Memory:
                 if (type == Applications) {
-                    //retVal = a->property("totalX11PrivateMem").toULongLong() < b->property("totalX11PrivateMem").toULongLong();
                     val1 = a->property("totalX11PrivateMem").toULongLong();
                     val2 = b->property("totalX11PrivateMem").toULongLong();
-                } else if (type == Processes) {
-                    //retVal = a->property("privateMem").toULongLong() < b->property("privateMem").toULongLong();
+                } else {
                     val1 = a->property("privateMem").toULongLong();
                     val2 = b->property("privateMem").toULongLong();
                 }
                 break;
             case Pid:
-                //retVal = a->property("pid").toInt() < b->property("pid").toInt();
                 val1 = a->property("pid").toInt();
                 val2 = b->property("pid").toInt();
                 break;
@@ -281,12 +270,14 @@ void ProcessModel::performSort() {
     emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }
 
-QString ProcessModel::getProcessDisplayName(const Process *p) const {
+QString ProcessModel::getProcessDisplayName(const Process* p) const {
     if (type == Applications) {
         if (p->property("exe").toString().endsWith("/theshell")) {
             return "theShell";
         } else if (p->property("exe").toString().endsWith("/theshellb")) {
             return "theShell Blueprint";
+        } else if (p->property("exe").toString().endsWith("/thedesk")) {
+            return "theDesk";
         } else {
             return p->property("x11-windowtitle").toString();
         }
@@ -315,7 +306,7 @@ ProcessTitleDelegate::ProcessTitleDelegate(QObject* parent) : QStyledItemDelegat
 }
 
 
-void ProcessTitleDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
+void ProcessTitleDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const {
     QPen transientColor = option.palette.color(QPalette::Disabled, QPalette::WindowText);
 
     painter->setPen(Qt::transparent);
@@ -341,29 +332,46 @@ void ProcessTitleDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 
     QRect iconRect, textRect = option.rect;
 
-    iconRect.setSize(QSize(16, 16) * theLibsGlobal::getDPIScaling());
+    iconRect.setSize(SC_DPI_T(QSize(16, 16), QSize));
     QPixmap icon = index.data(Qt::DecorationRole).value<QPixmap>();
-    iconRect.moveLeft(option.rect.left() + 2 * theLibsGlobal::getDPIScaling());
+
+    if (option.direction == Qt::LeftToRight) {
+        iconRect.moveLeft(option.rect.left() + SC_DPI(2));
+        textRect.setLeft(iconRect.right() + SC_DPI(6));
+    } else {
+        iconRect.moveRight(option.rect.right() - SC_DPI(2));
+        textRect.setRight(iconRect.left() - SC_DPI(6));
+    }
     iconRect.moveTop(option.rect.top() + (option.rect.height() / 2) - (iconRect.height() / 2));
     painter->drawPixmap(iconRect, icon);
-    textRect.setLeft(iconRect.right() + 6 * theLibsGlobal::getDPIScaling());
 
     //Draw the process name
     QRect nameRect = textRect;
     painter->setPen(option.palette.color(QPalette::WindowText));
-    nameRect.setWidth(option.fontMetrics.width(index.data().toString()) + 1);
-    textRect.setLeft(nameRect.right() + 6 * theLibsGlobal::getDPIScaling());
+    nameRect.setWidth(option.fontMetrics.horizontalAdvance(index.data().toString()) + 1);
+    if (option.direction == Qt::LeftToRight) {
+        textRect.setLeft(nameRect.right() + SC_DPI(6));
+    } else {
+        nameRect.moveRight(textRect.right());
+        textRect.setRight(nameRect.left() - SC_DPI(6));
+    }
 
-    if (nameRect.right() > option.rect.right()) {
+    if ((option.direction == Qt::LeftToRight && nameRect.right() > option.rect.right()) ||
+        (option.direction == Qt::RightToLeft && nameRect.left() < option.rect.left())) {
         //We need to squish the text
         painter->save();
 
-        int availableSpace = option.rect.right() - nameRect.left();
+        int availableSpace = option.direction == Qt::LeftToRight ? (option.rect.right() - nameRect.left()) : (nameRect.right() - option.rect.left());
         int requestedSpace = nameRect.width();
 
-        qreal scaleFactor = (qreal) availableSpace / (qreal) requestedSpace;
+        qreal scaleFactor = static_cast<qreal>(availableSpace) / requestedSpace;
         painter->scale(scaleFactor, 1);
-        nameRect.moveLeft(nameRect.left() / scaleFactor);
+
+        if (option.direction == Qt::LeftToRight) {
+            nameRect.moveLeft(nameRect.left() / scaleFactor);
+        } else {
+            nameRect.moveRight(nameRect.right() / scaleFactor);
+        }
 
         painter->drawText(nameRect, Qt::AlignLeft | Qt::AlignVCenter, index.data().toString());
         painter->restore();

@@ -30,8 +30,7 @@
 class ProcessManager;
 class Process;
 
-class ProcessModel : public QAbstractTableModel
-{
+class ProcessModel : public QAbstractTableModel {
         Q_OBJECT
 
     public:
@@ -46,16 +45,16 @@ class ProcessModel : public QAbstractTableModel
             Applications,
             Processes
         };
-        explicit ProcessModel(ProcessManager* pm, ModelType t = Applications, QObject *parent = nullptr);
+        explicit ProcessModel(ProcessManager* pm, ModelType t = Applications, QObject* parent = nullptr);
 
 
         // Header:
         QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
-        int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+        int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+        int columnCount(const QModelIndex& parent = QModelIndex()) const override;
 
-        QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+        QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
         void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
@@ -90,12 +89,12 @@ class ProcessModel : public QAbstractTableModel
 
 
 class ProcessTitleDelegate : public QStyledItemDelegate {
-    Q_OBJECT
+        Q_OBJECT
 
     public:
         explicit ProcessTitleDelegate(QObject* parent = nullptr);
 
-        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+        void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
 };
 
 #endif // PROCESSMODEL_H

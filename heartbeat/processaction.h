@@ -21,24 +21,25 @@
 #define PROCESSACTION_H
 
 #include <QWidget>
-
+#include <QIcon>
 
 namespace Ui {
     class ProcessAction;
 }
 
 class Process;
-class ProcessAction : public QWidget
-{
+class ProcessAction : public QWidget {
         Q_OBJECT
 
     public:
-        explicit ProcessAction(QWidget *parent = nullptr);
+        explicit ProcessAction(QWidget* parent = nullptr);
         ~ProcessAction();
 
     public slots:
         void setTitle(QString title);
         void setText(QString text);
+        void setOkText(QString text);
+        void setOkIcon(QIcon icon);
         void addProcess(Process* p);
 
     signals:
@@ -46,12 +47,12 @@ class ProcessAction : public QWidget
         void accept();
 
     private slots:
-        void on_backButton_clicked();
-
         void on_acceptButton_clicked();
 
+        void on_titleLabel_backButtonClicked();
+
     private:
-        Ui::ProcessAction *ui;
+        Ui::ProcessAction* ui;
 };
 
 #endif // PROCESSACTION_H
