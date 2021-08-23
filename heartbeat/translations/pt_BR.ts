@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-16"?>
 <!DOCTYPE TS []>
 <TS version="2.1" language="br_FR" sourcelanguage="en_US">
   <context>
@@ -30,7 +30,7 @@
     <message>
       <location filename="../mainwindow.cpp" line="67" />
       <source>Exit</source>
-      <translation type="unfinished"></translation>
+      <translation></translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="97" />
@@ -65,7 +65,7 @@
     <message>
       <location filename="../mainwindow.cpp" line="106" />
       <source>GPU Temperature</source>
-      <translation type="unfinished"></translation>
+      <translation></translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="122" />
@@ -87,7 +87,7 @@
     <message>
       <location filename="../mainwindow.cpp" line="233" />
       <source>Are you sure you want to force these processes to stop? You'll lose any unsaved work.</source>
-      <translation type="unfinished"></translation>
+      <translation></translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="238" />
