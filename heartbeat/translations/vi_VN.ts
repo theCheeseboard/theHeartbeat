@@ -109,9 +109,7 @@
     <message numerus="yes">
       <location filename="../mainwindow.cpp" line="277" />
       <source>%n processes</source>
-      <translation>
-        <numerusform>%n quá trình</numerusform>
-      </translation>
+      <translation>%n quá trình</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="281" />
