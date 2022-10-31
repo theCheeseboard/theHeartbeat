@@ -27,7 +27,7 @@
       <source>Terminate Process</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>Sair</translation>
       <location filename="../mainwindow.cpp" line="67" />
       <source>Exit</source>
     </message>
@@ -62,7 +62,7 @@
       <source>CPU Temperature</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>Temperatura da GPU</translation>
       <location filename="../mainwindow.cpp" line="106" />
       <source>GPU Temperature</source>
     </message>
@@ -77,14 +77,14 @@
       <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>Forçar Parada</translation>
       <location filename="../mainwindow.cpp" line="232" />
       <location filename="../mainwindow.cpp" line="234" />
       <location filename="../mainwindow.cpp" line="294" />
       <source>Force Stop</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>Você tem certeza de que quer forçar a parada desses processos? Você perderá qualquer trabalho que não foi salvo.</translation>
       <location filename="../mainwindow.cpp" line="233" />
       <source>Are you sure you want to force these processes to stop? You'll lose any unsaved work.</source>
     </message>
@@ -128,7 +128,7 @@
   <context>
     <name>ProcessAction</name>
     <message>
-      <translation></translation>
+      <translation>Título</translation>
       <location filename="../processaction.ui" line="35" />
       <source>Title</source>
     </message>
