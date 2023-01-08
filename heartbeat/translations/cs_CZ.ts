@@ -243,7 +243,7 @@
   <context>
     <name>main</name>
     <message>
-      <translation></translation>
+      <translation>Monitorování systému</translation>
       <location filename="../main.cpp" line="48" />
       <source>System Monitor</source>
     </message>
