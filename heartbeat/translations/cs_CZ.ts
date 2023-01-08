@@ -192,7 +192,7 @@
       <source>Zombie</source>
     </message>
     <message>
-      <translation>Mtvý</translation>
+      <translation>Mrtvý</translation>
       <location filename="../processes/processmodel.cpp" line="145" />
       <source>Dead</source>
     </message>
