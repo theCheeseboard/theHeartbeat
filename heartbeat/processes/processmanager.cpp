@@ -19,24 +19,25 @@
  * *************************************/
 #include "processmanager.h"
 
+#include "process.h"
+#include <QDebug>
 #include <QDir>
 #include <QFile>
-#include <QRegularExpression>
 #include <QHash>
-#include <QDebug>
+#include <QMutexLocker>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QTimer>
 #include <tpromise.h>
-#include <QMutexLocker>
-#include "process.h"
 
 struct ProcessManagerPrivate {
-    QHash<int, Process*> processes;
-    QMutex processesLocker;
-    SystemManager* sm;
+        QHash<int, Process*> processes;
+        QMutex processesLocker;
+        SystemManager* sm;
 };
 
-ProcessManager::ProcessManager(SystemManager* sm, QObject *parent) : QObject(parent) {
+ProcessManager::ProcessManager(SystemManager* sm, QObject* parent) :
+    QObject(parent) {
     d = new ProcessManagerPrivate();
     d->sm = sm;
 
@@ -53,7 +54,7 @@ ProcessManager::~ProcessManager() {
 }
 
 void ProcessManager::checkProcesses() {
-    (new tPromise<void>([=](QString& error) {
+    (new tPromise<void>([this](QString& error) {
         QDir procDir("/proc");
         QStringList procDirs = procDir.entryList(QDir::Dirs);
 
@@ -72,7 +73,7 @@ void ProcessManager::checkProcesses() {
                 emit newPid(pid);
             }
         }
-    }))->then([=] {
+    }))->then([this] {
         for (int pid : d->processes.keys()) {
             d->processes.value(pid)->performUpdate();
         }

@@ -20,42 +20,42 @@
 
 #include "process.h"
 
-#include <QFile>
+#include "processmanager.h"
+#include "system/systemmanager.h"
 #include <QDir>
-#include <QVariant>
-#include <QX11Info>
+#include <QFile>
 #include <QImage>
-#include <QPixmap>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QPixmap>
+#include <QVariant>
 #include <tpromise.h>
-#include "system/systemmanager.h"
-#include "processmanager.h"
+#include <tx11info.h>
 
-#include <unistd.h>
-#include <X11/Xlib.h>
 #include <X11/Xatom.h>
+#include <X11/Xlib.h>
+#include <unistd.h>
 
 extern QMutex checkerMutex;
 extern int checkers;
 
 struct ProcessPrivate {
-    int pid;
+        int pid;
 
-    SystemManager* sm;
-    ProcessManager* pm;
+        SystemManager* sm;
+        ProcessManager* pm;
 
-    QMutex* updateLocker;
-    QMutex* propertyLocker;
-    QMutex* childrenLocker;
+        QMutex* updateLocker;
+        QMutex* propertyLocker;
+        QMutex* childrenLocker;
 
-    qulonglong oldUtime = 0, oldStime = 0;
+        qulonglong oldUtime = 0, oldStime = 0;
 
-    QVector<Process*> children;
+        QVector<Process*> children;
 };
 
-Process::Process(int pid, ProcessManager* pm, SystemManager* sm, QObject *parent) : QObject(parent)
-{
+Process::Process(int pid, ProcessManager* pm, SystemManager* sm, QObject* parent) :
+    QObject(parent) {
     d = new ProcessPrivate();
     d->sm = sm;
     d->pm = pm;
@@ -76,12 +76,12 @@ Process::~Process() {
     delete d;
 }
 
-bool Process::setProperty(const char *name, const QVariant &value) {
+bool Process::setProperty(const char* name, const QVariant& value) {
     QMutexLocker locker(d->propertyLocker);
     return QObject::setProperty(name, value);
 }
 
-QVariant Process::property(const char *name) const {
+QVariant Process::property(const char* name) const {
     QMutexLocker locker(d->propertyLocker);
     return QObject::property(name);
 }
@@ -91,10 +91,10 @@ void Process::performUpdate() {
         return;
     }
 
-    Display* dpy = QX11Info::display();
-    (new tPromise<void>([=](QString& error) {
+    Display* dpy = tX11Info::display();
+    (new tPromise<void>([this, dpy](QString& error) {
         if (!QDir(QString("/proc/%1").arg(QString::number(d->pid))).exists()) {
-            //Tell everyone we're gone
+            // Tell everyone we're gone
             d->updateLocker->unlock();
             error = "gone";
             return;
@@ -117,7 +117,7 @@ void Process::performUpdate() {
             if (name == "Name") {
                 this->setProperty("process", value);
             } else if (name == "VmRSS") {
-                //sharedMem = value.split(" ").first().toULongLong();
+                // sharedMem = value.split(" ").first().toULongLong();
                 totalMem = value.split(" ").first().toULongLong();
             } else if (name == "RssFile") {
                 sharedMem += value.split(" ").first().toULongLong();
@@ -158,7 +158,7 @@ void Process::performUpdate() {
             } else if (name == "TracerPid") {
                 this->setProperty("tracer", value.toInt());
             } else if (name == "Uid") {
-                QStringList parts = value.split("\t", QString::SkipEmptyParts);
+                QStringList parts = value.split("\t", Qt::SkipEmptyParts);
                 this->setProperty("uid", parts.at(0).toInt());
                 this->setProperty("effectiveUid", parts.at(1).toInt());
                 this->setProperty("savedUid", parts.at(2).toInt());
@@ -167,7 +167,7 @@ void Process::performUpdate() {
         }
 
         qulonglong totalPrivateMem = totalMem - sharedMem;
-        qulonglong totalX11PrivateMem = totalPrivateMem; //The amount of memory taken up by children processes excluding those with a window
+        qulonglong totalX11PrivateMem = totalPrivateMem; // The amount of memory taken up by children processes excluding those with a window
         this->setProperty("sharedMem", sharedMem);
         this->setProperty("privateMem", totalPrivateMem);
 
@@ -207,23 +207,23 @@ void Process::performUpdate() {
         Atom WindowListType;
         int format;
         unsigned long items, bytes;
-        unsigned char *data;
+        unsigned char* data;
         XGetWindowProperty(dpy, DefaultRootWindow(dpy), XInternAtom(dpy, "_NET_CLIENT_LIST", true), 0L, (~0L),
-                                        False, AnyPropertyType, &WindowListType, &format, &items, &bytes, &data);
+            False, AnyPropertyType, &WindowListType, &format, &items, &bytes, &data);
 
         bool foundWindow = false;
-        quint64 *windows = (quint64*) data;
+        quint64* windows = (quint64*) data;
         for (unsigned int i = 0; i < items; i++) {
             Window win = windows[i];
 
             int ok;
             unsigned long items, bytes;
-            unsigned char *returnVal;
+            unsigned char* returnVal;
             int format;
             Atom ReturnType;
 
             ok = XGetWindowProperty(dpy, win, XInternAtom(dpy, "_NET_WM_PID", False), 0, 1024, False,
-                                    XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
+                XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
             if (ok == 0 && returnVal != 0x0) {
                 unsigned long pid = *(unsigned long*) returnVal;
 
@@ -242,17 +242,17 @@ void Process::performUpdate() {
 
             int ok;
             unsigned long items, bytes;
-            unsigned char *returnVal;
+            unsigned char* returnVal;
             int format;
             Atom ReturnType;
 
-            { //Obtain the window title
+            { // Obtain the window title
                 ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_NAME", False), 0, 1024, False,
-                                   XInternAtom(dpy, "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
+                    XInternAtom(dpy, "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
 
                 if (returnVal == nullptr) {
                     ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "WM_NAME", False), 0, 1024, False,
-                                       XInternAtom(dpy, "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
+                        XInternAtom(dpy, "UTF8_STRING", False), &ReturnType, &format, &items, &bytes, &returnVal);
                 }
 
                 if (ok == 0 && returnVal != nullptr) {
@@ -261,12 +261,12 @@ void Process::performUpdate() {
                 }
             }
 
-            { //Obtain the window icon
+            { // Obtain the window icon
                 bool noIcon = false;
                 int width, height;
 
                 ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_ICON", False), 0, 1, False,
-                                   XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
+                    XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
                 if (returnVal == nullptr) {
                     noIcon = true;
                 } else {
@@ -275,7 +275,7 @@ void Process::performUpdate() {
                 }
 
                 ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_ICON", False), 1, 1, False,
-                                   XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
+                    XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
 
                 if (returnVal == nullptr) {
                     noIcon = true;
@@ -286,7 +286,7 @@ void Process::performUpdate() {
 
                 if (!noIcon) {
                     ok = XGetWindowProperty(dpy, window, XInternAtom(dpy, "_NET_WM_ICON", False), 2, width * height * 4, False,
-                                       XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
+                        XA_CARDINAL, &ReturnType, &format, &items, &bytes, &returnVal);
 
                     if (returnVal != nullptr) {
                         QImage image(16, 16, QImage::Format_ARGB32);
@@ -325,13 +325,14 @@ void Process::performUpdate() {
         checkerMutex.unlock();
 
         d->updateLocker->unlock();
-    }))->then([=] {
-        emit propertiesChanged(this);
-    })->error([=](QString error) {
-        if (error == "gone") {
-            emit processGone(this);
-        }
-    });
+    }))->then([this] {
+           emit propertiesChanged(this);
+       })
+        ->error([this](QString error) {
+            if (error == "gone") {
+                emit processGone(this);
+            }
+        });
 }
 
 QString Process::readFile(QString file) {
@@ -349,11 +350,11 @@ void Process::sendSignal(int signal) {
     kill(d->pid, signal);
 }
 
-void Process::addCascadingProcess(Process *p) {
+void Process::addCascadingProcess(Process* p) {
     d->childrenLocker->lock();
     if (!d->children.contains(p)) {
         d->children.append(p);
-        connect(p, &Process::processGone, [=] {
+        connect(p, &Process::processGone, [this, p] {
             d->childrenLocker->lock();
             d->children.removeOne(p);
             d->childrenLocker->unlock();
