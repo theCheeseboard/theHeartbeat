@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TS version="2.1">
+<TS version="2.1" language="nl_NL">
   <context>
     <name>MainWindow</name>
     <message>
@@ -106,7 +106,10 @@
       <source>For %1</source>
     </message>
     <message numerus="yes">
-      <translation />
+      <translation>
+        <numerusform>%n proces</numerusform>
+        <numerusform>%n processen</numerusform>
+      </translation>
       <location filename="../mainwindow.cpp" line="277" />
       <source>%n processes</source>
     </message>
