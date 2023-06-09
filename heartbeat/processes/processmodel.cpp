@@ -19,20 +19,20 @@
  * *************************************/
 #include "processmodel.h"
 
-#include <QSize>
-#include <QMutexLocker>
-#include <the-libs_global.h>
-#include "processmanager.h"
 #include "process.h"
+#include "processmanager.h"
+#include <QMutexLocker>
+#include <QSize>
+#include <libcontemporary_global.h>
 
-ProcessModel::ProcessModel(ProcessManager* pm, ModelType t, QObject* parent)
-    : QAbstractTableModel(parent) {
+ProcessModel::ProcessModel(ProcessManager* pm, ModelType t, QObject* parent) :
+    QAbstractTableModel(parent) {
     this->pm = pm;
 
     sortTimer = new QTimer();
     sortTimer->setInterval(100);
     sortTimer->setSingleShot(true);
-    connect(sortTimer, &QTimer::timeout, [ = ] {
+    connect(sortTimer, &QTimer::timeout, this, [this] {
         performSort();
     });
 
@@ -86,31 +86,33 @@ QVariant ProcessModel::data(const QModelIndex& index, int role) const {
         switch (index.column()) {
             case Name:
                 return getProcessDisplayName(p);
-            case CPU: {
-                double cpuUsage = p->property("cpuUsage").toDouble();
-                if (cpuUsage == 0) {
-                    return "";
-                } else {
-                    return locale.toString(cpuUsage * 100, 'f', 1) + "%";
+            case CPU:
+                {
+                    double cpuUsage = p->property("cpuUsage").toDouble();
+                    if (cpuUsage == 0) {
+                        return "";
+                    } else {
+                        return locale.toString(cpuUsage * 100, 'f', 1) + "%";
+                    }
                 }
-            }
-            case Memory: {
-                qulonglong val = 0;
-                if (type == Applications) {
-                    val = p->property("totalX11PrivateMem").toULongLong();
-                } else if (type == Processes) {
-                    val = p->property("privateMem").toULongLong();
+            case Memory:
+                {
+                    qulonglong val = 0;
+                    if (type == Applications) {
+                        val = p->property("totalX11PrivateMem").toULongLong();
+                    } else if (type == Processes) {
+                        val = p->property("privateMem").toULongLong();
+                    }
+                    if (val < 1024) {
+                        return tr("%1 KiB").arg(locale.toString((double) val, 'f', 1));
+                    } else if (val < 1048576) {
+                        return tr("%1 MiB").arg(locale.toString((double) val / 1024, 'f', 1));
+                    } else { /* (val < 1073741824) */
+                        return tr("%1 GiB").arg(locale.toString((double) val / 1048576, 'f', 1));
+                    }
                 }
-                if (val < 1024) {
-                    return tr("%1 KiB").arg(locale.toString((double) val, 'f', 1));
-                } else if (val < 1048576) {
-                    return tr("%1 MiB").arg(locale.toString((double) val / 1024, 'f', 1));
-                } else { /* (val < 1073741824) */
-                    return tr("%1 GiB").arg(locale.toString((double) val / 1048576, 'f', 1));
-                }
-            }
             case Pid:
-                return QString::number(p->property("pid").toInt()); //Use QString::number here because it doesn't depend on the locale ;)
+                return QString::number(p->property("pid").toInt()); // Use QString::number here because it doesn't depend on the locale ;)
         }
     } else if (role == Qt::DecorationRole) {
         if (index.column() == Name) {
@@ -172,7 +174,7 @@ void ProcessModel::loadProcesses() {
 void ProcessModel::processPropertiesChanged(Process* p) {
     if (shownProcesses.contains(p)) {
         performSort();
-        //emit dataChanged(index(shownProcesses.indexOf(p), 0), index(shownProcesses.indexOf(p), columnCount()));
+        // emit dataChanged(index(shownProcesses.indexOf(p), 0), index(shownProcesses.indexOf(p), columnCount()));
     } else {
         checkProcessForSetup(p);
     }
@@ -185,6 +187,7 @@ bool ProcessModel::checkProcessEligibility(Process* p) {
         case Processes:
             return true;
     }
+    return false;
 }
 
 void ProcessModel::setupProcess(Process* p) {
@@ -220,9 +223,9 @@ void ProcessModel::sort(int column, Qt::SortOrder order) {
 void ProcessModel::performSort() {
     if (sortColumn == -1 || !performSorting) return;
 
-    std::stable_sort(shownProcesses.begin(), shownProcesses.end(), [ = ](const Process * a, const Process * b) -> bool {
+    std::stable_sort(shownProcesses.begin(), shownProcesses.end(), [this](const Process* a, const Process* b) -> bool {
         if (a == nullptr || b == nullptr) return false;
-        //Check if a < b
+        // Check if a < b
 
         qlonglong val1, val2;
 
@@ -252,7 +255,7 @@ void ProcessModel::performSort() {
 
         bool retVal;
         if (val1 == val2) {
-            //Compare on PIDs: they should never be the same
+            // Compare on PIDs: they should never be the same
             retVal = a->property("pid").toInt() < b->property("pid").toInt();
         } else if (val1 < val2) {
             retVal = true;
@@ -301,10 +304,9 @@ void ProcessModel::setPerformSorting(bool performSorting) {
     }
 }
 
-ProcessTitleDelegate::ProcessTitleDelegate(QObject* parent) : QStyledItemDelegate(parent) {
-
+ProcessTitleDelegate::ProcessTitleDelegate(QObject* parent) :
+    QStyledItemDelegate(parent) {
 }
-
 
 void ProcessTitleDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const {
     QPen transientColor = option.palette.color(QPalette::Disabled, QPalette::WindowText);
@@ -345,7 +347,7 @@ void ProcessTitleDelegate::paint(QPainter* painter, const QStyleOptionViewItem& 
     iconRect.moveTop(option.rect.top() + (option.rect.height() / 2) - (iconRect.height() / 2));
     painter->drawPixmap(iconRect, icon);
 
-    //Draw the process name
+    // Draw the process name
     QRect nameRect = textRect;
     painter->setPen(option.palette.color(QPalette::WindowText));
     nameRect.setWidth(option.fontMetrics.horizontalAdvance(index.data().toString()) + 1);
@@ -358,7 +360,7 @@ void ProcessTitleDelegate::paint(QPainter* painter, const QStyleOptionViewItem& 
 
     if ((option.direction == Qt::LeftToRight && nameRect.right() > option.rect.right()) ||
         (option.direction == Qt::RightToLeft && nameRect.left() < option.rect.left())) {
-        //We need to squish the text
+        // We need to squish the text
         painter->save();
 
         int availableSpace = option.direction == Qt::LeftToRight ? (option.rect.right() - nameRect.left()) : (nameRect.right() - option.rect.left());
@@ -379,7 +381,7 @@ void ProcessTitleDelegate::paint(QPainter* painter, const QStyleOptionViewItem& 
         painter->drawText(nameRect, Qt::AlignLeft | Qt::AlignVCenter, index.data().toString());
     }
 
-    //Draw the process status
+    // Draw the process status
     if (index.data(Qt::UserRole + 1).toString() != "") {
         painter->setPen(transientColor);
         painter->drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, "· " + index.data(Qt::UserRole + 1).toString());

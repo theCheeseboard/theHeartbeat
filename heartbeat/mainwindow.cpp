@@ -20,28 +20,29 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "processes/processmodel.h"
+#include "processaction.h"
 #include "processes/process.h"
-#include <tstackedwidget.h>
-#include <tpopover.h>
-#include <QMenu>
+#include "processes/processmodel.h"
 #include <QDesktopServices>
+#include <QMenu>
 #include <QScroller>
 #include <QUrl>
 #include <taboutdialog.h>
+#include <tapplication.h>
 #include <tcsdtools.h>
 #include <thelpmenu.h>
-#include "processaction.h"
+#include <tpopover.h>
+#include <tstackedwidget.h>
 
 struct MainWindowPrivate {
-    ProcessManager* pm;
-    SystemManager* sm;
+        ProcessManager* pm;
+        SystemManager* sm;
 
-    QList<MiniPercentagePane*> cpuPanes;
-    QMap<QString, MiniNumberPane*> networkRxPanes;
-    QMap<QString, MiniNumberPane*> networkTxPanes;
+        QList<MiniPercentagePane*> cpuPanes;
+        QMap<QString, MiniNumberPane*> networkRxPanes;
+        QMap<QString, MiniNumberPane*> networkTxPanes;
 
-    tCsdTools csd;
+        tCsdTools csd;
 };
 
 MainWindow::MainWindow(QWidget* parent) :
@@ -64,11 +65,12 @@ MainWindow::MainWindow(QWidget* parent) :
     QMenu* menu = new QMenu();
     menu->addMenu(new tHelpMenu(this));
     menu->addSeparator();
-    menu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), [ = ] {
+    menu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), [=] {
         QApplication::exit();
     });
 
-    ui->menuButton->setIconSize(SC_DPI_T(QSize(24, 24), QSize));
+    ui->menuButton->setIconSize(QSize(24, 24));
+    ui->menuButton->setIcon(tApplication::applicationIcon());
     ui->menuButton->setMenu(menu);
 
     d->sm = new SystemManager();
@@ -77,7 +79,7 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->processTable->setModel(new ProcessModel(d->pm));
     ui->processTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processTable->header()->setStretchLastSection(false);
-    ui->processTable->header()->setDefaultSectionSize(SC_DPI(100));
+    ui->processTable->header()->setDefaultSectionSize(100);
     ui->processTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->processTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
     ui->processTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
@@ -87,7 +89,7 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->processesTable->setModel(new ProcessModel(d->pm, ProcessModel::Processes));
     ui->processesTable->setItemDelegateForColumn(0, new ProcessTitleDelegate());
     ui->processesTable->header()->setStretchLastSection(false);
-    ui->processesTable->header()->setDefaultSectionSize(SC_DPI(100));
+    ui->processesTable->header()->setDefaultSectionSize(100);
     ui->processesTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->processesTable->header()->setSectionResizeMode(1, QHeaderView::Interactive);
     ui->processesTable->header()->setSectionResizeMode(2, QHeaderView::Interactive);
@@ -138,7 +140,7 @@ MainWindow::MainWindow(QWidget* parent) :
         d->networkTxPanes.insert(netDevice, txPane);
     }
 
-    connect(d->sm, &SystemManager::newDataAvailable, [ = ] {
+    connect(d->sm, &SystemManager::newDataAvailable, this, [this] {
         QVariant cpuUsage = d->sm->property("cpu");
         if (cpuUsage.isValid()) {
             ui->cpuUsageWidget->setPercentage(cpuUsage.toDouble());
@@ -195,8 +197,8 @@ MainWindow::MainWindow(QWidget* parent) :
         }
     });
 
-    ui->sideStatusPane->setFixedWidth(SC_DPI(200));
-    ui->sideStatusPaneContents->setFixedWidth(SC_DPI(200));
+    ui->sideStatusPane->setFixedWidth(200);
+    ui->sideStatusPaneContents->setFixedWidth(200);
 
     ui->pages->setCurrentAnimation(tStackedWidget::SlideHorizontal);
     ui->pages->setCurrentIndex(0);
@@ -246,15 +248,15 @@ void MainWindow::sendSignal(QTreeView* tree, QString signalName, int signal) {
         }
 
         tPopover* p = new tPopover(act);
-        p->setPopoverWidth(SC_DPI(400));
+        p->setPopoverWidth(400);
         connect(act, &ProcessAction::dismiss, p, &tPopover::dismiss);
-        connect(act, &ProcessAction::accept, [ = ] {
+        connect(act, &ProcessAction::accept, [=] {
             for (QModelIndex i : tree->selectionModel()->selectedRows()) {
                 i.data(Qt::UserRole).value<Process*>()->sendSignal(signal);
             }
             p->dismiss();
         });
-        connect(p, &tPopover::dismissed, this, [ = ] {
+        connect(p, &tPopover::dismissed, this, [=] {
             p->deleteLater();
             act->deleteLater();
         });
@@ -279,19 +281,39 @@ void MainWindow::prepareContextMenu(QTreeView* view, QPoint pos) {
 
         QMenu* signalsMenu = new QMenu();
         signalsMenu->setTitle(tr("Send Signal"));
-        signalsMenu->addAction("SIGSTOP", this, [ = ] {sendSignal(view, "SIGSTOP", SIGSTOP);});
-        signalsMenu->addAction("SIGCONT", this, [ = ] {sendSignal(view, "SIGCONT", SIGCONT);});
-        signalsMenu->addAction("SIGHUP", this, [ = ] {sendSignal(view, "SIGHUP", SIGHUP );});
-        signalsMenu->addAction("SIGINT", this, [ = ] {sendSignal(view, "SIGINT", SIGINT );});
-        signalsMenu->addAction("SIGUSR1", this, [ = ] {sendSignal(view, "SIGUSR1", SIGUSR1);});
-        signalsMenu->addAction("SIGUSR2", this, [ = ] {sendSignal(view, "SIGUSR2", SIGUSR2);});
+        signalsMenu->addAction("SIGSTOP", this, [this, view] {
+            sendSignal(view, "SIGSTOP", SIGSTOP);
+        });
+        signalsMenu->addAction("SIGCONT", this, [this, view] {
+            sendSignal(view, "SIGCONT", SIGCONT);
+        });
+        signalsMenu->addAction("SIGHUP", this, [this, view] {
+            sendSignal(view, "SIGHUP", SIGHUP);
+        });
+        signalsMenu->addAction("SIGINT", this, [this, view] {
+            sendSignal(view, "SIGINT", SIGINT);
+        });
+        signalsMenu->addAction("SIGUSR1", this, [this, view] {
+            sendSignal(view, "SIGUSR1", SIGUSR1);
+        });
+        signalsMenu->addAction("SIGUSR2", this, [this, view] {
+            sendSignal(view, "SIGUSR2", SIGUSR2);
+        });
         signalsMenu->addSeparator();
-        signalsMenu->addAction("SIGTERM", this, [ = ] {sendSignal(view, "SIGTERM", SIGTERM);});
-        signalsMenu->addAction("SIGKILL", this, [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
+        signalsMenu->addAction("SIGTERM", this, [this, view] {
+            sendSignal(view, "SIGTERM", SIGTERM);
+        });
+        signalsMenu->addAction("SIGKILL", this, [this, view] {
+            sendSignal(view, "SIGKILL", SIGKILL);
+        });
 
         m->addMenu(signalsMenu);
-        m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [ = ] {sendSignal(view, "SIGTERM", SIGTERM);});
-        m->addAction(QIcon::fromTheme("application-exit"), tr("Force Stop"), [ = ] {sendSignal(view, "SIGKILL", SIGKILL);});
+        m->addAction(QIcon::fromTheme("window-close"), tr("Terminate"), [this, view] {
+            sendSignal(view, "SIGTERM", SIGTERM);
+        });
+        m->addAction(QIcon::fromTheme("application-exit"), tr("Force Stop"), [this, view] {
+            sendSignal(view, "SIGKILL", SIGKILL);
+        });
         connect(m, &QMenu::aboutToHide, m, &QMenu::deleteLater);
         m->popup(view->mapToGlobal(pos));
     }
@@ -313,7 +335,7 @@ void MainWindow::on_cpuUsageWidget_toggleExpand() {
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, this, [ = ](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, this, [this](QVariant value) {
         ui->cpuIndividualUsageWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
@@ -332,7 +354,7 @@ void MainWindow::on_netRxWidget_toggleExpand() {
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, this, [ = ](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, this, [this](QVariant value) {
         ui->netRxIndividualWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
@@ -351,7 +373,7 @@ void MainWindow::on_netTxWidget_toggleExpand() {
     }
     anim->setDuration(500);
     anim->setEasingCurve(QEasingCurve::OutCubic);
-    connect(anim, &tVariantAnimation::valueChanged, this, [ = ](QVariant value) {
+    connect(anim, &tVariantAnimation::valueChanged, this, [this](QVariant value) {
         ui->netTxIndividualWidget->setFixedHeight(value.toInt());
     });
     connect(anim, &tVariantAnimation::finished, anim, &tVariantAnimation::deleteLater);
@@ -359,7 +381,7 @@ void MainWindow::on_netTxWidget_toggleExpand() {
 }
 
 void MainWindow::on_pages_currentChanged(int arg1) {
-    //Don't bother sorting process tables that aren't visible
+    // Don't bother sorting process tables that aren't visible
     ((ProcessModel*) ui->processTable->model())->setPerformSorting(false);
     ((ProcessModel*) ui->processesTable->model())->setPerformSorting(false);
 

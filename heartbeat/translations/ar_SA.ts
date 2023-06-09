@@ -5,127 +5,134 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="434"/>
         <source>theHeartbeat</source>
         <translation>theHeartbeat</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <location filename="../mainwindow.ui" line="202"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="436"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="438"/>
         <source>Overview</source>
         <translation>ملخص</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <location filename="../mainwindow.ui" line="488"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="437"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="443"/>
         <source>Processes</source>
         <translation>العمليات</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="218"/>
         <location filename="../mainwindow.ui" line="504"/>
-        <location filename="../mainwindow.cpp" line="226"/>
+        <location filename="../mainwindow.cpp" line="228"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="440"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="445"/>
         <source>Terminate Process</source>
         <translation>إقاف العملية</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="67"/>
+        <location filename="../mainwindow.cpp" line="68"/>
         <source>Exit</source>
         <translation>الخروج</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="97"/>
+        <location filename="../mainwindow.cpp" line="99"/>
         <source>CPU Usage</source>
         <translation>استخدام المعالج</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="98"/>
+        <location filename="../mainwindow.cpp" line="100"/>
         <source>Memory Usage</source>
         <translation>استخدام الذاكرة</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="99"/>
+        <location filename="../mainwindow.cpp" line="101"/>
         <source>Swap Usage</source>
         <translation>مبادلة الستخدام</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="100"/>
+        <location filename="../mainwindow.cpp" line="102"/>
         <source>Network Receive</source>
         <translation>استقبال الشبكة</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="101"/>
+        <location filename="../mainwindow.cpp" line="103"/>
         <source>Network Send</source>
         <translation>أرسال الشبكة</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="104"/>
+        <location filename="../mainwindow.cpp" line="106"/>
         <source>CPU Temperature</source>
         <translation>درجة حرارة المالج</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="106"/>
+        <location filename="../mainwindow.cpp" line="108"/>
         <source>GPU Temperature</source>
         <translation>درجة حرارة بطاقة الرسومات</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="122"/>
+        <location filename="../mainwindow.cpp" line="124"/>
         <source>CPU %1</source>
         <translation>المعالج 1%</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="227"/>
+        <location filename="../mainwindow.cpp" line="229"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
         <translation>هل أنت متأكد أنك تريد إنهاء هذه العمليات؟ يمكنك أن تفقد العمل الغير المحفوظ.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="228"/>
-        <location filename="../mainwindow.cpp" line="293"/>
+        <location filename="../mainwindow.cpp" line="230"/>
+        <location filename="../mainwindow.cpp" line="311"/>
         <source>Terminate</source>
         <translation>إنهاء</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="232"/>
         <location filename="../mainwindow.cpp" line="234"/>
-        <location filename="../mainwindow.cpp" line="294"/>
+        <location filename="../mainwindow.cpp" line="236"/>
+        <location filename="../mainwindow.cpp" line="314"/>
         <source>Force Stop</source>
         <translation>توقف إجباري</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="233"/>
+        <location filename="../mainwindow.cpp" line="235"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
         <translation>هل أنت متأكد أنك تريد إنهاء هذه العمليات؟ يمكنك أن تفقد العمل الغير المحفوظ.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="238"/>
         <location filename="../mainwindow.cpp" line="240"/>
+        <location filename="../mainwindow.cpp" line="242"/>
         <source>Send %1</source>
         <translation>إرسل %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="239"/>
+        <location filename="../mainwindow.cpp" line="241"/>
         <source>Do you want to send %1 to these processes?</source>
         <translation>هل تريد إرسال٪ 1 إلى هذه العمليات؟</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="274"/>
-        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="276"/>
+        <location filename="../mainwindow.cpp" line="279"/>
         <source>For %1</source>
         <translation>ل %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="279"/>
         <source>%n processes</source>
         <translation>
-            <numerusform>صفر</numerusform>
-            <numerusform>واحد</numerusform>
-            <numerusform>إثنان</numerusform>
-            <numerusform>عدد قليل</numerusform>
-            <numerusform>عديدة</numerusform>
-            <numerusform>آخر</numerusform>
+            <numerusform>صفرواحدإثنانعدد قليلعديدةآخر</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="281"/>
+        <location filename="../mainwindow.cpp" line="283"/>
         <source>Send Signal</source>
         <translation>إرسال إشارة</translation>
     </message>
@@ -134,6 +141,7 @@
     <name>ProcessAction</name>
     <message>
         <location filename="../processaction.ui" line="35"/>
+        <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_processaction.h" line="85"/>
         <source>Title</source>
         <translation>لقب</translation>
     </message>
@@ -161,47 +169,47 @@
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="105"/>
+        <location filename="../processes/processmodel.cpp" line="107"/>
         <source>%1 KiB</source>
         <translation>%1 KiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="107"/>
+        <location filename="../processes/processmodel.cpp" line="109"/>
         <source>%1 MiB</source>
         <translation>%1 MiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="109"/>
+        <location filename="../processes/processmodel.cpp" line="111"/>
         <source>%1 GiB</source>
         <translation>%1 GiB</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="137"/>
+        <location filename="../processes/processmodel.cpp" line="139"/>
         <source>Disk Sleep</source>
         <translation>القرص نوم</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="139"/>
+        <location filename="../processes/processmodel.cpp" line="141"/>
         <source>Debugging</source>
         <translation>تصحيح</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="141"/>
+        <location filename="../processes/processmodel.cpp" line="143"/>
         <source>Stopped</source>
         <translation>توقفت</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="143"/>
+        <location filename="../processes/processmodel.cpp" line="145"/>
         <source>Zombie</source>
         <translation>الاموات الاحياء</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="145"/>
+        <location filename="../processes/processmodel.cpp" line="147"/>
         <source>Dead</source>
         <translation>متوفى</translation>
     </message>
     <message>
-        <location filename="../processes/processmodel.cpp" line="147"/>
+        <location filename="../processes/processmodel.cpp" line="149"/>
         <source>Unknown</source>
         <translation>مجهول</translation>
     </message>
@@ -247,7 +255,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="48"/>
+        <location filename="../main.cpp" line="39"/>
         <source>System Monitor</source>
         <translation>مراقب النظام</translation>
     </message>

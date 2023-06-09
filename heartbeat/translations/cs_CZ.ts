@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="da" sourcelanguage="en_US">
+<TS version="2.1" language="cs_CZ">
 <context>
     <name>MainWindow</name>
     <message>
@@ -15,7 +15,7 @@
         <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="436"/>
         <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="438"/>
         <source>Overview</source>
-        <translation>Oversigt</translation>
+        <translation>Přehled</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
@@ -23,7 +23,7 @@
         <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="437"/>
         <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="443"/>
         <source>Processes</source>
-        <translation>Processer</translation>
+        <translation>Procesy</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="218"/>
@@ -32,47 +32,47 @@
         <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="440"/>
         <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_mainwindow.h" line="445"/>
         <source>Terminate Process</source>
-        <translation>Afslut process</translation>
+        <translation>Ukončit proces</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="68"/>
         <source>Exit</source>
-        <translation>Luk</translation>
+        <translation>Ukončit</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="99"/>
         <source>CPU Usage</source>
-        <translation>CPU-forbrug</translation>
+        <translation>Využití CPU</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="100"/>
         <source>Memory Usage</source>
-        <translation>Hukommelses-forbrug</translation>
+        <translation>Využití paměti</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="101"/>
         <source>Swap Usage</source>
-        <translation>Swap-forbrug</translation>
+        <translation>Využití swapu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="102"/>
         <source>Network Receive</source>
-        <translation>Netværk - Modtaget</translation>
+        <translation>Přijato přes síť</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="103"/>
         <source>Network Send</source>
-        <translation>Netværk - Sendt</translation>
+        <translation>Odesláno přes síť</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="106"/>
         <source>CPU Temperature</source>
-        <translation>CPU-temperatur</translation>
+        <translation>Teplota CPU</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="108"/>
         <source>GPU Temperature</source>
-        <translation>GPU-temperatur</translation>
+        <translation>Teplota GPU</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="124"/>
@@ -82,55 +82,56 @@
     <message>
         <location filename="../mainwindow.cpp" line="229"/>
         <source>Are you sure you want to terminate these processes? You may lose any unsaved work.</source>
-        <translation>Er du sikker på at du vil afslutte disse processer? Du vil muligvis miste data som du ikke har gemt.</translation>
+        <translation>Jsi si jistý, že chceš ukončit tyto procesy? Můžeš ztratit neuloženou práci.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="230"/>
         <location filename="../mainwindow.cpp" line="311"/>
         <source>Terminate</source>
-        <translation>Afslut</translation>
+        <translation>Ukončit</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="234"/>
         <location filename="../mainwindow.cpp" line="236"/>
         <location filename="../mainwindow.cpp" line="314"/>
         <source>Force Stop</source>
-        <translation>Tvangsstop</translation>
+        <translation>Vynutit ukončení</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="235"/>
         <source>Are you sure you want to force these processes to stop? You&apos;ll lose any unsaved work.</source>
-        <translation>Er du sikker på at du vil tvinge disse processer til at stoppe? Du vil miste alt data som du ikke har gemt.</translation>
+        <translation>Jsi jsi jistý, že chceš tyto procesy vynuceně ukončit? Ztratíš veškerou neuloženou práci.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="240"/>
         <location filename="../mainwindow.cpp" line="242"/>
         <source>Send %1</source>
-        <translation>Send %1</translation>
+        <translation>Odeslat %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="241"/>
         <source>Do you want to send %1 to these processes?</source>
-        <translation>Er du sikker på at du vil sende %1 til disse processer?</translation>
+        <translation>Opravdu chceš odeslat %1 těmto procesům?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="276"/>
         <location filename="../mainwindow.cpp" line="279"/>
         <source>For %1</source>
-        <translation>For %1</translation>
+        <translation>Pro %1</translation>
     </message>
     <message numerus="yes">
         <location filename="../mainwindow.cpp" line="279"/>
         <source>%n processes</source>
         <translation>
-            <numerusform>%n process</numerusform>
-            <numerusform>%n processer</numerusform>
+            <numerusform>%n proces</numerusform>
+            <numerusform>%n procesy</numerusform>
+            <numerusform>%n procesů</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="283"/>
         <source>Send Signal</source>
-        <translation>Send signal</translation>
+        <translation>Odeslat signál</translation>
     </message>
 </context>
 <context>
@@ -139,7 +140,7 @@
         <location filename="../processaction.ui" line="35"/>
         <location filename="../../../build-theHeartbeat-Chroot_6-Debug/heartbeat/theheartbeat_autogen/include/ui_processaction.h" line="85"/>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Název</translation>
     </message>
 </context>
 <context>
@@ -147,7 +148,7 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="47"/>
         <source>Name</source>
-        <translation>Navn</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="49"/>
@@ -157,7 +158,7 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="51"/>
         <source>Memory</source>
-        <translation>Hukommelse</translation>
+        <translation>Paměť</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="53"/>
@@ -182,17 +183,17 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="139"/>
         <source>Disk Sleep</source>
-        <translation>Venter på disk</translation>
+        <translation>Spánek (neukončitelný)</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="141"/>
         <source>Debugging</source>
-        <translation>Fejlfinder</translation>
+        <translation>Debug</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="143"/>
         <source>Stopped</source>
-        <translation>Stoppet</translation>
+        <translation>Zastaveno</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="145"/>
@@ -202,12 +203,12 @@
     <message>
         <location filename="../processes/processmodel.cpp" line="147"/>
         <source>Dead</source>
-        <translation>Død</translation>
+        <translation>Mrtvý</translation>
     </message>
     <message>
         <location filename="../processes/processmodel.cpp" line="149"/>
         <source>Unknown</source>
-        <translation>Ukendt</translation>
+        <translation>Neznámý</translation>
     </message>
 </context>
 <context>
@@ -253,7 +254,7 @@
     <message>
         <location filename="../main.cpp" line="39"/>
         <source>System Monitor</source>
-        <translation>Systemoversigt</translation>
+        <translation>Monitorování systému</translation>
     </message>
 </context>
 </TS>
