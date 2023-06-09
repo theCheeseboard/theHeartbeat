@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.21.0)
 
 project(theheartbeat VERSION 1.0.0 LANGUAGES CXX)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets DBus Sql Concurrent)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets DBus Sql Concurrent)
 find_package(libcontemporary REQUIRED)
 
 set(SOURCES
@@ -69,7 +69,7 @@ cntp_target_desktop_file(theheartbeat
 cntp_defaults_file(theheartbeat
     DEFAULTS_FILE theheartbeat.conf)
 
-target_link_libraries(theheartbeat Qt6::Widgets Qt6::DBus Qt6::Concurrent libcontemporary)
+target_link_libraries(theheartbeat Qt::Widgets Qt::DBus Qt::Concurrent libcontemporary)
 
 install(TARGETS theheartbeat
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

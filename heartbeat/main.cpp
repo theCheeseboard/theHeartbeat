@@ -35,9 +35,8 @@ int main(int argc, char* argv[]) {
 
     a.setOrganizationName("theSuite");
     a.setOrganizationDomain("vicr123.com");
-    a.setApplicationVersion("1.1");
+    a.setApplicationVersion("2.0");
     a.setGenericName(QApplication::translate("main", "System Monitor"));
-    a.setAboutDialogSplashGraphic(a.aboutDialogSplashGraphicFromSvg(":/icons/aboutsplash.svg"));
     a.setApplicationLicense(tApplication::Gpl3OrLater);
     a.setCopyrightHolder("Victor Tran");
     a.setCopyrightYear("2023");
